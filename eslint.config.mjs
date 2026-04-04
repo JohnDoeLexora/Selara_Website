@@ -1,3 +1,8 @@
 import nextVitals from 'eslint-config-next';
 
-export default nextVitals;
+const config = [
+  ...nextVitals,
+  { ignores: ['_legacy_backup/**'] },
+];
+
+export default config;

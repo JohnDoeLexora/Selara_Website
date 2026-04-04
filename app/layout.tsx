@@ -1,40 +1,42 @@
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 import './globals.css';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+import { createMetadata, siteUrl } from '@/lib/site-data';
+import { SiteShell } from '@/components/site-shell';
 
 export const metadata: Metadata = {
-  title: {
-    default: 'Selara — Your AI Personal Assistant',
-    template: '%s | Selara',
-  },
-  description:
-    'Selara is the AI personal assistant that connects to 800+ apps, remembers everything, and actually runs your life.',
-  metadataBase: new URL('https://selara.app'),
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://selara.app',
-    siteName: 'Selara',
-    title: 'Selara — Your AI Personal Assistant',
-    description:
-      'Selara is the AI personal assistant that connects to 800+ apps, remembers everything, and actually runs your life.',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Selara — Your AI Personal Assistant',
-    description:
-      'Selara is the AI personal assistant that connects to 800+ apps, remembers everything, and actually runs your life.',
-  },
+  ...createMetadata('Selara | Your Personal Assistant', 'Selara is the premium AI personal assistant for professionals who want their time back.', '/'),
+  keywords: ['Selara', 'AI personal assistant', 'calendar assistant', 'voice assistant', 'AI automations', 'privacy-first assistant'],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+  const themeScript = `(() => {
+    const stored = localStorage.getItem('selara-theme');
+    const theme = stored === 'light' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = theme;
+  })();`;
+
+  const appLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Selara',
+    applicationCategory: 'ProductivityApplication',
+    operatingSystem: 'iOS',
+    url: siteUrl,
+    description: 'Selara is a premium AI personal assistant for professionals who want more time back and more trust in how automation works.',
+    offers: [
+      { '@type': 'Offer', name: 'Selara Select', price: '25', priceCurrency: 'USD' },
+      { '@type': 'Offer', name: 'Selara Premium', price: '45', priceCurrency: 'USD' },
+      { '@type': 'Offer', name: 'Selara Pinnacle', price: '110', priceCurrency: 'USD' },
+    ],
+  };
+
   return (
-    <html lang="en">
-      <body className="bg-[#0A0A0F] text-[#F8F8FF] min-h-screen flex flex-col">
-        <Navigation />
-        <main className="flex-1 pt-16">{children}</main>
-        <Footer />
+    <html lang="en" data-theme="dark">
+      <body>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appLd) }} />
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );

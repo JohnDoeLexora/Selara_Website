@@ -1,0 +1,16 @@
+{
+  "projectId": "prj_mLFqj4BnGBFWPqvbvdDUJBUtFXdY",
+  "orgId": "team_WBbC6cclHw4pZlAAO1BNYsjC",
+  "projectName": "selara-website",
+  "settings": {
+    "createdAt": 1775337340635,
+    "framework": null,
+    "devCommand": null,
+    "installCommand": null,
+    "buildCommand": null,
+    "outputDirectory": null,
+    "rootDirectory": null,
+    "directoryListing": false,
+    "nodeVersion": "24.x"
+  }
+}

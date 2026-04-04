@@ -238,14 +238,23 @@ export function createMetadata(title: string, description: string, path: string)
       description,
       url: absoluteUrl(path),
       siteName: 'Selara',
+      locale: 'en_US',
       type: 'website',
-      images: [{ url: absoluteUrl('/images/selara-logo.png'), width: 500, height: 500, alt: 'Selara logo' }],
+      images: [
+        {
+          url: absoluteUrl('/images/main.png'),
+          width: 1200,
+          height: 630,
+          alt: 'Selara assistant product preview',
+        },
+        { url: absoluteUrl('/images/selara-logo.png'), width: 500, height: 500, alt: 'Selara logo' },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [absoluteUrl('/images/selara-logo.png')],
+      images: [absoluteUrl('/images/main.png')],
     },
   };
 }

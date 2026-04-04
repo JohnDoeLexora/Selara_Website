@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ReactNode } from 'react';
 import {
   betaUrl,
@@ -18,10 +18,13 @@ import {
   storyMoments,
 } from '@/lib/site-data';
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 36 },
-  show: { opacity: 1, y: 0 },
-};
+function makeFadeVariants(reduce: boolean | null) {
+  const off = reduce === true;
+  return {
+    hidden: { opacity: off ? 1 : 0, y: off ? 0 : 36 },
+    show: { opacity: 1, y: 0 },
+  };
+}
 
 const heroShowcase = {
   primary: {
@@ -90,12 +93,14 @@ export function PageHero({ eyebrow, title, intro }: { eyebrow: string; title: st
 }
 
 export function Hero() {
+  const reduce = useReducedMotion();
+  const fadeUp = makeFadeVariants(reduce);
   return (
     <section className="hero heroExpanded">
       <div className="heroBackdrop" />
       <div className="heroGridLines" />
       <div className="shell heroGrid heroGridExpanded">
-        <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.7 }} className="heroCopy">
+        <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: reduce ? 0 : 0.7 }} className="heroCopy">
           <div className="signalRow">
             {heroSignals.map((item) => (
               <span key={item}>{item}</span>
@@ -121,9 +126,9 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
+          initial={reduce ? false : { opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.85, delay: 0.1 }}
+          transition={{ duration: reduce ? 0 : 0.85, delay: reduce ? 0 : 0.1 }}
           className="heroStage"
         >
           <div className="heroHalo heroHaloBlue" />
@@ -151,6 +156,7 @@ export function Hero() {
                       src={heroShowcase.primary.src}
                       alt={heroShowcase.primary.alt}
                       fill
+                      priority
                       sizes="(max-width: 760px) 78vw, (max-width: 1180px) 56vw, 29vw"
                       className="productScreenshot"
                     />
@@ -195,6 +201,8 @@ export function Hero() {
 }
 
 export function StatRow() {
+  const reduce = useReducedMotion();
+  const fadeUp = makeFadeVariants(reduce);
   return (
     <div className="statRow">
       {editorialStats.map((item, index) => (
@@ -204,7 +212,7 @@ export function StatRow() {
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
           variants={fadeUp}
-          transition={{ duration: 0.5, delay: index * 0.08 }}
+          transition={{ duration: reduce ? 0 : 0.5, delay: reduce ? 0 : index * 0.08 }}
           className="statCard"
         >
           <strong>{item.value}</strong>
@@ -218,7 +226,7 @@ export function StatRow() {
 export function IntegrationTicker() {
   const items = [...integrationItems, ...integrationItems];
   return (
-    <div className="tickerWrap tickerWrapLarge">
+    <div className="tickerWrap tickerWrapLarge" role="region" aria-label="Connected tools and integrations">
       <div className="tickerTrack tickerTrackLarge">
         {items.map((item, index) => (
           <span key={`${item}-${index}`}>{item}</span>
@@ -229,6 +237,8 @@ export function IntegrationTicker() {
 }
 
 export function StoryGrid() {
+  const reduce = useReducedMotion();
+  const fadeUp = makeFadeVariants(reduce);
   return (
     <div className="storyGrid storyGridExpanded">
       {storyMoments.map((item, index) => (
@@ -238,7 +248,7 @@ export function StoryGrid() {
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
           variants={fadeUp}
-          transition={{ duration: 0.55, delay: index * 0.08 }}
+          transition={{ duration: reduce ? 0 : 0.55, delay: reduce ? 0 : index * 0.08 }}
           className="storyCard storyCardExpanded"
         >
           <p className="storyIndex">0{index + 1}</p>
@@ -251,9 +261,18 @@ export function StoryGrid() {
 }
 
 export function ApprovalShowcase() {
+  const reduce = useReducedMotion();
+  const fadeUp = makeFadeVariants(reduce);
   return (
     <div className="approvalShowcase">
-      <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} variants={fadeUp} className="showcaseNarrative">
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeUp}
+        transition={{ duration: reduce ? 0 : 0.55 }}
+        className="showcaseNarrative"
+      >
         <p className="eyebrow">Approval-first</p>
         <h2>The conversation and approval concept, finally executed like it belongs in a premium product.</h2>
         <p>
@@ -286,6 +305,8 @@ export function ApprovalShowcase() {
 }
 
 export function FeatureCards() {
+  const reduce = useReducedMotion();
+  const fadeUp = makeFadeVariants(reduce);
   return (
     <div className="featureGrid featureGridExpanded">
       {featureHighlights.map((item, index) => (
@@ -295,7 +316,7 @@ export function FeatureCards() {
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
           variants={fadeUp}
-          transition={{ duration: 0.55, delay: index * 0.05 }}
+          transition={{ duration: reduce ? 0 : 0.55, delay: reduce ? 0 : index * 0.05 }}
           className="featureCard featureCardExpanded"
         >
           <h3>{item.title}</h3>
@@ -308,18 +329,24 @@ export function FeatureCards() {
 }
 
 export function ProductRunway() {
+  const reduce = useReducedMotion();
   return (
     <div className="runwayGrid">
       {productScenes.map((scene, index) => {
         const screenshot = runwayScreens[index];
+        const tilt = index === 1 ? 0 : index === 0 ? -3 : 3;
 
         return (
         <motion.article
           key={scene.title}
-          initial={{ opacity: 0, y: 40, rotate: index === 1 ? 0 : index === 0 ? -3 : 3 }}
-          whileInView={{ opacity: 1, y: 0, rotate: index === 1 ? 0 : index === 0 ? -3 : 3 }}
+          initial={
+            reduce
+              ? { opacity: 1, y: 0, rotate: tilt }
+              : { opacity: 0, y: 40, rotate: tilt }
+          }
+          whileInView={{ opacity: 1, y: 0, rotate: tilt }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.65, delay: index * 0.08 }}
+          transition={{ duration: reduce ? 0 : 0.65, delay: reduce ? 0 : index * 0.08 }}
           className="runwayCard"
         >
           <div className="runwayChrome">
@@ -422,8 +449,8 @@ export function CTASection() {
           <p className="eyebrow">Open beta</p>
           <h2>Reclaim your time with an assistant people will actually want to trust.</h2>
           <p>
-            The site is now set up to feel premium before the final asset pass. Plug in your beta link, drop in final
-            visuals, and it is ready to sell Selara like a serious product.
+            Join the open beta and see how approval-first automation, calendar intelligence, and voice-native control
+            come together in one calm assistant—built for professionals who cannot afford sloppy execution.
           </p>
           <div className="ctaRow ctaRowCentered">
             <a className="primaryButton" href={betaUrl}>Download Beta</a>

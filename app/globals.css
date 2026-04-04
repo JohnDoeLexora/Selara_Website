@@ -1,6 +1,6 @@
 :root {
-  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
-  --font-body: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-fraunces), "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  --font-body: var(--font-dm-sans), "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --bg: #040507;
   --bg-soft: rgba(11, 13, 19, 0.82);
   --surface: rgba(15, 19, 29, 0.72);
@@ -43,6 +43,42 @@ html[data-theme='light'] {
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+.skipLink {
+  position: absolute;
+  left: 16px;
+  top: 0;
+  z-index: 100;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: var(--surface-elevated);
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transform: translateY(-120%);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.skipLink:focus {
+  outline: none;
+}
+.skipLink:focus-visible {
+  transform: translateY(16px);
+  box-shadow: 0 0 0 3px var(--blue-glow), var(--shadow);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--blue) 35%, transparent);
+  color: var(--text);
+}
+
+html[data-theme='light'] ::selection {
+  background: color-mix(in srgb, var(--blue) 22%, transparent);
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -57,10 +93,21 @@ body {
 }
 
 a { color: inherit; text-decoration: none; }
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
 img { display: block; max-width: 100%; height: auto; }
 button { font: inherit; }
 
 .shell { width: var(--shell); margin: 0 auto; }
+#main-content:focus { outline: none; }
+#main-content:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 6px;
+}
 .section { position: relative; padding: 110px 0; }
 .eyebrow {
   margin: 0 0 18px;
@@ -168,6 +215,126 @@ button { font: inherit; }
 .siteNav a:hover,
 .footerLinks a:hover { color: var(--text); transform: translateY(-1px); }
 .navActions { display: flex; align-items: center; gap: 12px; }
+
+.mobileNavRoot { display: none; align-items: center; }
+.mobileNavToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted-strong);
+  cursor: pointer;
+}
+.mobileNavToggleLines {
+  display: grid;
+  gap: 6px;
+  width: 22px;
+}
+.mobileNavToggleLines span {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.mobileNavToggleLines span[data-open='true']:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.mobileNavToggleLines span[data-open='true']:nth-child(2) {
+  opacity: 0;
+}
+.mobileNavToggleLines span[data-open='true']:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+.mobileNavScrim {
+  position: fixed;
+  inset: 0;
+  top: 0;
+  z-index: 55;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+}
+.mobileNavPanel {
+  position: fixed;
+  z-index: 60;
+  left: 12px;
+  right: 12px;
+  top: 88px;
+  max-height: min(72vh, 520px);
+  overflow: auto;
+  padding: 20px 22px 24px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-elevated);
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 18px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+}
+.mobileNavPanel[data-open='true'] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.mobileNavPanelHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+}
+.mobileNavPanelTitle {
+  margin: 0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 800;
+  color: var(--gold);
+}
+.mobileNavClose {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted-strong);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.mobileNavLinks {
+  display: grid;
+  gap: 6px;
+}
+.mobileNavLinks a {
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-weight: 600;
+  color: var(--muted-strong);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  border: 1px solid transparent;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.mobileNavLinks a:hover {
+  color: var(--text);
+  border-color: var(--border);
+  background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
+}
+
+@media (max-width: 900px) {
+  .siteNavDesktop { display: none !important; }
+  .mobileNavRoot { display: flex; }
+}
 .themeToggle,
 .secondaryButton,
 .navButton,
@@ -824,6 +991,20 @@ button { font: inherit; }
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tickerTrack {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    row-gap: 10px;
+  }
+  .pricingCard.featured {
+    transform: none;
+  }
 }
 
 @keyframes pulseBackdrop {

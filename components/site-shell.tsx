@@ -2,18 +2,22 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ReactNode } from 'react';
 import { navigation, socialLinks, supportEmail } from '@/lib/site-data';
+import { MobileNav } from './mobile-nav';
 import { ThemeToggle } from './theme-toggle';
 
 export function SiteShell({ children }: { children: ReactNode }) {
   return (
     <>
+      <a href="#main-content" className="skipLink">
+        Skip to main content
+      </a>
       <header className="siteHeader">
         <div className="shell navShell">
           <Link href="/" className="brandMark" aria-label="Selara home">
-            <Image src="/images/selara-logo.png" alt="Selara" width={42} height={42} className="brandIcon" />
+            <Image src="/images/selara-logo.png" alt="" width={42} height={42} className="brandIcon" priority />
             <span>Selara</span>
           </Link>
-          <nav className="siteNav">
+          <nav className="siteNav siteNavDesktop" aria-label="Primary">
             {navigation.map((item) => (
               <Link key={item.href} href={item.href}>
                 {item.label}
@@ -25,10 +29,13 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <Link className="navButton" href="/download">
               Download Beta
             </Link>
+            <MobileNav />
           </div>
         </div>
       </header>
-      <main>{children}</main>
+      <main id="main-content" tabIndex={-1}>
+        {children}
+      </main>
       <footer className="siteFooter">
         <div className="shell footerGrid">
           <div>
@@ -57,8 +64,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <div>
             <p className="footerEyebrow">Social</p>
             <div className="footerLinks">
-              <a href={socialLinks.x} target="_blank" rel="noreferrer">X</a>
-              <a href={socialLinks.instagram} target="_blank" rel="noreferrer">Instagram</a>
+              <a href={socialLinks.x} target="_blank" rel="noopener noreferrer" aria-label="Selara on X (opens in new tab)">X</a>
+              <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" aria-label="Selara on Instagram (opens in new tab)">Instagram</a>
               <Link href="/about">About</Link>
               <Link href="/vs-openclaw">Vs OpenClaw</Link>
             </div>

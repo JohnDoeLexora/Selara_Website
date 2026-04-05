@@ -20,7 +20,7 @@ export default function DownloadPage() {
         <div className="twoColumn">
           <div className="contentCard">
             <h3>Download</h3>
-            <p>Open beta access for TestFlight or your published beta URL—whichever you have configured for this build.</p>
+            <p>Use your TestFlight link, public beta URL, or waitlist—whatever you have set in the site environment.</p>
             <a className="primaryButton" href={betaUrl}>Open beta access</a>
           </div>
           <div className="contentCard">

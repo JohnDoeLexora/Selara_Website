@@ -14,7 +14,7 @@ export default function AboutPage() {
       <Section
         eyebrow="Belief"
         title="The future of AI assistance should feel calmer, not more chaotic."
-        intro="We think the best assistants earn trust through visible intent, clear approvals, and product craft that respects how expensive your attention already is."
+        intro="The best assistants earn trust through visible intent, clear approvals, and craft that respects how expensive your attention already is."
       >
         <div className="twoColumn">
           <div className="contentCard">

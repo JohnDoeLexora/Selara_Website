@@ -67,6 +67,7 @@ export default function HomePage() {
         <ComparisonTable />
       </Section>
       <Section
+        id="pricing"
         eyebrow="Pricing"
         title="Select, Premium, and Pinnacle—straightforward plans."
         intro="Monthly or yearly billing, clear feature tiers, and CTAs that take you where you need to go next."
@@ -74,6 +75,7 @@ export default function HomePage() {
         <PricingGrid />
       </Section>
       <Section
+        id="faq"
         eyebrow="FAQ"
         title="Answers before you need to ask."
         intro="Pricing, behavior, and billing—covered in plain language so you can decide with confidence."

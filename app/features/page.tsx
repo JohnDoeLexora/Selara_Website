@@ -9,7 +9,7 @@ export default function FeaturesPage() {
       <PageHero
         eyebrow="Features"
         title="A premium assistant should feel expansive, not busy."
-        intro="Selara’s feature set is framed as one system for your time: calendar, voice, memory, documents, automations, and approval-first action."
+        intro="Selara is one system for your time: calendar, voice, memory, documents, automations, and approval-first action."
       />
       <Section
         eyebrow="Feature map"

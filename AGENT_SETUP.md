@@ -1,40 +1,25 @@
-# Selara Website Agent Setup
+# Selara marketing site — agent notes
 
-## Goal
-Finish the last-mile launch setup for the Selara marketing site without changing the current design direction.
+## Scope
+Ship and maintain the public marketing site. Preserve the established visual direction (typography, motion, spacing) unless the owner requests a redesign.
 
-## Asset pass
-- Replace the concept-only product theater in `components/sections.tsx` with final uploaded assets from the user.
-- Prioritize these visual insertion points:
-  - `Hero` -> `heroWindowPrimary` and `heroWindowSecondary`
-  - `ProductRunway` cards
-- Keep the existing motion, depth, spacing, and editorial composition. Do not collapse the design into flat screenshots.
-- If assets are portrait screenshots, frame them inside the existing glass/window shells instead of dropping them raw on the page.
+## Images
+- Marketing screenshots live under `public/images/`. **Do not commit real account, billing, or inbox content**—use demo data or illustrated mocks (see `selara-subscription.svg` / `selara-settings.svg`).
+- Hero and runway slots: `components/sections.tsx` (`heroShowcase`, `runwayScreens`).
 
-## Stripe setup
-- Do not create new Stripe products or prices.
-- Existing Stripe catalog already mapped in `lib/site-data.ts`:
-  - Select product `prod_UEwoOAUuDFlWqN`
-  - Premium product `prod_UEwo7Z3Ov3lPPf`
-  - Pinnacle product `prod_UEwoZXUH3Nm5Kc`
-- Existing recurring prices already mapped there as well.
-- Only connect CTA destinations to existing payment links or an approved billing flow.
-- If payment links already exist later, set them through `.env.local` using:
+## Stripe / checkout
+- Plan **names and prices** on the site are marketing copy in `lib/site-data.ts`. **Do not put Stripe product or price IDs in client-visible code.**
+- Wire checkout using environment variables (payment links or your backend):
   - `NEXT_PUBLIC_STRIPE_SELECT_URL`
   - `NEXT_PUBLIC_STRIPE_PREMIUM_URL`
   - `NEXT_PUBLIC_STRIPE_PINNACLE_URL`
+- Catalog IDs belong in **Stripe Dashboard** or **server-only** config, not in shared site bundles.
 
-## Beta setup
-- Set `NEXT_PUBLIC_BETA_URL` in `.env.local` to the final TestFlight or beta landing destination.
-- Confirm all primary CTAs still route there after the update.
+## Beta
+- `NEXT_PUBLIC_BETA_URL` — defaults to `/download` if unset (`site-data.ts`).
 
-## Legal and QA
-- Keep the legal text in `lib/legal.ts` untouched unless the user provides replacement text.
-- Run:
-  - `npm run lint`
-  - `npm run build`
-- Review desktop and mobile for:
-  - theme toggle
-  - hero overflow
-  - pricing card readability
-  - legal page whitespace and wrapping
+## Legal
+- Do not edit `lib/legal.ts` unless the owner supplies replacement counsel-approved text.
+
+## Checks
+- `npm run lint` and `npm run build` before merge.

@@ -32,7 +32,7 @@ const heroShowcase = {
     alt: 'Selara chat screen with the assistant greeting the user and a voice-first composer.',
     label: 'Live conversation',
     title: 'Delegation that stays human all the way through.',
-    copy: 'The real chat surface keeps memory, voice, and execution in one calm thread instead of turning the assistant into a generic inbox.',
+    copy: 'Memory, voice, and follow-through stay in one calm thread—so the assistant feels like a partner, not another inbox.',
     stat: 'Voice, memory, and action',
   },
   secondary: {
@@ -49,7 +49,7 @@ const runwayScreens = [
   {
     src: '/images/selara-sidebar.png',
     alt: 'Selara sidebar navigation showing chat, conversations, documents, schedule, settings, and recent activity.',
-    badge: 'Navigation shell',
+    badge: 'Navigation',
   },
   {
     src: '/images/selara-settings.svg',
@@ -63,9 +63,22 @@ const runwayScreens = [
   },
 ];
 
-export function Section({ eyebrow, title, intro, children }: { eyebrow?: string; title: string; intro?: string; children: ReactNode }) {
+export function Section({
+  eyebrow,
+  title,
+  intro,
+  children,
+  id,
+}: {
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  children: ReactNode;
+  /** Optional anchor for in-page links (e.g. pricing#plans). */
+  id?: string;
+}) {
   return (
-    <section className="section">
+    <section className="section" id={id}>
       <div className="shell">
         {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
         <div className="sectionHeading">
@@ -288,7 +301,7 @@ export function ApprovalShowcase() {
           </div>
           <div className="sequenceStep emphasis">
             <p>Plan</p>
-            <span>Selara proposes the reschedule, drafts the note, and shows each external action before execution.</span>
+            <span>Selara proposes the reschedule, drafts the note, and shows each external step before anything is sent.</span>
           </div>
           <div className="sequenceStep">
             <p>Control</p>
@@ -297,7 +310,7 @@ export function ApprovalShowcase() {
         </div>
         <div className="approvalGhostCard">
           <p className="windowLabel">Why it matters</p>
-          <h3>Luxury is not just visual polish. It is being powerful without making people nervous.</h3>
+          <h3>Real luxury is power without the anxiety that usually comes with it.</h3>
         </div>
       </div>
     </div>
@@ -321,7 +334,7 @@ export function FeatureCards() {
         >
           <h3>{item.title}</h3>
           <p>{item.body}</p>
-          <Link href={item.href}>Explore this angle</Link>
+          <Link href={item.href}>Learn more</Link>
         </motion.article>
       ))}
     </div>
@@ -429,7 +442,9 @@ export function FaqList() {
     <div className="faqList faqListExpanded">
       {faqs.map((item) => (
         <details key={item.q} className="faqItem faqItemExpanded">
-          <summary>{item.q}</summary>
+          <summary>
+            <span className="faqQuestion">{item.q}</span>
+          </summary>
           <p>{item.a}</p>
         </details>
       ))}
@@ -443,10 +458,10 @@ export function CTASection() {
       <div className="shell">
         <div className="ctaPanel ctaPanelExpanded">
           <p className="eyebrow">Open beta</p>
-          <h2>Reclaim your time with an assistant people will actually want to trust.</h2>
+          <h2>Reclaim your time with an assistant you can trust with real work.</h2>
           <p>
             Join the open beta and see how approval-first automation, calendar intelligence, and voice-native control
-            come together in one calm assistant—built for professionals who cannot afford sloppy execution.
+            come together in one calm assistant—built for people who cannot afford careless mistakes.
           </p>
           <div className="ctaRow ctaRowCentered">
             <a className="primaryButton" href={betaUrl}>Download Beta</a>

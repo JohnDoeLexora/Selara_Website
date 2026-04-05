@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://selara.app';
-export const betaUrl = process.env.NEXT_PUBLIC_BETA_URL || '#beta-link-coming-soon';
+export const betaUrl = process.env.NEXT_PUBLIC_BETA_URL || '/download';
 export const supportEmail = process.env.NEXT_PUBLIC_SUPPORT_EMAIL || 'info@selaraillc.com';
 export const socialLinks = {
   x: process.env.NEXT_PUBLIC_X_URL || 'https://x.com/selaraapp',
@@ -43,7 +43,7 @@ export const storyMoments = [
   },
   {
     title: 'See the plan',
-    body: 'The assistant turns intent into a visible sequence so nothing consequential disappears behind a magic trick.',
+    body: 'The assistant turns intent into a visible sequence so nothing consequential hides behind an opaque step.',
   },
   {
     title: 'Approve what matters',
@@ -105,42 +105,42 @@ export const integrationItems = [
 
 export const productScenes = [
   {
-    kicker: 'Scene 01',
-    title: 'Navigation that keeps every surface one gesture away',
-    copy: 'The live sidebar makes chat, conversations, documents, schedule, and settings feel organized instead of buried.',
+    kicker: 'Navigation',
+    title: 'Every surface stays one gesture away',
+    copy: 'Chat, conversations, documents, schedule, and settings stay organized in the sidebar instead of buried under tabs.',
   },
   {
-    kicker: 'Scene 02',
-    title: 'Settings built like a premium control room',
-    copy: 'Profile completion, appearance, subscription, and voice controls all live in a single view that feels calm and considered.',
+    kicker: 'Preferences',
+    title: 'Settings that read as a control room, not a form dump',
+    copy: 'Profile, appearance, subscription, and voice live in one calm view with clear hierarchy.',
   },
   {
-    kicker: 'Scene 03',
-    title: 'Subscription management that feels clear, not transactional',
-    copy: 'Plan status, billing details, and next actions stay visible without dropping the product into generic checkout styling.',
+    kicker: 'Billing',
+    title: 'Subscription status you can actually read',
+    copy: 'Plan, renewal context, and next steps stay visible—without looking like a generic payment page bolted onto the app.',
   },
 ];
 
 export const comparisonRows = [
   {
     label: 'Operating philosophy',
-    selara: 'Deliberate, approval-first, premium',
-    claw: 'Faster to act, less careful about how it feels',
+    selara: 'Deliberate, approval-first, premium craft',
+    claw: 'Speed-first automation, minimal guardrails',
   },
   {
-    label: 'Risk posture',
-    selara: 'Visible intent before external action',
-    claw: 'More black-box, less composed',
+    label: 'Before external actions',
+    selara: 'Intent and steps shown for review',
+    claw: 'Often acts with less up-front visibility',
   },
   {
-    label: 'Product taste',
-    selara: 'Luxury editorial direction and calm control',
-    claw: 'Utility-forward, lower-polish energy',
+    label: 'Product experience',
+    selara: 'Editorial layout, calm motion, tight hierarchy',
+    claw: 'Utility-first layout and faster iteration',
   },
   {
-    label: 'Why it wins',
-    selara: 'Makes powerful automation feel trustworthy',
-    claw: 'Makes automation feel powerful first',
+    label: 'What each optimizes for',
+    selara: 'Trust, legibility, and control under power',
+    claw: 'Throughput and capability surfaced quickly',
   },
 ];
 
@@ -184,8 +184,8 @@ export const faqs = [
     a: 'Selara is built around behavior, not buzzwords. It understands context, shows you the plan before it acts, and asks for approval when something actually matters—so automation feels trustworthy, not reckless.',
   },
   {
-    q: 'Are the prices on this page accurate?',
-    a: 'Yes. Select, Premium, and Pinnacle reflect the plans we offer. When you choose a plan, you will complete checkout through our secure billing flow.',
+    q: 'Are the prices shown here accurate?',
+    a: 'Yes. Select, Premium, and Pinnacle match what we publish. When you choose a plan, checkout runs through our secure billing flow.',
   },
   {
     q: 'How do subscriptions and billing work?',
@@ -208,7 +208,7 @@ export const seoPages = [
   { slug: '/ai-automations', title: 'AI Automations', description: 'Selara delivers connected AI automations with better context and better control.' },
   { slug: '/privacy-first-ai-assistant', title: 'Privacy-First AI Assistant', description: 'Selara is a privacy-first AI assistant built around approval-first behavior and transparent control.' },
   { slug: '/integrations', title: 'Selara Integrations', description: 'See Selara integrations and the 800+ connected tools that extend your assistant.' },
-  { slug: '/vs-openclaw', title: 'Selara vs OpenClaw', description: 'Compare Selara and OpenClaw across trust, control, and premium assistant product design.' },
+  { slug: '/vs-openclaw', title: 'Selara vs OpenClaw', description: 'Compare Selara and OpenClaw on trust, control, and day-to-day product experience.' },
   { slug: '/about', title: 'About Selara', description: 'Learn why Selara is building a premium personal assistant instead of just another chatbot.' },
   { slug: '/privacy', title: 'Privacy Policy | Selara', description: 'Read the SelarAI Privacy Policy.' },
   { slug: '/terms', title: 'Terms of Service | Selara', description: 'Read the SelarAI Terms of Service.' },

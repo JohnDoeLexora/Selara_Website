@@ -12,6 +12,7 @@ export default function PricingPage() {
         intro="Choose the tier that fits your workload. Every plan includes the core Selara experience—voice, memory, deep integrations, and approval-first actions—with more capacity and household features as you move up."
       />
       <Section
+        id="plans"
         eyebrow="Plans"
         title="Select, Premium, and Pinnacle"
         intro="Monthly or annual billing. Upgrade when you are ready."

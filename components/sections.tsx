@@ -52,13 +52,13 @@ const runwayScreens = [
     badge: 'Navigation shell',
   },
   {
-    src: '/images/selara-settings.png',
-    alt: 'Selara settings screen showing profile completion, subscription plan, appearance controls, and voice toggles.',
+    src: '/images/selara-settings.svg',
+    alt: 'Illustrative settings screen with appearance and voice controls (sample layout, not a real account).',
     badge: 'Preferences',
   },
   {
-    src: '/images/selara-subscription.png',
-    alt: 'Selara subscription management screen showing the Pinnacle plan, billing details, and plan controls.',
+    src: '/images/selara-subscription.svg',
+    alt: 'Illustrative subscription screen with placeholder billing details (sample layout, not a real account).',
     badge: 'Billing',
   },
 ];

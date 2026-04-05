@@ -9,13 +9,26 @@ export default function CalendarAssistantPage() {
       <PageHero
         eyebrow="AI calendar assistant"
         title="A calendar assistant should protect time, not just shuffle boxes around."
-        intro="Selara’s calendar story is about intentional weeks: better reschedules, focus protection, and approval-first coordination."
+        intro="Selara helps you run more intentional weeks: smarter reschedules, focus protection, and coordination you approve before it goes out."
       />
-      <Section eyebrow="Calendar intelligence" title="Designed for people whose schedule actually matters." intro="This page extends the homepage promise into SEO-friendly, conversion-friendly specificity.">
+      <Section
+        eyebrow="Calendar intelligence"
+        title="Built for schedules that actually drive your week."
+        intro="When your calendar is the spine of your work, the assistant should interpret the day—not only list it."
+      >
         <div className="featureGrid featureGridExpanded">
-          <article className="featureCard featureCardExpanded"><h3>Reschedule with context</h3><p>Selara prepares smarter moves because it understands timing, priorities, and surrounding commitments.</p></article>
-          <article className="featureCard featureCardExpanded"><h3>Protect deep work</h3><p>Create more intentional space instead of accepting a calendar that slowly collapses into reaction mode.</p></article>
-          <article className="featureCard featureCardExpanded"><h3>Approve before outreach</h3><p>Review the external moves before they go out, keeping the process fast without losing control.</p></article>
+          <article className="featureCard featureCardExpanded">
+            <h3>Reschedule with context</h3>
+            <p>Selara proposes moves that respect timing, priorities, and what else is on your plate.</p>
+          </article>
+          <article className="featureCard featureCardExpanded">
+            <h3>Protect deep work</h3>
+            <p>Defend focus blocks instead of letting the week slowly collapse into pure reaction.</p>
+          </article>
+          <article className="featureCard featureCardExpanded">
+            <h3>Approve before outreach</h3>
+            <p>Review external calendar actions before they land, so speed never trades away control.</p>
+          </article>
         </div>
       </Section>
       <CTASection />

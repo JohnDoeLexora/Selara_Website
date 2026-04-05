@@ -8,21 +8,25 @@ export default function DownloadPage() {
   return (
     <>
       <PageHero
-        eyebrow="Download beta"
-        title="Built to funnel attention straight into open beta."
-        intro="Every major CTA on the site can now point to one beta destination. Replace the beta URL once and the whole site follows it."
+        eyebrow="Beta"
+        title="Get the Selara beta."
+        intro="Join the open beta and try the assistant on your real calendar, mail, and workflows—with approvals and guardrails built in from day one."
       />
-      <Section eyebrow="Access" title="The beta page now feels like part of the brand, not an afterthought." intro="This route is designed to handle open beta, capped beta, or invite-only flow without breaking the premium experience.">
+      <Section
+        eyebrow="Access"
+        title="Start with beta access"
+        intro="Use your beta link below. Prefer to review plans first? Pricing is one tap away."
+      >
         <div className="twoColumn">
           <div className="contentCard">
-            <h3>Primary beta action</h3>
-            <p>Plug your TestFlight or beta distribution URL into the site config and this becomes your central launch conversion path.</p>
-            <a className="primaryButton" href={betaUrl}>Open Beta Access</a>
+            <h3>Download</h3>
+            <p>Open beta access for TestFlight or your published beta URL—whichever you have configured for this build.</p>
+            <a className="primaryButton" href={betaUrl}>Open beta access</a>
           </div>
           <div className="contentCard">
-            <h3>Secondary path</h3>
-            <p>If you cap access, this same page can pivot into a waitlist, invite request, or “beta full” message without requiring a page redesign.</p>
-            <Link className="secondaryButton" href="/pricing">See plans first</Link>
+            <h3>Compare plans</h3>
+            <p>See Select, Premium, and Pinnacle side by side before you commit.</p>
+            <Link className="secondaryButton" href="/pricing">View pricing</Link>
           </div>
         </div>
       </Section>

@@ -8,14 +8,27 @@ export default function PrivacyAssistantPage() {
     <>
       <PageHero
         eyebrow="Privacy-first AI"
-        title="Trust is not legal garnish. It is the product."
-        intro="This page sharpens the privacy-first and approval-first story into a dedicated conversion surface for trust-sensitive users."
+        title="Trust is not fine print. It is how the product behaves."
+        intro="Selara is built for people who care what an assistant can see, say, and do on their behalf—before it does it."
       />
-      <Section eyebrow="Trust model" title="The site now sells privacy as behavior, not boilerplate." intro="Approvals, transparency, and calm reversibility are positioned as the luxury move, not the boring compliance move.">
+      <Section
+        eyebrow="Trust model"
+        title="Privacy as behavior, not boilerplate."
+        intro="Approvals, transparency, and the ability to reverse course are part of the experience—not an afterthought."
+      >
         <div className="featureGrid featureGridExpanded">
-          <article className="featureCard featureCardExpanded"><h3>Approval-first actions</h3><p>The assistant stops before consequential outward moves instead of assuming that invisibility equals convenience.</p></article>
-          <article className="featureCard featureCardExpanded"><h3>Transparent intent</h3><p>Selara is at its most compelling when users can see what it plans to do and why.</p></article>
-          <article className="featureCard featureCardExpanded"><h3>Composed by design</h3><p>Luxury software should feel calm under power. That is one of Selara’s strongest differentiators.</p></article>
+          <article className="featureCard featureCardExpanded">
+            <h3>Approval-first actions</h3>
+            <p>The assistant pauses before consequential outward moves instead of assuming speed beats clarity.</p>
+          </article>
+          <article className="featureCard featureCardExpanded">
+            <h3>Transparent intent</h3>
+            <p>See what Selara plans to do and why—especially when the stakes are real.</p>
+          </article>
+          <article className="featureCard featureCardExpanded">
+            <h3>Calm under power</h3>
+            <p>Luxury software should stay composed even when the underlying automation is strong.</p>
+          </article>
         </div>
       </Section>
       <CTASection />

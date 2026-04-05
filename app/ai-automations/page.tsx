@@ -8,14 +8,27 @@ export default function AutomationsPage() {
     <>
       <PageHero
         eyebrow="AI automations"
-        title="Automation that still feels supervised is dramatically more attractive."
-        intro="Selara’s automation story is about leverage without anxiety: connected systems, context, approvals, and compound value over time."
+        title="Automation that stays supervised is easier to trust."
+        intro="Selara connects to your stack, carries context forward, and asks before it does anything that could surprise you or someone else."
       />
-      <Section eyebrow="Automation philosophy" title="More context, more control, less black-box behavior." intro="This is where Selara’s trust posture becomes a growth advantage, not merely a safety disclaimer.">
+      <Section
+        eyebrow="How we automate"
+        title="More context, more control, less black-box behavior."
+        intro="Workflows get better when the assistant knows your tools and timing—and when consequential steps stay visible."
+      >
         <div className="featureGrid featureGridExpanded">
-          <article className="featureCard featureCardExpanded"><h3>Connected workflows</h3><p>Automation becomes more valuable when it knows the tools, timing, and preferences around the task.</p></article>
-          <article className="featureCard featureCardExpanded"><h3>Approval where it matters</h3><p>Routine flow can stay fast while consequential actions remain visible and governed.</p></article>
-          <article className="featureCard featureCardExpanded"><h3>Better with memory</h3><p>Repeated workflows become less repetitive as the assistant learns what good looks like for you.</p></article>
+          <article className="featureCard featureCardExpanded">
+            <h3>Connected workflows</h3>
+            <p>Automation becomes more valuable when it understands the systems, deadlines, and preferences around the task.</p>
+          </article>
+          <article className="featureCard featureCardExpanded">
+            <h3>Approval where it matters</h3>
+            <p>Routine flow can stay fast while outbound or irreversible actions stay in your hands.</p>
+          </article>
+          <article className="featureCard featureCardExpanded">
+            <h3>Better with memory</h3>
+            <p>Repeated work gets smoother as Selara learns what “done well” looks like for you.</p>
+          </article>
         </div>
       </Section>
       <CTASection />

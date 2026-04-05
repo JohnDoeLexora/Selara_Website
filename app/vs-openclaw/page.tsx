@@ -8,10 +8,14 @@ export default function VsOpenClawPage() {
     <>
       <PageHero
         eyebrow="Vs OpenClaw"
-        title="The side-by-side stays spicy, but the execution is far more controlled."
-        intro="This keeps the energy you wanted: direct enough to land, restrained enough to read like confidence instead of panic."
+        title="Same category, different philosophy."
+        intro="Selara optimizes for trust, legibility, and premium product craft. If you want automation that feels safe to hand your week to, the differences below matter."
       />
-      <Section eyebrow="Comparison" title="Selara is for people who want help without a product that feels like a liability." intro="The point is not to posture. The point is to make the trust model feel obviously superior.">
+      <Section
+        eyebrow="Comparison"
+        title="Selara is for people who want help without a product that feels like a liability."
+        intro="The goal is not noise—it is a clearer trust model and a calmer surface while you delegate real work."
+      >
         <ComparisonTable />
       </Section>
       <CTASection />

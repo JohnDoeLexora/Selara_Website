@@ -10,9 +10,9 @@ export default function TermsPage() {
       <PageHero
         eyebrow="Terms of service"
         title="SelarAI Terms of Service"
-        intro="Rendered verbatim from the exact text you supplied."
+        intro="The agreement that governs your use of Selara and related services."
       />
-      <Section eyebrow="Legal" title="Terms of Service" intro="Exact copy below.">
+      <Section eyebrow="Legal" title="Terms of Service" intro="Full text follows.">
         <LegalBody text={termsOfServiceText} />
       </Section>
     </>

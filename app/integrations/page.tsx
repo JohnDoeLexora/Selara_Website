@@ -8,10 +8,14 @@ export default function IntegrationsPage() {
     <>
       <PageHero
         eyebrow="Integrations"
-        title="800+ more is not a throwaway line. It is one of the strongest proofs on the site."
-        intro="This page takes the ticker you liked and turns it into a more premium ecosystem story about reach, context, and real workflow depth."
+        title="800+ connections is not a throwaway line."
+        intro="It is proof that Selara can move through the tools that already run your day—calendar, mail, docs, chat, and hundreds more."
       />
-      <Section eyebrow="Ecosystem" title="Connected enough to matter in the actual shape of your day." intro="An assistant becomes dramatically more credible when it can move through your tools instead of bouncing off them.">
+      <Section
+        eyebrow="Ecosystem"
+        title="Connected enough to match the real shape of your work."
+        intro="An assistant is only credible if it can act where your information already lives—not beside it."
+      >
         <IntegrationTicker />
         <div className="chipGrid">
           {integrationItems.map((item) => (

@@ -9,13 +9,26 @@ export default function EmailAssistantPage() {
       <PageHero
         eyebrow="AI email assistant"
         title="Follow-up without letting it haunt the back of your mind."
-        intro="Selara turns email from a low-grade source of mental residue into a cleaner, more controlled workflow."
+        intro="Selara helps you draft, triage, and close loops with a calmer workflow—so email stops being ambient stress."
       />
-      <Section eyebrow="Email workflow" title="Drafts, nudges, and message control with better taste." intro="This page gives the category story enough weight to rank and convert without devolving into keyword sludge.">
+      <Section
+        eyebrow="Email workflow"
+        title="Drafts, nudges, and sends—with judgment."
+        intro="Keep tone and quality high while Selara handles structure, reminders, and the busywork around the message."
+      >
         <div className="featureGrid featureGridExpanded">
-          <article className="featureCard featureCardExpanded"><h3>Draft with context</h3><p>Turn rough intent into polished communication that still sounds like you.</p></article>
-          <article className="featureCard featureCardExpanded"><h3>Actually remember the follow-up</h3><p>Selara helps the “I’ll send that next week” promise become a real future action instead of a forgotten one.</p></article>
-          <article className="featureCard featureCardExpanded"><h3>Review before sending</h3><p>Consequential outward communication remains visible, editable, and calm.</p></article>
+          <article className="featureCard featureCardExpanded">
+            <h3>Draft with context</h3>
+            <p>Turn rough intent into clear communication that still sounds like you.</p>
+          </article>
+          <article className="featureCard featureCardExpanded">
+            <h3>Remember the follow-up</h3>
+            <p>Turn “I’ll send that next week” into a tracked action instead of a vague promise.</p>
+          </article>
+          <article className="featureCard featureCardExpanded">
+            <h3>Review before sending</h3>
+            <p>Consequential outbound mail stays visible and editable before it leaves your account.</p>
+          </article>
         </div>
       </Section>
       <CTASection />

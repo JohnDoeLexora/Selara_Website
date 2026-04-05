@@ -274,10 +274,10 @@ export function ApprovalShowcase() {
         className="showcaseNarrative"
       >
         <p className="eyebrow">Approval-first</p>
-        <h2>The conversation and approval concept, finally executed like it belongs in a premium product.</h2>
+        <h2>Approval-first automation, designed for high-stakes weeks.</h2>
         <p>
-          You liked the old concept, not the old execution. So this version makes the approval model feel cinematic,
-          trustworthy, and expensive instead of merely explanatory.
+          Selara shows a clear plan before anything touches your calendar, inbox, or connected tools—so powerful help
+          feels composed and intentional, not rushed or opaque.
         </p>
       </motion.div>
       <div className="approvalColumn">
@@ -408,7 +408,7 @@ export function PricingGrid() {
         <article key={plan.name} className={`pricingCard pricingCardExpanded${plan.featured ? ' featured' : ''}`}>
           <div className="pricingTopline">
             <p className="eyebrow">{plan.name}</p>
-            <span className="productIdTag">{plan.productId}</span>
+            {plan.featured ? <span className="planBadge">Most popular</span> : null}
           </div>
           <h3>{plan.monthlyPrice}<span>/mo</span></h3>
           <p className="annualHeadline">{plan.yearlyPrice}/year</p>
@@ -417,10 +417,6 @@ export function PricingGrid() {
           <ul>
             {plan.features.map((feature) => <li key={feature}>{feature}</li>)}
           </ul>
-          <div className="stripeIdStack">
-            <span>Monthly price ID: {plan.monthlyPriceId}</span>
-            <span>Yearly price ID: {plan.yearlyPriceId}</span>
-          </div>
           <Link href={plan.href} className={plan.featured ? 'primaryButton' : 'secondaryButton'}>{plan.cta}</Link>
         </article>
       ))}

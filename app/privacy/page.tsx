@@ -10,9 +10,9 @@ export default function PrivacyPage() {
       <PageHero
         eyebrow="Privacy policy"
         title="SelarAI Privacy Policy"
-        intro="Rendered verbatim from the exact text you supplied."
+        intro="How SelarAI collects, uses, and protects information when you use Selara."
       />
-      <Section eyebrow="Legal" title="Privacy Policy" intro="Exact copy below.">
+      <Section eyebrow="Legal" title="Privacy Policy" intro="Full text follows.">
         <LegalBody text={privacyPolicyText} />
       </Section>
     </>

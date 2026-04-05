@@ -456,16 +456,26 @@ button { font: inherit; }
 .ctaRowCentered,
 .chipGrid,
 .approvalRailButtons,
-.stripeIdStack,
 .pricingTopline {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 12px;
+}
+.planBadge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--blue) 45%, var(--border));
+  background: color-mix(in srgb, var(--blue-soft) 55%, transparent);
+  color: var(--muted-strong);
 }
 .signalRow span,
 .proofRow span,
-.chip,
-.productIdTag {
+.chip {
   border: 1px solid var(--border);
   background: color-mix(in srgb, var(--surface) 82%, transparent);
   padding: 10px 14px;
@@ -939,17 +949,6 @@ button { font: inherit; }
   display: grid;
   gap: 10px;
   margin: 22px 0 26px;
-}
-.stripeIdStack {
-  display: grid;
-  gap: 8px;
-  margin-bottom: 24px;
-}
-.stripeIdStack span,
-.productIdTag {
-  font-size: 0.82rem;
-  color: var(--muted-strong);
-  overflow-wrap: anywhere;
 }
 .faqListExpanded { display: grid; gap: 14px; }
 .faqItemExpanded { padding: 0 24px; }

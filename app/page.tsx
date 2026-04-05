@@ -20,63 +20,63 @@ export default function HomePage() {
       <Section
         eyebrow="Momentum"
         title="A personal assistant for people whose time is too expensive to keep bleeding into admin."
-        intro="Selara is positioned now as a luxury productivity system, not a generic AI tool: sharper storytelling, stronger motion, and a more premium emotional payoff from the first screen down."
+        intro="Selara is built as a luxury productivity system: calm motion, clear narrative, and an experience that feels as serious as the work you do."
       >
         <StatRow />
       </Section>
       <Section
         eyebrow="How it works"
         title="Tell Selara what you need. Watch it turn into a plan. Approve what matters."
-        intro="This is the core product story, now treated like a high-end experience instead of a basic feature explainer."
+        intro="The story is simple: intent becomes a visible sequence, and you stay in control when stakes are real."
       >
         <StoryGrid />
       </Section>
       <Section
         eyebrow="Proof of ecosystem"
         title="Connected to the stack you already live in, with 800+ more waiting behind it."
-        intro="The ticker returns here, but the whole section is staged like a luxury systems diagram instead of a generic logo strip."
+        intro="Your assistant should move through the tools you already trust—not bounce off them."
       >
         <IntegrationTicker />
       </Section>
       <Section
-        eyebrow="Trust theater"
-        title="The approval-first concept gets a real premium treatment this time."
-        intro="You called out the conversation and approvals idea as worth keeping. This version leans all the way into it."
+        eyebrow="Trust"
+        title="Conversation and approvals, treated like they belong in a premium product."
+        intro="When automation can change your calendar, messages, or workflows, the interface should feel steady—not noisy or evasive."
       >
         <ApprovalShowcase />
       </Section>
       <Section
-        eyebrow="Product runway"
-        title="Motion-rich concept stages ready for your next asset drop."
-        intro="The old screenshots are gone. In their place are polished placeholders designed to be replaced by future uploaded visuals without changing the structure or feel of the page."
+        eyebrow="Product"
+        title="A guided tour through the surfaces you will live in every day."
+        intro="Chat, navigation, settings, and subscription—shown the way a serious product should present itself: clear hierarchy, restrained chrome, room to breathe."
       >
         <ProductRunway />
       </Section>
       <Section
         eyebrow="Capability surface"
         title="Everything you need to reclaim your time without giving up control."
-        intro="Calendar intelligence, voice, memory, documents, and automations all show up as parts of one coherent premium assistant."
+        intro="Calendar intelligence, voice, memory, documents, and automations—one coherent assistant instead of a pile of disconnected tricks."
       >
         <FeatureCards />
       </Section>
       <Section
         eyebrow="Vs OpenClaw"
-        title="Sharp enough to land, premium enough not to look desperate."
-        intro="The contrast stays pointed: Selara is the assistant for people who want power to feel calm, not chaotic."
+        title="Sharp comparison, premium tone."
+        intro="Selara is for people who want power to feel calm and legible—not chaotic or black-box."
       >
         <ComparisonTable />
       </Section>
       <Section
         eyebrow="Pricing"
-        title="Mapped to your existing live Stripe products and price IDs."
-        intro="No new products or prices were created. The cards below are wired to the exact Stripe catalog already in your account, with monthly and yearly recurring price IDs shown for setup clarity."
+        title="Select, Premium, and Pinnacle—straightforward plans."
+        intro="Monthly or yearly billing, clear feature tiers, and CTAs that take you where you need to go next."
       >
         <PricingGrid />
       </Section>
       <Section
         eyebrow="FAQ"
-        title="Launch questions handled before they interrupt the vibe."
-        intro="This keeps the sales energy high while still answering the trust and setup questions a serious buyer will actually have."
+        title="Answers before you need to ask."
+        intro="Pricing, behavior, and billing—covered in plain language so you can decide with confidence."
       >
         <FaqList />
       </Section>

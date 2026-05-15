@@ -1,36 +1,46 @@
-import { createMetadata } from '@/lib/site-data';
-import { CTASection, PageHero, Section } from '@/components/sections';
+import { createMetadata, voiceCapabilities } from '@/lib/site-data';
+import { CTASection, FeatureGrid, PageHero, Section } from '@/components/sections';
 
-export const metadata = createMetadata('Voice AI Personal Assistant', 'Talk to Selara naturally and reclaim time with voice-first assistance.', '/voice-assistant');
+export const metadata = createMetadata(
+  'Voice AI Personal Assistant',
+  'Talk normally. Get real work done. Selara turns voice into plans, follow-ups, and calendar changes you can review.',
+  '/voice-assistant'
+);
 
 export default function VoiceAssistantPage() {
   return (
     <>
       <PageHero
         eyebrow="Voice assistant"
-        title="The fastest way to delegate is still talking like a human."
-        intro="Capture intent while you are in motion—between meetings, on a walk, in the car—without translating your thoughts into commands."
+        title="Talk like a person. Get treated like one."
+        intro="Between meetings, in the car, on a walk — say what you need in plain English. Selara turns it into structured work you can actually review and hand off."
       />
+
       <Section
-        eyebrow="Voice-first"
-        title="Natural delegation, not robotic prompting."
-        intro="Voice should feel like a premium channel: fast when you need speed, careful when the outcome matters."
+        eyebrow="Voice that works"
+        title="Natural speech becomes real progress, not another inbox of prompts."
+        intro="This is what voice delegation feels like when the assistant actually knows your context and follows through."
       >
-        <div className="featureGrid featureGridExpanded">
-          <article className="featureCard featureCardExpanded">
-            <h3>Natural language in motion</h3>
-            <p>Speak plainly; Selara structures what you mean into the next useful sequence.</p>
-          </article>
-          <article className="featureCard featureCardExpanded">
-            <h3>Polished interaction</h3>
-            <p>Voice is integrated with the same calm hierarchy and memory as the rest of the assistant.</p>
-          </article>
-          <article className="featureCard featureCardExpanded">
-            <h3>From speech to plan</h3>
-            <p>More than transcription—Selara turns what you said into what should happen next.</p>
-          </article>
+        <FeatureGrid items={voiceCapabilities} />
+      </Section>
+
+      <Section
+        eyebrow="Why it feels different"
+        title="It remembers who you are and what “done well” means to you."
+        intro="The more you use voice, the less you repeat yourself. Preferences, recurring patterns, and how you like things handled travel with every request."
+      >
+        <div className="twoColumn">
+          <div className="contentCard">
+            <h3>From voice to calendar in seconds</h3>
+            <p>“Move the 2pm and tell the team I’ll be five late” becomes a real reschedule + message draft before you finish the thought.</p>
+          </div>
+          <div className="contentCard">
+            <h3>Still your voice on the other side</h3>
+            <p>When it speaks or writes for you, it sounds like you — not generic corporate AI. You edit the substance, not the tone.</p>
+          </div>
         </div>
       </Section>
+
       <CTASection />
     </>
   );

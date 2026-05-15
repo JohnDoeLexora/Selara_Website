@@ -1,36 +1,46 @@
-import { createMetadata } from '@/lib/site-data';
-import { CTASection, PageHero, Section } from '@/components/sections';
+import { calendarCapabilities, createMetadata } from '@/lib/site-data';
+import { CTASection, FeatureGrid, PageHero, Section } from '@/components/sections';
 
-export const metadata = createMetadata('AI Calendar Assistant', 'Selara helps professionals reclaim time with calendar-aware AI assistance.', '/calendar-assistant');
+export const metadata = createMetadata(
+  'AI Calendar Assistant',
+  'Your calendar stops being a second job. Selara protects focus, proposes smarter moves, and makes sure nothing important falls through.',
+  '/calendar-assistant'
+);
 
 export default function CalendarAssistantPage() {
   return (
     <>
       <PageHero
-        eyebrow="AI calendar assistant"
-        title="A calendar assistant should protect time, not just shuffle boxes around."
-        intro="Selara helps you run more intentional weeks: smarter reschedules, focus protection, and coordination you approve before it goes out."
+        eyebrow="Calendar assistant"
+        title="Your calendar stops being a second job."
+        intro="Selara sees the real shape of your week — conflicts, energy, travel, priorities — and turns it into something you can actually steer instead of constantly firefight."
       />
+
       <Section
-        eyebrow="Calendar intelligence"
-        title="Built for schedules that actually drive your week."
-        intro="When your calendar is the spine of your work, the assistant should interpret the day—not only list it."
+        eyebrow="What actually changes"
+        title="Focus blocks that survive. Follow-ups that don’t vanish. Weeks that feel intentional."
+        intro="This is what calendar intelligence looks like when it’s built for people whose time is genuinely expensive."
       >
-        <div className="featureGrid featureGridExpanded">
-          <article className="featureCard featureCardExpanded">
-            <h3>Reschedule with context</h3>
-            <p>Selara proposes moves that respect timing, priorities, and what else is on your plate.</p>
-          </article>
-          <article className="featureCard featureCardExpanded">
-            <h3>Protect deep work</h3>
-            <p>Defend focus blocks instead of letting the week slowly collapse into pure reaction.</p>
-          </article>
-          <article className="featureCard featureCardExpanded">
-            <h3>Approve before outreach</h3>
-            <p>Review external calendar actions before they land, so speed never trades away control.</p>
-          </article>
+        <FeatureGrid items={calendarCapabilities} />
+      </Section>
+
+      <Section
+        eyebrow="The real product"
+        title="It doesn’t just move meetings. It protects your reputation and your energy."
+        intro="Every reschedule, every external note, every “can we shift this?” carries context about what actually matters to you. You see the plan before anything lands."
+      >
+        <div className="twoColumn">
+          <div className="contentCard">
+            <h3>You decide the trade-offs</h3>
+            <p>When something wants your best hours, Selara shows you exactly what you’d be giving up — not just a new time slot.</p>
+          </div>
+          <div className="contentCard">
+            <h3>Nothing important gets lost</h3>
+            <p>Every “I’ll check my calendar and get back to you” becomes a tracked action with the right people and context attached. You stop being the bottleneck.</p>
+          </div>
         </div>
       </Section>
+
       <CTASection />
     </>
   );

@@ -1,36 +1,46 @@
-import { createMetadata } from '@/lib/site-data';
-import { CTASection, PageHero, Section } from '@/components/sections';
+import { createMetadata, privacyPositioning } from '@/lib/site-data';
+import { CTASection, FeatureGrid, PageHero, Section } from '@/components/sections';
 
-export const metadata = createMetadata('Privacy-First AI Assistant', 'Selara emphasizes trust, approvals, and privacy-first control.', '/privacy-first-ai-assistant');
+export const metadata = createMetadata(
+  'Privacy-First AI Assistant',
+  'Power that doesn’t feel like giving up control. Selara shows you what it’s about to do — every time — so you can use it on the work that actually matters.',
+  '/privacy-first-ai-assistant'
+);
 
 export default function PrivacyAssistantPage() {
   return (
     <>
       <PageHero
-        eyebrow="Privacy-first AI"
-        title="Trust is not fine print. It is how the product behaves."
-        intro="Selara is built for people who care what an assistant can see, say, and do on their behalf—before it does it."
+        eyebrow="Privacy-first"
+        title="Power that doesn’t feel like giving up control."
+        intro="Selara is built for people whose reputation, relationships, and calendar are too expensive to hand to something that might surprise them."
       />
+
       <Section
-        eyebrow="Trust model"
-        title="Privacy as behavior, not boilerplate."
-        intro="Approvals, transparency, and the ability to reverse course are part of the experience—not an afterthought."
+        eyebrow="What this actually means"
+        title="You see the plan before anything touches your real life."
+        intro="This is the difference between an assistant that feels powerful and one that feels like a liability waiting to happen."
       >
-        <div className="featureGrid featureGridExpanded">
-          <article className="featureCard featureCardExpanded">
-            <h3>Approval-first actions</h3>
-            <p>The assistant pauses before consequential outward moves instead of assuming speed beats clarity.</p>
-          </article>
-          <article className="featureCard featureCardExpanded">
-            <h3>Transparent intent</h3>
-            <p>See what Selara plans to do and why—especially when the stakes are real.</p>
-          </article>
-          <article className="featureCard featureCardExpanded">
-            <h3>Calm under power</h3>
-            <p>Luxury software should stay composed even when the underlying automation is strong.</p>
-          </article>
+        <FeatureGrid items={privacyPositioning} />
+      </Section>
+
+      <Section
+        eyebrow="The luxury of being in charge"
+        title="Judgment calls stay yours. Everything else gets lighter."
+        intro="When the stakes are real — a message to a client, a reschedule that affects four people, anything that touches your reputation — you stay the decider. The rest just moves."
+      >
+        <div className="twoColumn">
+          <div className="contentCard">
+            <h3>Nothing consequential happens in the dark</h3>
+            <p>No black-box “I took care of it.” You get a clear summary of intent before anything lands in your calendar or inbox.</p>
+          </div>
+          <div className="contentCard">
+            <h3>The expensive part of your brain stays protected</h3>
+            <p>Relationship-sensitive messages, strategic decisions, anything with real stakes — those stay in your hands. Everything else gets handled.</p>
+          </div>
         </div>
       </Section>
+
       <CTASection />
     </>
   );

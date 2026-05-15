@@ -1,5 +1,5 @@
 import { createMetadata } from '@/lib/site-data';
-import { CTASection, PageHero, PricingGrid, Section } from '@/components/sections';
+import { CTASection, FaqList, PageHero, PricingGrid, Section } from '@/components/sections';
 
 export const metadata = createMetadata('Selara Pricing', 'Pricing for Selara Select, Premium, and Pinnacle.', '/pricing');
 
@@ -36,6 +36,15 @@ export default function PricingPage() {
           </div>
         </div>
       </Section>
+
+      <Section
+        eyebrow="FAQ"
+        title="Answers before you need to ask"
+        intro="Pricing, behavior, and billing — covered in plain language."
+      >
+        <FaqList />
+      </Section>
+
       <CTASection />
     </>
   );

@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { DM_Sans, Fraunces } from 'next/font/google';
 import type { ReactNode } from 'react';
 import './globals.css';
-import { createMetadata, siteUrl } from '@/lib/site-data';
+import { absoluteUrl, createMetadata, siteUrl, socialLinks } from '@/lib/site-data';
 import { SiteShell } from '@/components/site-shell';
 
 const fraunces = Fraunces({
@@ -18,8 +18,21 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  ...createMetadata('Selara | Your Personal Assistant', 'Selara is the premium AI personal assistant for professionals who want their time back.', '/'),
-  keywords: ['Selara', 'AI personal assistant', 'calendar assistant', 'voice assistant', 'AI automations', 'privacy-first assistant'],
+  ...createMetadata(
+    'Selara — Premium AI assistant app for iOS',
+    'Selara is the premium AI personal assistant app for iOS—built for professionals who want their time back, with approval-first automation.',
+    '/',
+  ),
+  keywords: [
+    'Selara',
+    'Selara app',
+    'AI personal assistant',
+    'iOS AI assistant',
+    'calendar assistant',
+    'voice assistant',
+    'AI automations',
+    'privacy-first assistant',
+  ],
   formatDetection: { telephone: false },
   appleWebApp: { capable: true, title: 'Selara', statusBarStyle: 'black-translucent' },
 };
@@ -31,6 +44,7 @@ export const viewport: Viewport = {
   ],
   width: 'device-width',
   initialScale: 1,
+  viewportFit: 'cover',
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
@@ -40,18 +54,44 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     document.documentElement.dataset.theme = theme;
   })();`;
 
-  const appLd = {
+  const orgId = `${siteUrl}/#organization`;
+  const webId = `${siteUrl}/#website`;
+
+  const structuredData = {
     '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'Selara',
-    applicationCategory: 'ProductivityApplication',
-    operatingSystem: 'iOS',
-    url: siteUrl,
-    description: 'Selara is a premium AI personal assistant for professionals who want more time back and more trust in how automation works.',
-    offers: [
-      { '@type': 'Offer', name: 'Selara Select', price: '25', priceCurrency: 'USD' },
-      { '@type': 'Offer', name: 'Selara Premium', price: '45', priceCurrency: 'USD' },
-      { '@type': 'Offer', name: 'Selara Pinnacle', price: '110', priceCurrency: 'USD' },
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': orgId,
+        name: 'SelarAI LLC',
+        url: siteUrl,
+        logo: absoluteUrl('/images/selara-logo.png'),
+        sameAs: [socialLinks.x, socialLinks.instagram],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': webId,
+        url: siteUrl,
+        name: 'Selara',
+        description:
+          'Selara is a premium AI personal assistant app for iOS—calendar-aware, voice-native, and approval-first.',
+        publisher: { '@id': orgId },
+      },
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${siteUrl}/#software`,
+        name: 'Selara',
+        applicationCategory: 'ProductivityApplication',
+        operatingSystem: 'iOS',
+        url: siteUrl,
+        description: 'Selara is a premium AI personal assistant for professionals who want more time back and more trust in how automation works.',
+        publisher: { '@id': orgId },
+        offers: [
+          { '@type': 'Offer', name: 'Selara Select', price: '25', priceCurrency: 'USD' },
+          { '@type': 'Offer', name: 'Selara Premium', price: '45', priceCurrency: 'USD' },
+          { '@type': 'Offer', name: 'Selara Pinnacle', price: '110', priceCurrency: 'USD' },
+        ],
+      },
     ],
   };
 
@@ -59,7 +99,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang="en" data-theme="dark" className={`${fraunces.variable} ${dmSans.variable}`} suppressHydrationWarning>
       <body>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
         <SiteShell>{children}</SiteShell>
       </body>
     </html>

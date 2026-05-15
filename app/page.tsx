@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {
   ApprovalShowcase,
   CTASection,
@@ -53,11 +54,14 @@ export default function HomePage() {
         <ProductRunway />
       </Section>
       <Section
-        eyebrow="Capability surface"
+        eyebrow="Core capabilities"
         title="Everything you need to reclaim your time without giving up control."
         intro="Calendar intelligence, voice, memory, documents, and automations—one coherent assistant instead of a pile of disconnected tricks."
       >
         <FeatureCards />
+        <div className="chipGrid" style={{ justifyContent: 'center', marginTop: 16 }}>
+          <Link href="/features" className="secondaryButton">Explore the full capability map</Link>
+        </div>
       </Section>
       <Section
         eyebrow="Vs OpenClaw"

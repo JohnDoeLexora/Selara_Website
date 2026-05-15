@@ -1,37 +1,59 @@
 import { createMetadata } from '@/lib/site-data';
 import { CTASection, FeatureCards, PageHero, ProductRunway, Section, StoryGrid } from '@/components/sections';
 
-export const metadata = createMetadata('Selara Features', 'Explore the premium feature surface behind Selara.', '/features');
+export const metadata = createMetadata(
+  'Selara Features',
+  'One calm system for your calendar, voice, documents, automations, and memory — with real control when it matters.',
+  '/features'
+);
 
 export default function FeaturesPage() {
   return (
     <>
       <PageHero
         eyebrow="Features"
-        title="A premium assistant should feel expansive, not busy."
-        intro="Selara is one system for your time: calendar, voice, memory, documents, automations, and approval-first action."
+        title="One system. Real breadth. Actual control."
+        intro="Selara handles calendar, voice, documents, automations, and memory in one calm surface — without turning your week into a game of whack-a-mole with another AI."
       />
+
       <Section
-        eyebrow="Feature map"
-        title="A wide capability surface without losing the thread."
-        intro="Breadth matters—but so does control. Here is how the pieces fit together."
+        eyebrow="The full surface"
+        title="Everything you need to run your life, in one place that doesn’t feel chaotic."
+        intro="This is the breadth that matters: not a pile of disconnected tricks, but one assistant that actually knows what’s going on across your tools."
       >
         <FeatureCards />
       </Section>
+
       <Section
-        eyebrow="Flow"
-        title="From request to action without the usual friction."
-        intro="This sequence is the spine of the product: say what you need, see the plan, approve what matters."
+        eyebrow="How it actually works"
+        title="Say it. See the plan. Approve what matters. Get your time back."
+        intro="The flow is simple and repeatable. Intent becomes visible work. You stay in charge on the things that are worth caring about."
       >
         <StoryGrid />
       </Section>
+
       <Section
-        eyebrow="In the app"
-        title="Screens you will actually live in."
-        intro="Navigation, preferences, and subscription—presented with the same calm hierarchy as the rest of Selara."
+        eyebrow="What you actually live in"
+        title="Navigation, settings, subscription — built with the same taste as the rest of the product."
+        intro="A serious assistant deserves surfaces that don’t make you feel like you’re babysitting software."
       >
         <ProductRunway />
       </Section>
+
+      <Section
+        eyebrow="Go deeper"
+        title="Specific surfaces, specific outcomes."
+        intro="Some parts of the assistant deserve their own spotlight. Here’s where to go when you want the full story on one capability."
+      >
+        <div className="chipGrid" style={{ justifyContent: 'center' }}>
+          <a className="secondaryButton" href="/calendar-assistant">Calendar</a>
+          <a className="secondaryButton" href="/voice-assistant">Voice</a>
+          <a className="secondaryButton" href="/email-assistant">Email</a>
+          <a className="secondaryButton" href="/ai-automations">Automations</a>
+          <a className="secondaryButton" href="/privacy-first-ai-assistant">Privacy &amp; Control</a>
+        </div>
+      </Section>
+
       <CTASection />
     </>
   );

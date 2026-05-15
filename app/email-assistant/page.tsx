@@ -1,36 +1,46 @@
-import { createMetadata } from '@/lib/site-data';
-import { CTASection, PageHero, Section } from '@/components/sections';
+import { createMetadata, emailCapabilities } from '@/lib/site-data';
+import { CTASection, FeatureGrid, PageHero, Section } from '@/components/sections';
 
-export const metadata = createMetadata('AI Email Assistant', 'Selara helps with email drafts, follow-ups, and message triage.', '/email-assistant');
+export const metadata = createMetadata(
+  'AI Email Assistant',
+  'Your inbox stops living in your head. Selara surfaces what matters, drafts the rest, and makes sure follow-ups actually happen.',
+  '/email-assistant'
+);
 
 export default function EmailAssistantPage() {
   return (
     <>
       <PageHero
-        eyebrow="AI email assistant"
-        title="Follow-up without letting it haunt the back of your mind."
-        intro="Selara helps you draft, triage, and close loops with a calmer workflow—so email stops being ambient stress."
+        eyebrow="Email assistant"
+        title="The inbox stops living in your head."
+        intro="Selara surfaces what actually needs you, drafts what doesn’t, and turns vague “I’ll get to that” promises into tracked work that actually closes."
       />
+
       <Section
-        eyebrow="Email workflow"
-        title="Drafts, nudges, and sends—with judgment."
-        intro="Keep tone and quality high while Selara handles structure, reminders, and the busywork around the message."
+        eyebrow="Email that doesn’t leak"
+        title="Drafts in your voice. Follow-ups that actually happen. Nothing important disappears."
+        intro="This is what email assistance looks like when the assistant knows your priorities and protects your reputation."
       >
-        <div className="featureGrid featureGridExpanded">
-          <article className="featureCard featureCardExpanded">
-            <h3>Draft with context</h3>
-            <p>Turn rough intent into clear communication that still sounds like you.</p>
-          </article>
-          <article className="featureCard featureCardExpanded">
-            <h3>Remember the follow-up</h3>
-            <p>Turn “I’ll send that next week” into a tracked action instead of a vague promise.</p>
-          </article>
-          <article className="featureCard featureCardExpanded">
-            <h3>Review before sending</h3>
-            <p>Consequential outbound mail stays visible and editable before it leaves your account.</p>
-          </article>
+        <FeatureGrid items={emailCapabilities} />
+      </Section>
+
+      <Section
+        eyebrow="The real relief"
+        title="You spend time deciding, not digging or chasing."
+        intro="Every rough note, every “send this next week,” every CC that needs a reply gets structure and a due date. You only touch the substance."
+      >
+        <div className="twoColumn">
+          <div className="contentCard">
+            <h3>Follow-ups that close themselves</h3>
+            <p>“I’ll send that next week” becomes a real tracked action with the right context. You stop being the person who drops balls.</p>
+          </div>
+          <div className="contentCard">
+            <h3>Still sounds like a human wrote it</h3>
+            <p>Drafts come out in your voice and style. You edit the thinking, not the personality. Recipients never feel like they got AI slop.</p>
+          </div>
         </div>
       </Section>
+
       <CTASection />
     </>
   );

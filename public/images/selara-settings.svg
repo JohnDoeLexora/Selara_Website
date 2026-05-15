@@ -20,5 +20,5 @@
   <text x="40" y="386" fill="#f7f7fb" font-family="system-ui, sans-serif" font-size="15">Voice responses</text>
   <rect x="302" y="368" width="48" height="28" rx="14" fill="#237bff"/>
   <circle cx="332" cy="382" r="10" fill="#fff"/>
-  <text x="195" y="460" text-anchor="middle" fill="#5c6578" font-family="system-ui, sans-serif" font-size="11">Illustration only  not your account</text>
+  <text x="195" y="460" text-anchor="middle" fill="#5c6578" font-family="system-ui, sans-serif" font-size="11">Illustration only — not your account</text>
 </svg>

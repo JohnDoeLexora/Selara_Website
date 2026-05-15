@@ -1,32 +1,55 @@
 import { createMetadata } from '@/lib/site-data';
 import { CTASection, PageHero, Section } from '@/components/sections';
 
-export const metadata = createMetadata('About Selara', 'Why Selara exists and what it is building.', '/about');
+export const metadata = createMetadata(
+  'About Selara',
+  'Why we’re building a premium personal assistant instead of another chatbot that makes your life noisier.',
+  '/about'
+);
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
         eyebrow="About Selara"
-        title="A premium assistant for people who are tired of babysitting their own systems."
-        intro="Selara is built for professionals who need real help with time, not another chat window that guesses at context and skips the stakes."
+        title="For people whose time is too expensive to waste on average software."
+        intro="Most AI assistants are built to impress in a demo. Selara is built for people who need it to actually run their weeks without creating new problems."
       />
+
       <Section
-        eyebrow="Belief"
-        title="The future of AI assistance should feel calmer, not more chaotic."
-        intro="The best assistants earn trust through visible intent, clear approvals, and craft that respects how expensive your attention already is."
+        eyebrow="The belief"
+        title="The future of personal assistance should feel luxurious, not chaotic."
+        intro="Your calendar, your inbox, your documents, your automations — they should feel like they work for you, not like another system you have to babysit."
       >
         <div className="twoColumn">
           <div className="contentCard">
-            <h3>What Selara rejects</h3>
-            <p>Black-box automation, shallow polish, and tools that feel powerful only because they hide what they are about to do.</p>
+            <h3>What we reject</h3>
+            <p>Black-box automation that surprises you. Shallow “AI magic” that falls apart the moment your real life touches it. Tools that feel powerful only because they hide what they’re about to do.</p>
           </div>
           <div className="contentCard">
-            <h3>What Selara builds toward</h3>
-            <p>Trustworthy action, genuine time back, and software that feels like it belongs in a premium category.</p>
+            <h3>What we’re building toward</h3>
+            <p>One calm assistant that knows your context, shows its work when it matters, and gives you real leverage without making you feel like you’re riding a very fast, slightly drunk robot.</p>
           </div>
         </div>
       </Section>
+
+      <Section
+        eyebrow="The standard"
+        title="Premium doesn’t mean expensive. It means it respects you."
+        intro="The product should feel like it was made for someone whose attention is genuinely valuable. That shows up in the motion, the hierarchy, the restraint, and the places where we deliberately slow down so you can stay in control."
+      >
+        <div className="twoColumn">
+          <div className="contentCard">
+            <h3>Visible intent</h3>
+            <p>You see what Selara is about to do before it touches your real calendar, mail, or team. No surprises that cost you reputation or relationships.</p>
+          </div>
+          <div className="contentCard">
+            <h3>Real follow-through</h3>
+            <p>This isn’t a chat that forgets what you said five minutes ago. Memory compounds. Preferences travel. The assistant gets better the more you use it.</p>
+          </div>
+        </div>
+      </Section>
+
       <CTASection />
     </>
   );

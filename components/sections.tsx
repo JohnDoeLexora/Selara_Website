@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ReactNode } from 'react';
+import { ReactNode, useId } from 'react';
 import {
   betaUrl,
   comparisonRows,
@@ -16,6 +16,7 @@ import {
   productScenes,
   proofPoints,
   storyMoments,
+  type FeatureItem,
 } from '@/lib/site-data';
 
 function makeFadeVariants(reduce: boolean | null) {
@@ -24,6 +25,23 @@ function makeFadeVariants(reduce: boolean | null) {
     hidden: { opacity: off ? 1 : 0, y: off ? 0 : 36 },
     show: { opacity: 1, y: 0 },
   };
+}
+
+function HeroSignalLink({ label, href }: { label: string; href: string }) {
+  const external = /^https?:\/\//.test(href);
+  const className = 'signalPill';
+  if (external) {
+    return (
+      <a href={href} className={className} target="_blank" rel="noopener noreferrer">
+        {label}
+      </a>
+    );
+  }
+  return (
+    <Link href={href} className={className}>
+      {label}
+    </Link>
+  );
 }
 
 const heroShowcase = {
@@ -77,12 +95,14 @@ export function Section({
   /** Optional anchor for in-page links (e.g. pricing#plans). */
   id?: string;
 }) {
+  const autoTitleId = useId();
+  const titleId = id ? `${id}-heading` : autoTitleId;
   return (
-    <section className="section" id={id}>
+    <section className="section" id={id} aria-labelledby={titleId}>
       <div className="shell">
         {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
         <div className="sectionHeading">
-          <h2>{title}</h2>
+          <h2 id={titleId}>{title}</h2>
           {intro ? <p>{intro}</p> : null}
         </div>
         {children}
@@ -92,13 +112,14 @@ export function Section({
 }
 
 export function PageHero({ eyebrow, title, intro }: { eyebrow: string; title: string; intro: string }) {
+  const titleId = useId();
   return (
-    <section className="pageHero">
+    <section className="pageHero" aria-labelledby={titleId}>
       <div className="pageHeroAura pageHeroAuraLeft" />
       <div className="pageHeroAura pageHeroAuraRight" />
       <div className="shell pageHeroInner">
         <p className="eyebrow">{eyebrow}</p>
-        <h1>{title}</h1>
+        <h1 id={titleId}>{title}</h1>
         <p>{intro}</p>
       </div>
     </section>
@@ -108,18 +129,19 @@ export function PageHero({ eyebrow, title, intro }: { eyebrow: string; title: st
 export function Hero() {
   const reduce = useReducedMotion();
   const fadeUp = makeFadeVariants(reduce);
+  const heroTitleId = useId();
   return (
-    <section className="hero heroExpanded">
-      <div className="heroBackdrop" />
-      <div className="heroGridLines" />
+    <section className="hero heroExpanded" aria-labelledby={heroTitleId}>
+      <div className="heroBackdrop" aria-hidden />
+      <div className="heroGridLines" aria-hidden />
       <div className="shell heroGrid heroGridExpanded">
         <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: reduce ? 0 : 0.7 }} className="heroCopy">
           <div className="signalRow">
             {heroSignals.map((item) => (
-              <span key={item}>{item}</span>
+              <HeroSignalLink key={item.label} label={item.label} href={item.href} />
             ))}
           </div>
-          <h1>
+          <h1 id={heroTitleId}>
             Selara
             <span>Your Personal Assistant</span>
           </h1>
@@ -144,10 +166,10 @@ export function Hero() {
           transition={{ duration: reduce ? 0 : 0.85, delay: reduce ? 0 : 0.1 }}
           className="heroStage"
         >
-          <div className="heroHalo heroHaloBlue" />
-          <div className="heroHalo heroHaloGold" />
+          <div className="heroHalo heroHaloBlue" aria-hidden />
+          <div className="heroHalo heroHaloGold" aria-hidden />
           <div className="heroWindow heroWindowPrimary">
-            <div className="heroWindowHeader">
+            <div className="heroWindowHeader" aria-hidden>
               <span />
               <span />
               <span />
@@ -159,8 +181,8 @@ export function Hero() {
                 <p className="heroWindowCopy">{heroShowcase.primary.copy}</p>
               </div>
               <div className="productScreenStage productScreenStageHero">
-                <div className="productScreenAura productScreenAuraBlue" />
-                <div className="productScreenAura productScreenAuraGold" />
+                <div className="productScreenAura productScreenAuraBlue" aria-hidden />
+                <div className="productScreenAura productScreenAuraGold" aria-hidden />
                 <div className="productStagePill">{heroShowcase.primary.label}</div>
                 <div className="productScreenFrame productScreenFrameHero">
                   <div className="productScreenNotch" />
@@ -187,7 +209,7 @@ export function Hero() {
             <h3>{heroShowcase.secondary.title}</h3>
             <p>{heroShowcase.secondary.copy}</p>
             <div className="productScreenStage productScreenStageSecondary">
-              <div className="productScreenAura productScreenAuraBlue" />
+              <div className="productScreenAura productScreenAuraBlue" aria-hidden />
               <div className="productScreenFrame productScreenFrameSecondary">
                 <div className="productScreenNotch" />
                 <div className="productScreenImageWrap">
@@ -287,7 +309,7 @@ export function ApprovalShowcase() {
         className="showcaseNarrative"
       >
         <p className="eyebrow">Approval-first</p>
-        <h2>Approval-first automation, designed for high-stakes weeks.</h2>
+        <h3>Approval-first automation, designed for high-stakes weeks.</h3>
         <p>
           Selara shows a clear plan before anything touches your calendar, inbox, or connected tools—so powerful help
           feels composed and intentional, not rushed or opaque.
@@ -318,11 +340,17 @@ export function ApprovalShowcase() {
 }
 
 export function FeatureCards() {
+  // Delegate to the reusable grid so we have one rendering implementation
+  return <FeatureGrid items={featureHighlights} />;
+}
+
+/** Reusable outcome-focused feature grid. Use this on dedicated pages instead of hand-writing repetitive 3-card blocks. */
+export function FeatureGrid({ items }: { items: FeatureItem[] }) {
   const reduce = useReducedMotion();
   const fadeUp = makeFadeVariants(reduce);
   return (
     <div className="featureGrid featureGridExpanded">
-      {featureHighlights.map((item, index) => (
+      {items.map((item, index) => (
         <motion.article
           key={item.title}
           initial="hidden"
@@ -334,7 +362,11 @@ export function FeatureCards() {
         >
           <h3>{item.title}</h3>
           <p>{item.body}</p>
-          <Link href={item.href}>Learn more</Link>
+          {item.href ? (
+            <Link href={item.href} aria-label={`Learn more about ${item.title}`}>
+              Learn more
+            </Link>
+          ) : null}
         </motion.article>
       ))}
     </div>
@@ -362,7 +394,7 @@ export function ProductRunway() {
           transition={{ duration: reduce ? 0 : 0.65, delay: reduce ? 0 : index * 0.08 }}
           className="runwayCard"
         >
-          <div className="runwayChrome">
+          <div className="runwayChrome" aria-hidden>
             <span />
             <span />
             <span />
@@ -372,7 +404,7 @@ export function ProductRunway() {
             <h3>{scene.title}</h3>
             <p>{scene.copy}</p>
             <div className="runwayAssetStage">
-              <div className="assetPlaceholderGlow" />
+              <div className="assetPlaceholderGlow" aria-hidden />
               <div className="productStagePill runwayStagePill">{screenshot.badge}</div>
               <div className="productScreenFrame productScreenFrameRunway">
                 <div className="productScreenNotch" />
@@ -382,7 +414,12 @@ export function ProductRunway() {
                     alt={screenshot.alt}
                     fill
                     sizes="(max-width: 760px) 72vw, (max-width: 1180px) 40vw, 21vw"
-                    className="productScreenshot"
+                    unoptimized={screenshot.src.endsWith('.svg')}
+                    className={
+                      screenshot.src.endsWith('.svg')
+                        ? 'productScreenshot productScreenshotSvg'
+                        : 'productScreenshot'
+                    }
                   />
                 </div>
               </div>
@@ -397,7 +434,11 @@ export function ProductRunway() {
 
 export function ComparisonTable() {
   return (
-    <div className="comparisonTable comparisonTableExpanded">
+    <div
+      className="comparisonTable comparisonTableExpanded"
+      role="region"
+      aria-label="Comparison of Selara and OpenClaw"
+    >
       <div className="comparisonHead comparisonRow">
         <span>Category</span>
         <span>Selara</span>
@@ -439,7 +480,7 @@ export function PricingGrid() {
 
 export function FaqList() {
   return (
-    <div className="faqList faqListExpanded">
+    <div className="faqList faqListExpanded" role="region" aria-label="Frequently asked questions">
       {faqs.map((item) => (
         <details key={item.q} className="faqItem faqItemExpanded">
           <summary>
@@ -453,12 +494,13 @@ export function FaqList() {
 }
 
 export function CTASection() {
+  const titleId = useId();
   return (
-    <section className="section">
+    <section className="section" id="cta" aria-labelledby={titleId}>
       <div className="shell">
         <div className="ctaPanel ctaPanelExpanded">
           <p className="eyebrow">Open beta</p>
-          <h2>Reclaim your time with an assistant you can trust with real work.</h2>
+          <h2 id={titleId}>Reclaim your time with an assistant you can trust with real work.</h2>
           <p>
             Join the open beta and see how approval-first automation, calendar intelligence, and voice-native control
             come together in one calm assistant—built for people who cannot afford careless mistakes.

@@ -23,11 +23,12 @@ export const proofPoints = [
   '800+ integrations and counting',
 ];
 
-export const heroSignals = [
-  'Open beta',
-  'iOS-first',
-  'Premium assistant',
-  'Trustworthy automation',
+/** Hero “pills”: each maps to a real route (or external beta URL) so they behave as links, not decorative spans. */
+export const heroSignals: { label: string; href: string }[] = [
+  { label: 'Open beta', href: betaUrl },
+  { label: 'iOS-first', href: '/features' },
+  { label: 'Premium assistant', href: '/pricing' },
+  { label: 'Trustworthy automation', href: '/ai-automations' },
 ];
 
 export const editorialStats = [
@@ -197,8 +198,123 @@ export const faqs = [
   },
 ];
 
+/** Outcome-focused capability data for dedicated pages. Lead with what actually changes in the user's week. */
+
+export const calendarCapabilities: FeatureItem[] = [
+  {
+    title: 'Your calendar stops being a second job',
+    body: 'Selara sees conflicts, travel time, and energy levels — then proposes moves that actually protect your real priorities instead of just shifting boxes around.',
+  },
+  {
+    title: 'Focus blocks that survive contact with reality',
+    body: 'Deep work gets defended automatically. When something tries to eat your best hours, you see the trade-off and decide — not just react.',
+  },
+  {
+    title: 'Follow-ups that don’t fall through the cracks',
+    body: 'Every “let me check my calendar and get back to you” turns into a tracked action with context attached. You stop being the person who forgets.',
+  },
+];
+
+export const voiceCapabilities: FeatureItem[] = [
+  {
+    title: 'Talk like a human, get work done like one',
+    body: 'Say what you need between meetings, in the car, or while walking. Selara turns natural speech into structured plans you can review — no command syntax required.',
+  },
+  {
+    title: 'Voice that remembers who you are',
+    body: 'It knows your preferences, recurring meetings, and how you like things phrased. The more you use it, the less you have to explain.',
+  },
+  {
+    title: 'From voice note to calendar in under a minute',
+    body: '“Move the 2pm and tell the team I’ll be five late” becomes a real reschedule + message draft before you’ve even finished your coffee.',
+  },
+];
+
+export const emailCapabilities: FeatureItem[] = [
+  {
+    title: 'The inbox stops living in your head',
+    body: 'Selara surfaces what actually needs your attention and drafts the rest. You spend time deciding, not digging.',
+  },
+  {
+    title: 'Follow-ups that happen without you chasing them',
+    body: '“I’ll send that next week” becomes a real tracked action with the right context attached. Nothing important disappears into the void.',
+  },
+  {
+    title: 'Tone that still sounds like you',
+    body: 'Drafts come out in your voice — not generic corporate robot. You edit the substance, not the personality.',
+  },
+];
+
+export const automationOutcomes: FeatureItem[] = [
+  {
+    title: 'Repetitive work stops being your problem',
+    body: 'Routine updates, status reports, and cross-tool busywork get handled. You only touch the exceptions.',
+  },
+  {
+    title: 'Context travels with the work',
+    body: 'Selara knows why something matters, who’s waiting, and what “done well” looks like for you. Automations improve over time instead of staying brittle.',
+  },
+  {
+    title: 'You stay in the loop on the things that matter',
+    body: 'When something would affect your calendar, team, or reputation, you see the plan first. Speed without surprise.',
+  },
+];
+
+export const privacyPositioning: FeatureItem[] = [
+  {
+    title: 'Power that doesn’t feel like giving up control',
+    body: 'Selara is designed for people who need real leverage but can’t afford for something to go wrong without them noticing.',
+  },
+  {
+    title: 'You see what it’s about to do — every time',
+    body: 'No black-box “I took care of it.” You get a clear summary of intent before anything touches your real accounts or calendar.',
+  },
+  {
+    title: 'The expensive part of your brain stays protected',
+    body: 'Judgment calls, relationship-sensitive messages, and anything with real stakes stay in your hands. Everything else gets lighter.',
+  },
+];
+
+export const integrationCategories = [
+  {
+    category: 'Calendar & Time',
+    items: ['Google Calendar', 'Apple Calendar', 'Outlook', 'Calendly', 'Reclaim', 'Motion'],
+  },
+  {
+    category: 'Mail & Communication',
+    items: ['Gmail', 'Apple Mail', 'Superhuman', 'Slack', 'Linear', 'Notion'],
+  },
+  {
+    category: 'Documents & Knowledge',
+    items: ['Google Docs', 'Google Drive', 'Notion', 'Obsidian', 'Dropbox', 'Box'],
+  },
+  {
+    category: 'Everything Else',
+    items: ['800+ more via native integrations and APIs — the long tail of tools you actually use.'],
+  },
+];
+
+export type FeatureItem = {
+  title: string;
+  body: string;
+  href?: string;
+};
+
+export const downloadBenefits = [
+  'Real calendar intelligence on day one — not just another chat interface bolted onto your schedule',
+  'Voice that actually turns into plans you can review and approve',
+  'Memory that compounds: the more you use it, the less you repeat yourself',
+  'Approval layer that protects your reputation and your relationships without slowing you down',
+  'Clean, calm product surface that doesn’t make you feel like you’re babysitting another AI toy',
+];
+
 export const seoPages = [
-  { slug: '', title: 'Selara | Your Personal Assistant', description: 'Selara is the premium AI personal assistant for professionals who want their time back. Approval-first, calendar-aware, voice-native, and designed to feel luxurious.' },
+  {
+    slug: '',
+    title: 'Selara — Premium AI assistant app for iOS',
+    description:
+      'Selara is the premium AI personal assistant app for iOS—built for professionals who want their time back. Approval-first, calendar-aware, voice-native, and designed to feel trustworthy.',
+  },
   { slug: '/features', title: 'Selara Features', description: 'Explore Selara features for calendar planning, voice, memory, documents, and connected automations.' },
   { slug: '/pricing', title: 'Selara Pricing', description: 'Selara Select, Premium, and Pinnacle—simple plans for a premium AI personal assistant.' },
   { slug: '/download', title: 'Download Selara Beta', description: 'Download Selara beta and start using your premium AI personal assistant.' },

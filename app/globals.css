@@ -42,7 +42,13 @@ html[data-theme='light'] {
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+html[data-theme='light'] {
+  color-scheme: light;
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
@@ -82,6 +88,10 @@ html[data-theme='light'] ::selection {
 body {
   margin: 0;
   min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   color: var(--text);
   background:
     radial-gradient(circle at 12% 12%, rgba(35, 123, 255, 0.18), transparent 24%),
@@ -102,7 +112,11 @@ summary:focus-visible {
 img { display: block; max-width: 100%; height: auto; }
 button { font: inherit; }
 
-.shell { width: var(--shell); margin: 0 auto; }
+.shell {
+  width: var(--shell);
+  margin: 0 auto;
+  padding-inline: max(0px, env(safe-area-inset-left)) max(0px, env(safe-area-inset-right));
+}
 #main-content:focus { outline: none; }
 #main-content:focus-visible {
   outline: 2px solid var(--blue);
@@ -134,7 +148,7 @@ button { font: inherit; }
 .siteFooter h3,
 .heroWindowSecondary h3,
 .runwayBody h3,
-.showcaseNarrative h2,
+.showcaseNarrative h3,
 .approvalGhostCard h3,
 .approvalSequenceCard h3,
 .legalBodyText {
@@ -143,8 +157,7 @@ button { font: inherit; }
 }
 .sectionHeading h2,
 .ctaPanel h2,
-.pageHeroInner h1,
-.showcaseNarrative h2 {
+.pageHeroInner h1 {
   margin: 0;
   font-size: clamp(2.7rem, 5vw, 5rem);
   line-height: 0.95;
@@ -255,13 +268,13 @@ button { font: inherit; }
   position: fixed;
   inset: 0;
   top: 0;
-  z-index: 55;
+  z-index: 1000;
   background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(6px);
 }
 .mobileNavPanel {
   position: fixed;
-  z-index: 60;
+  z-index: 1010;
   left: 12px;
   right: 12px;
   top: 88px;
@@ -334,6 +347,7 @@ button { font: inherit; }
 @media (max-width: 900px) {
   .siteNavDesktop { display: none !important; }
   .mobileNavRoot { display: flex; }
+  .comparisonRow { grid-template-columns: 1fr; }
 }
 .themeToggle,
 .secondaryButton,
@@ -375,7 +389,10 @@ button { font: inherit; }
 .hero {
   padding: 76px 0 58px;
 }
-.heroExpanded { min-height: calc(100vh - 82px); }
+.heroExpanded {
+  min-height: calc(100vh - 82px);
+  min-height: calc(100dvh - 82px);
+}
 .heroBackdrop,
 .pageHeroAura {
   position: absolute;
@@ -413,6 +430,7 @@ button { font: inherit; }
   gap: 52px;
   align-items: center;
   min-height: calc(100vh - 120px);
+  min-height: calc(100dvh - 120px);
 }
 .pageHero {
   padding: 96px 0 24px;
@@ -473,13 +491,21 @@ button { font: inherit; }
   background: color-mix(in srgb, var(--blue-soft) 55%, transparent);
   color: var(--muted-strong);
 }
-.signalRow span,
+.signalRow .signalPill,
 .proofRow span,
 .chip {
   border: 1px solid var(--border);
   background: color-mix(in srgb, var(--surface) 82%, transparent);
   padding: 10px 14px;
   border-radius: 999px;
+}
+.signalRow .signalPill {
+  display: inline-block;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.signalRow .signalPill:hover {
+  border-color: color-mix(in srgb, var(--gold) 28%, var(--border));
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
 }
 .signalRow { margin-bottom: 24px; }
 .ctaRow { margin-top: 30px; }
@@ -717,6 +743,11 @@ button { font: inherit; }
   object-fit: cover;
   object-position: top center;
 }
+/* SVG mocks: Next/Image must use unoptimized; cover crops tall art — contain keeps the full “phone” visible. */
+.productScreenshotSvg {
+  object-fit: contain;
+  object-position: center center;
+}
 .productScreenNotch {
   position: absolute;
   top: 10px;
@@ -786,7 +817,7 @@ button { font: inherit; }
 .runwayBody h3,
 .heroWindowTitle,
 .approvalGhostCard h3,
-.showcaseNarrative h2 {
+.showcaseNarrative h3 {
   margin: 0 0 14px;
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   line-height: 1;
@@ -911,6 +942,19 @@ button { font: inherit; }
   border: 1px solid var(--border);
 }
 .chipGrid { margin-top: 24px; }
+
+.integrationCategories {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.integrationCategory h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 12px;
+  color: var(--muted-strong);
+}
+
 .comparisonTableExpanded { overflow: hidden; }
 .comparisonRow {
   display: grid;
@@ -918,6 +962,10 @@ button { font: inherit; }
   gap: 18px;
   padding: 20px 24px;
   border-bottom: 1px solid var(--border);
+}
+.comparisonRow span {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .comparisonHead {
   background: color-mix(in srgb, var(--blue-soft) 34%, var(--surface-elevated));
@@ -968,7 +1016,7 @@ button { font: inherit; }
     linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent), var(--surface-strong));
 }
 .siteFooter {
-  padding: 36px 0 60px;
+  padding: 36px 0 calc(60px + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid var(--border);
   background: color-mix(in srgb, var(--surface) 40%, transparent);
 }
@@ -993,6 +1041,9 @@ button { font: inherit; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .heroBackdrop {
+    animation: none;
+  }
   .tickerTrack {
     animation: none;
     flex-wrap: wrap;
@@ -1022,7 +1073,6 @@ button { font: inherit; }
   .pricingGridExpanded,
   .statRow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .heroStage { min-height: 660px; }
-  .siteHeader { position: static; }
   .productStageCard {
     max-width: 180px;
   }
@@ -1040,7 +1090,6 @@ button { font: inherit; }
   .featureGridExpanded,
   .pricingGridExpanded,
   .statRow { grid-template-columns: 1fr; }
-  .comparisonRow { grid-template-columns: 1fr; }
   .heroStage { min-height: auto; display: grid; gap: 20px; }
   .heroWindowPrimary,
   .heroWindowSecondary {

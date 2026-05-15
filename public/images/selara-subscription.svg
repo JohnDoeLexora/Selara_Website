@@ -26,5 +26,5 @@
   <!-- portal link -->
   <rect x="24" y="530" width="342" height="52" rx="16" fill="rgba(35,123,255,0.12)" stroke="rgba(35,123,255,0.22)"/>
   <text x="195" y="562" text-anchor="middle" fill="#7eb6ff" font-family="system-ui, sans-serif" font-size="14" font-weight="600">Open billing portal</text>
-  <text x="195" y="620" text-anchor="middle" fill="#5c6578" font-family="system-ui, sans-serif" font-size="11">Illustration only  not your account</text>
+  <text x="195" y="620" text-anchor="middle" fill="#5c6578" font-family="system-ui, sans-serif" font-size="11">Illustration only — not your account</text>
 </svg>

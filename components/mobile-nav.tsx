@@ -1,21 +1,20 @@
 'use client';
 
-import Link from 'next/link';
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { navigation } from '@/lib/site-data';
+import Link from 'next/link';
+import { betaUrl, isExternalUrl } from '@/lib/site-data';
+import { MobileNavLinks } from './nav-links';
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const panelId = useId();
-  const firstLinkRef = useRef<HTMLAnchorElement>(null);
+  const ctaRef = useRef<HTMLAnchorElement | null>(null);
 
   const close = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
-    // One-time mount flag for the portal. Using setTimeout to avoid the strict
-    // "setState in effect" lint rule while preserving the original behavior.
     const t = setTimeout(() => setMounted(true), 0);
     return () => clearTimeout(t);
   }, []);
@@ -27,7 +26,7 @@ export function MobileNav() {
     };
     document.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
-    queueMicrotask(() => firstLinkRef.current?.focus());
+    queueMicrotask(() => ctaRef.current?.focus());
     return () => {
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = '';
@@ -36,9 +35,7 @@ export function MobileNav() {
 
   const overlay = (
     <>
-      {open ? (
-        <div className="mobileNavScrim" aria-hidden onClick={close} />
-      ) : null}
+      {open ? <div className="mobileNavScrim" aria-hidden onClick={close} /> : null}
       <nav
         id={panelId}
         className="mobileNavPanel"
@@ -53,13 +50,23 @@ export function MobileNav() {
             Close
           </button>
         </div>
-        <div className="mobileNavLinks">
-          {navigation.map((item, i) => (
-            <Link key={item.href} ref={i === 0 ? firstLinkRef : undefined} href={item.href} onClick={close}>
-              {item.label}
-            </Link>
-          ))}
-        </div>
+        {isExternalUrl(betaUrl) ? (
+          <a
+            ref={ctaRef}
+            className="primaryButton mobileNavCta"
+            href={betaUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={close}
+          >
+            Open Beta
+          </a>
+        ) : (
+          <Link ref={ctaRef} className="primaryButton mobileNavCta" href={betaUrl} onClick={close}>
+            Open Beta
+          </Link>
+        )}
+        <MobileNavLinks onNavigate={close} omitLabels={['Open Beta']} />
       </nav>
     </>
   );

@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import { betaUrl, createMetadata, downloadBenefits } from '@/lib/site-data';
-import { CTASection, PageHero, ProductRunway, Section } from '@/components/sections';
+import { betaUrl, createMetadata, downloadBenefits, isExternalUrl } from '@/lib/site-data';
+import { CTASection, DownloadPreview, PageHero, Section } from '@/components/sections';
 
 export const metadata = createMetadata(
-  'Download Selara Beta',
-  'Try the premium AI assistant that actually respects your time and your reputation. Open beta now available.',
+  'Selara Open Beta',
+  'The Selara open beta is live — voice, approvals, calendar intelligence, and memory for professionals.',
   '/download'
 );
 
@@ -12,15 +12,15 @@ export default function DownloadPage() {
   return (
     <>
       <PageHero
-        eyebrow="Beta"
-        title="See what a real assistant feels like."
-        intro="Not another chat toy. Selara is the calm, powerful system you’ve been waiting for — calendar intelligence, voice that works, memory that compounds, and approvals that protect you when it counts."
+        eyebrow="Open beta"
+        title="The open beta is live — here is what you get on day one."
+        intro="Not another chat toy. Selara is the calm, powerful system built for professionals — calendar intelligence, voice that works, memory that compounds, and approvals that protect you when it counts."
       />
 
       <Section
         eyebrow="What you get in the beta"
         title="Real capability from day one. Not a demo with training wheels."
-        intro="Everything below is live and useful immediately. This isn’t a waitlist for a future product — it’s the actual thing."
+        intro="Everything below is live and useful immediately. This is not a waitlist for a future product — it is the actual thing."
       >
         <div className="featureGrid featureGridExpanded">
           {downloadBenefits.map((benefit, index) => (
@@ -32,28 +32,43 @@ export default function DownloadPage() {
       </Section>
 
       <Section
-        eyebrow="The actual product"
-        title="This is what you’ll live in every day."
-        intro="Navigation, preferences, subscription, chat — all built with the same restraint and craft as the rest of Selara."
+        eyebrow="A glimpse inside"
+        title="This is what you will live in every day."
+        intro="One calm surface for voice, plans, and approvals — designed to feel finished from the first session."
       >
-        <ProductRunway />
+        <DownloadPreview />
       </Section>
 
       <Section
         eyebrow="Ready?"
-        title="Join the beta and start getting your time back."
-        intro="Use the link you have. If you want to compare plans first, pricing is right here."
+        title="Start with the open beta."
+        intro="Direct access to the premium AI concierge built for professionals."
       >
         <div className="twoColumn">
-          <div className="contentCard">
-            <h3>Start the beta</h3>
-            <p>Use your TestFlight link or public beta URL. The assistant is ready for your real calendar and workflows.</p>
-            <a className="primaryButton" href={betaUrl}>Open beta access</a>
+          <div className="contentCard contentCardPremium contentCardPremiumStar">
+            <h3>Open the beta</h3>
+            <p>The link takes you straight into the live experience. Real capability on day one.</p>
+            {isExternalUrl(betaUrl) ? (
+              <a className="primaryButton" href={betaUrl} target="_blank" rel="noopener noreferrer">
+                Open Beta
+              </a>
+            ) : (
+              <Link className="primaryButton" href={betaUrl}>
+                Open Beta
+              </Link>
+            )}
           </div>
-          <div className="contentCard">
-            <h3>See the plans</h3>
-            <p>Select, Premium, and Pinnacle — clear pricing with no surprises later.</p>
-            <Link className="secondaryButton" href="/pricing">View pricing</Link>
+          <div className="contentCard contentCardPremium">
+            <h3>Explore further</h3>
+            <p>See plans for when you are ready to upgrade, or where Selara is headed next.</p>
+            <div className="chipGrid">
+              <Link className="secondaryButton" href="/pricing">
+                View pricing
+              </Link>
+              <Link className="secondaryButton" href="/future">
+                The future
+              </Link>
+            </div>
           </div>
         </div>
       </Section>

@@ -1,8 +1,164 @@
 import type { Metadata } from 'next';
 
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://selara.app';
+// For launch: set NEXT_PUBLIC_BETA_URL to the real public TestFlight link.
+// The site treats this as a direct capstone link (no form or waitlist).
 export const betaUrl = process.env.NEXT_PUBLIC_BETA_URL || '/download';
 export const supportEmail = process.env.NEXT_PUBLIC_SUPPORT_EMAIL || 'info@selaraillc.com';
+
+export function isExternalUrl(url: string) {
+  return /^https?:\/\//.test(url);
+}
+
+/** Real-app screenshot targets + placeholders until files land in public/images/real-app/ */
+export const REAL_APP_IMAGES = '/images/real-app';
+
+export const imageSlots = {
+  heroMainChat: {
+    target: `${REAL_APP_IMAGES}/hero-main-chat.png`,
+    placeholder: '/images/selara-chat.png',
+    alt: 'Selara chat screen with voice input and calm professional interface.',
+  },
+  calendarIntelligence: {
+    target: `${REAL_APP_IMAGES}/calendar-intelligence.png`,
+    placeholder: '/images/selara-schedule.png',
+    alt: 'Selara schedule screen showing AI-assisted calendar intelligence.',
+  },
+  approvalFlow: {
+    target: `${REAL_APP_IMAGES}/approval-flow.png`,
+    placeholder: '/images/selara-chat.png',
+    alt: 'Selara approval flow showing a visible plan before any action runs.',
+  },
+  futureEcosystem: {
+    target: `${REAL_APP_IMAGES}/future-ecosystem.png`,
+    placeholder: '/images/main.png',
+    alt: 'Conceptual view of Selara across iPhone, Mac, browser, and Watch.',
+  },
+  sidebarNav: {
+    target: `${REAL_APP_IMAGES}/sidebar-nav.png`,
+    placeholder: '/images/selara-sidebar.png',
+    alt: 'Selara sidebar navigation — calm, organized access to chat, documents, schedule, and settings.',
+  },
+  premiumSettings: {
+    target: `${REAL_APP_IMAGES}/premium-settings.png`,
+    placeholder: '/images/selara-settings.svg',
+    alt: 'Settings that feel like a control room, not a form dump.',
+  },
+  subscriptionView: {
+    target: `${REAL_APP_IMAGES}/subscription-view.png`,
+    placeholder: '/images/selara-subscription.svg',
+    alt: 'Subscription status you can actually read — clear and premium.',
+  },
+  deepCalendar: {
+    target: `${REAL_APP_IMAGES}/calendar-intelligence.png`,
+    placeholder: '/images/selara-schedule.png',
+    alt: 'Selara calendar view with AI-assisted scheduling and visible plan before changes land.',
+  },
+  deepVoice: {
+    target: `${REAL_APP_IMAGES}/voice-in-action.png`,
+    placeholder: '/images/selara-chat.png',
+    alt: 'Selara voice input turning speech into a reviewable plan before action.',
+  },
+  deepEmail: {
+    target: `${REAL_APP_IMAGES}/documents-hub.png`,
+    placeholder: '/images/selara-chat.png',
+    alt: 'Selara documents and email workspace with drafts ready for your review.',
+  },
+  deepAutomations: {
+    target: `${REAL_APP_IMAGES}/approval-flow.png`,
+    placeholder: '/images/selara-chat.png',
+    alt: 'Selara approval flow showing automation plans before they run.',
+  },
+  deepPrivacy: {
+    target: `${REAL_APP_IMAGES}/approval-flow.png`,
+    placeholder: '/images/selara-chat.png',
+    alt: 'Selara approval summary before anything touches your accounts or calendar.',
+  },
+  featuresHub: {
+    target: `${REAL_APP_IMAGES}/features-hub.png`,
+    placeholder: '/images/selara-sidebar.png',
+    alt: 'Selara navigation and surfaces — calm, organized access across the app.',
+  },
+  integrationsList: {
+    target: `${REAL_APP_IMAGES}/integrations-list.png`,
+    placeholder: '/images/selara-sidebar.png',
+    alt: 'Selara integrations hub showing connected services in a calm, organized list.',
+  },
+  pricingProduct: {
+    target: `${REAL_APP_IMAGES}/subscription-view.png`,
+    placeholder: '/images/selara-subscription.svg',
+    alt: 'Selara subscription and plan status in the app — clear, premium billing surface.',
+  },
+} as const;
+
+export type ImageSlotKey = keyof typeof imageSlots;
+
+export type DeepPageMomentData = {
+  eyebrow: string;
+  title: string;
+  body: string;
+  slot: ImageSlotKey;
+  slotFilename: string;
+};
+
+export const deepPageMoments = {
+  calendar: {
+    eyebrow: 'Approval-first calendar',
+    title: 'See the reschedule plan before it lands on your calendar.',
+    body: 'When a move affects your focus blocks, travel, or external commitments, Selara shows the full sequence — who gets notified, what shifts, and what you give up — before anything changes.',
+    slot: 'deepCalendar',
+    slotFilename: 'calendar-intelligence.png',
+  },
+  voice: {
+    eyebrow: 'Approval-first voice',
+    title: 'Voice becomes a visible plan you approve before action.',
+    body: 'Say what you need in plain English. Selara turns it into structured steps — reschedule, draft, follow-up — and pauses on the moments that touch your reputation or calendar.',
+    slot: 'deepVoice',
+    slotFilename: 'voice-in-action.png',
+  },
+  email: {
+    eyebrow: 'Approval-first email',
+    title: 'Drafts and sends pause for review on consequential threads.',
+    body: 'Routine triage moves fast. When a message would affect a client, partner, or sensitive thread, you see the draft and intent first — then approve, edit, or hold.',
+    slot: 'deepEmail',
+    slotFilename: 'documents-hub.png',
+  },
+  automations: {
+    eyebrow: 'Approval-first automation',
+    title: 'Automations surface the plan; you stay decider on what matters.',
+    body: 'Connected work runs in the background until it would touch your calendar, team, or reputation. Then Selara stops, shows the plan, and waits for your call.',
+    slot: 'deepAutomations',
+    slotFilename: 'approval-flow.png',
+  },
+  privacy: {
+    eyebrow: 'Approval-first control',
+    title: 'Nothing touches your accounts without a clear summary first.',
+    body: 'No black-box “I took care of it.” Every consequential step comes with a readable summary of intent — so powerful help feels composed, not reckless.',
+    slot: 'deepPrivacy',
+    slotFilename: 'approval-flow.png',
+  },
+  features: {
+    eyebrow: 'Approval-first by design',
+    title: 'One concierge surface — control when the stakes are real.',
+    body: 'Calendar, voice, documents, and memory live in one calm app. When something would touch your reputation or schedule, Selara shows the plan first — then waits for your call.',
+    slot: 'featuresHub',
+    slotFilename: 'features-hub.png',
+  },
+  integrations: {
+    eyebrow: 'Connected concierge',
+    title: '800+ tools — one approval-first layer on top.',
+    body: 'Selara does not ask you to abandon Gmail, Outlook, or the calendar you already trust. It acts through them with context, pausing when a step would touch your reputation or schedule.',
+    slot: 'integrationsList',
+    slotFilename: 'integrations-list.png',
+  },
+  pricing: {
+    eyebrow: 'The product',
+    title: 'Plans you can read at a glance — not another billing maze.',
+    body: 'Subscription status, renewal, and what you are paying for stay visible in the app. The same calm surface you use for calendar and voice — because billing should not feel like a different product.',
+    slot: 'pricingProduct',
+    slotFilename: 'subscription-view.png',
+  },
+} satisfies Record<string, DeepPageMomentData>;
 export const socialLinks = {
   x: process.env.NEXT_PUBLIC_X_URL || 'https://x.com/selaraapp',
   instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || 'https://instagram.com/selaraapp',
@@ -10,25 +166,69 @@ export const socialLinks = {
 
 export const navigation = [
   { href: '/features', label: 'Features' },
-  { href: '/integrations', label: 'Integrations' },
   { href: '/pricing', label: 'Pricing' },
-  { href: '/vs-openclaw', label: 'Vs OpenClaw' },
-  { href: '/download', label: 'Download Beta' },
+  { href: '/future', label: 'Future' },
+  { href: betaUrl, label: 'Open Beta' },
 ];
 
 export const proofPoints = [
-  'Approval-first actions',
-  'Voice, documents, and automations',
-  'Calendar-aware by design',
-  '800+ integrations and counting',
+  'Built for lawyers, doctors, and executives',
+  'Protect your reputation with approval-first actions',
+  'Reclaim hours without losing control of your calendar',
+  '800+ integrations — one calm concierge',
+];
+
+export const audienceProfiles = [
+  {
+    title: 'Legal & advisory',
+    body: 'Client threads, court calendars, and sensitive follow-ups need visible intent — not surprise sends or silent reschedules.',
+  },
+  {
+    title: 'Medicine & clinical leadership',
+    body: 'Your schedule protects patients and teams. Selara defends focus blocks and surfaces trade-offs before anything moves.',
+  },
+  {
+    title: 'Executives & operators',
+    body: 'When your calendar is the company’s bottleneck, you need leverage without the anxiety that something just broke on your behalf.',
+  },
+];
+
+export const futureTeaser = {
+  eyebrow: 'What’s next',
+  title: 'One assistant across every surface you work in.',
+  body: 'Selara starts on iOS today. Mac, browser, Watch, and deeper ecosystem presence are on the way — without changing what makes it calm.',
+  href: '/future',
+  linkLabel: 'See the vision',
+};
+
+export const approvalTrustCopy =
+  'When powerful agents act without visible guardrails, the cost is real — from widely reported incidents like Summer Yue’s deleted inbox and Claire Vo’s wiped calendar. Selara is built so consequential steps stay visible before they run.';
+
+export const openClawIntro =
+  'OpenClaw showed what raw agent speed looks like without guardrails. Selara is built for people who cannot afford that kind of surprise — the kind widely reported when Summer Yue lost email and Claire Vo lost a calendar.';
+
+export const pricingBetaNote = 'Full concierge experience available in the open beta today.';
+
+export const pricingBetaUpgradeCopy =
+  'Open beta is free and includes the full concierge experience. When you are ready, choose Select, Premium, or Pinnacle — your memory, integrations, and preferences carry forward with no lock-in from trying the beta.';
+
+export const integrationPrinciples = [
+  {
+    title: 'Context, not connectors',
+    body: 'Integrations exist so Selara understands your real week — not so you manage another dashboard of disconnected apps.',
+  },
+  {
+    title: 'Approval when it matters',
+    body: 'Connected work runs in the background until it would touch your calendar, inbox, or reputation. Then you see the plan first.',
+  },
 ];
 
 /** Hero “pills”: each maps to a real route (or external beta URL) so they behave as links, not decorative spans. */
 export const heroSignals: { label: string; href: string }[] = [
   { label: 'Open beta', href: betaUrl },
-  { label: 'iOS-first', href: '/features' },
-  { label: 'Premium assistant', href: '/pricing' },
-  { label: 'Trustworthy automation', href: '/ai-automations' },
+  { label: 'Voice + approvals', href: '/features' },
+  { label: 'For professionals', href: '/pricing' },
+  { label: 'Calm by design', href: '/future' },
 ];
 
 export const editorialStats = [
@@ -134,6 +334,11 @@ export const comparisonRows = [
     claw: 'Often acts with less up-front visibility',
   },
   {
+    label: 'When stakes are real',
+    selara: 'You approve calendar, inbox, and workflow changes',
+    claw: 'High-profile misfires have erased emails and wiped calendars',
+  },
+  {
     label: 'Product experience',
     selara: 'Editorial layout, calm motion, tight hierarchy',
     claw: 'Utility-first layout and faster iteration',
@@ -148,34 +353,37 @@ export const comparisonRows = [
 export const pricingPlans = [
   {
     name: 'Select',
-    description: 'Intelligent AI agents across all contexts. 800+ integrations, voice interaction, persistent memory, and large usage limits.',
+    description: 'Protect your focus and reputation with a full concierge on one account — voice, memory, calendar intelligence, and 800+ integrations without the chaos.',
     monthlyPrice: '$25',
     yearlyPrice: '$250',
     monthlyEquivalent: '$20/mo effective when billed yearly',
+    annualSavings: 'Save $50/year',
     cta: 'Choose Select',
     href: process.env.NEXT_PUBLIC_STRIPE_SELECT_URL || '/download',
     features: ['Voice interaction', 'Persistent memory', 'Large usage limits', '800+ integrations', 'AI agents across contexts'],
   },
   {
     name: 'Premium',
-    description: 'All models, all integrations. Intelligent voice synthesis & transcription, expanded memory & higher rate caps, holistic life management features, and SpouseConnect — shared assistant with your partner.',
+    description: 'Shared context with a spouse or key team member, plus expanded memory and higher limits — for professionals who need leverage without losing oversight.',
     monthlyPrice: '$45',
     yearlyPrice: '$450',
     monthlyEquivalent: '$37.50/mo effective when billed yearly',
+    annualSavings: 'Save $90/year',
     cta: 'Choose Premium',
     href: process.env.NEXT_PUBLIC_STRIPE_PREMIUM_URL || '/download',
     featured: true,
-    features: ['All models', 'All integrations', 'Voice synthesis & transcription', 'Expanded memory', 'Higher rate caps'],
+    features: ['All models', 'All integrations', 'Voice synthesis & transcription', 'Expanded memory', 'SpouseConnect'],
   },
   {
     name: 'Pinnacle',
-    description: "Force Multiplier — link to a team member's account. Premium voice, no rate or memory limits, most powerful models only, early access to new features, and FamilyConnect — your entire household.",
+    description: 'Force multiplier for teams and households — unlimited capacity, premium voice, and early access for people whose time is hardest to replace.',
     monthlyPrice: '$110',
     yearlyPrice: '$1,100',
     monthlyEquivalent: '$91.67/mo effective when billed yearly',
+    annualSavings: 'Save $220/year',
     cta: 'Choose Pinnacle',
     href: process.env.NEXT_PUBLIC_STRIPE_PINNACLE_URL || '/download',
-    features: ['Premium voice', 'No rate limits', 'No memory limits', 'Most powerful models only', 'Early access to new features'],
+    features: ['Premium voice', 'No rate limits', 'No memory limits', 'Most powerful models only', 'FamilyConnect'],
   },
 ];
 
@@ -195,6 +403,10 @@ export const faqs = [
   {
     q: 'Can I change plans later?',
     a: 'Yes. Upgrade or adjust your plan as your needs change—your assistant should grow with your workload, not lock you in.',
+  },
+  {
+    q: 'How does open beta relate to paid plans?',
+    a: 'During the open beta you get the full concierge experience at no charge. When you are ready, subscribe to Select, Premium, or Pinnacle — your memory, integrations, and preferences carry forward; there is no lock-in from trying the beta.',
   },
 ];
 
@@ -317,13 +529,19 @@ export const seoPages = [
   },
   { slug: '/features', title: 'Selara Features', description: 'Explore Selara features for calendar planning, voice, memory, documents, and connected automations.' },
   { slug: '/pricing', title: 'Selara Pricing', description: 'Selara Select, Premium, and Pinnacle—simple plans for a premium AI personal assistant.' },
-  { slug: '/download', title: 'Download Selara Beta', description: 'Download Selara beta and start using your premium AI personal assistant.' },
+  { slug: '/download', title: 'Open Beta — Selara', description: 'The Selara open beta is live. Voice, approvals, calendar intelligence, and memory — the full concierge experience available today.' },
+  { slug: '/future', title: 'The Future of Selara', description: 'Selara is built to be your personal assistant everywhere — starting on iOS today, with Mac, browser, Watch, and deeper surfaces coming soon.' },
   { slug: '/calendar-assistant', title: 'AI Calendar Assistant', description: 'Selara is an AI calendar assistant for professionals who want to reclaim time and schedule with more intention.' },
   { slug: '/email-assistant', title: 'AI Email Assistant', description: 'Use Selara as an AI email assistant for follow-ups, triage, and drafted communication with control.' },
   { slug: '/voice-assistant', title: 'Voice AI Personal Assistant', description: 'Selara is a voice-first AI personal assistant built for natural delegation.' },
   { slug: '/ai-automations', title: 'AI Automations', description: 'Selara delivers connected AI automations with better context and better control.' },
   { slug: '/privacy-first-ai-assistant', title: 'Privacy-First AI Assistant', description: 'Selara is a privacy-first AI assistant built around approval-first behavior and transparent control.' },
-  { slug: '/integrations', title: 'Selara Integrations', description: 'See Selara integrations and the 800+ connected tools that extend your assistant.' },
+  {
+    slug: '/integrations',
+    title: 'Selara Integrations',
+    description:
+      '800+ connected tools for professionals — calendar, mail, docs, and more — with approval-first control through one calm AI concierge.',
+  },
   { slug: '/vs-openclaw', title: 'Selara vs OpenClaw', description: 'Compare Selara and OpenClaw on trust, control, and day-to-day product experience.' },
   { slug: '/about', title: 'About Selara', description: 'Learn why Selara is building a premium personal assistant instead of just another chatbot.' },
   { slug: '/privacy', title: 'Privacy Policy | Selara', description: 'Read the SelarAI Privacy Policy.' },

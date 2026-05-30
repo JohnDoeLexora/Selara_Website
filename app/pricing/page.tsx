@@ -1,7 +1,20 @@
-import { createMetadata } from '@/lib/site-data';
-import { CTASection, FaqList, PageHero, PricingGrid, Section } from '@/components/sections';
+import { createMetadata, deepPageMoments } from '@/lib/site-data';
+import {
+  BetaUpgradeCallout,
+  CTASection,
+  DeepPageMoment,
+  FaqList,
+  PageHero,
+  PinnacleCallout,
+  PricingGrid,
+  Section,
+} from '@/components/sections';
 
-export const metadata = createMetadata('Selara Pricing', 'Pricing for Selara Select, Premium, and Pinnacle.', '/pricing');
+export const metadata = createMetadata(
+  'Selara Pricing',
+  'Pricing for Selara Select, Premium, and Pinnacle.',
+  '/pricing'
+);
 
 export default function PricingPage() {
   return (
@@ -9,15 +22,27 @@ export default function PricingPage() {
       <PageHero
         eyebrow="Pricing"
         title="Plans that match how hard your time is to replace."
-        intro="Choose the tier that fits your workload. Every plan includes the core Selara experience—voice, memory, deep integrations, and approval-first actions—with more capacity and household features as you move up."
+        intro="Choose the tier that fits your workload. The full concierge experience is available in the open beta today — upgrade to paid whenever you are ready, with no lock-in."
       />
+
+      <Section
+        eyebrow="In the app"
+        title="Billing that feels like the rest of Selara."
+        intro="Subscription status and plan details stay readable in the product — not buried in a generic portal."
+        className="sectionCompact"
+      >
+        <DeepPageMoment moment={deepPageMoments.pricing} />
+      </Section>
+
       <Section
         id="plans"
         eyebrow="Plans"
         title="Select, Premium, and Pinnacle"
-        intro="Monthly or annual billing. Upgrade when you are ready."
+        intro="Monthly or annual billing. Every plan includes voice, memory, deep integrations, and approval-first actions."
       >
+        <BetaUpgradeCallout />
         <PricingGrid />
+        <PinnacleCallout />
       </Section>
       <Section eyebrow="Billing" title="Simple subscription mechanics">
         <div className="twoColumn">

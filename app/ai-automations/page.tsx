@@ -1,5 +1,5 @@
-import { automationOutcomes, createMetadata } from '@/lib/site-data';
-import { CTASection, FeatureGrid, PageHero, Section } from '@/components/sections';
+import { automationOutcomes, createMetadata, deepPageMoments } from '@/lib/site-data';
+import { CTASection, DeepPageMoment, FeatureGrid, PageHero, Section } from '@/components/sections';
 
 export const metadata = createMetadata(
   'AI Automations',
@@ -13,7 +13,7 @@ export default function AutomationsPage() {
       <PageHero
         eyebrow="Automations"
         title="Repetitive work stops being your problem."
-        intro="Selara knows your tools, your preferences, and what “done well” looks like for you. Routine updates, status reports, and cross-tool busywork just happen — until they wouldn’t."
+        intro="Selara knows your tools, your preferences, and what “done well” looks like for you. Routine work moves fast — until it would affect your calendar, team, or reputation."
       />
 
       <Section
@@ -25,20 +25,11 @@ export default function AutomationsPage() {
       </Section>
 
       <Section
-        eyebrow="The premium part"
-        title="Speed without surprise. Power without the anxiety."
-        intro="When something would affect your calendar, your team, or your reputation, you see the plan first. Everything else moves faster because you trust the guardrails."
+        eyebrow="Approval-first here"
+        title="Speed without surprise on the work that matters."
+        intro="Automations run in the background until stakes rise — then you see the plan and decide."
       >
-        <div className="twoColumn">
-          <div className="contentCard">
-            <h3>It gets better the more you use it</h3>
-            <p>Repeated work improves over time. Selara learns your standards instead of staying a brittle rules engine.</p>
-          </div>
-          <div className="contentCard">
-            <h3>You stay the decider on what matters</h3>
-            <p>Routine flow stays fast. Anything consequential pauses for your review. That combination is what makes real leverage feel calm.</p>
-          </div>
-        </div>
+        <DeepPageMoment moment={deepPageMoments.automations} />
       </Section>
 
       <CTASection />

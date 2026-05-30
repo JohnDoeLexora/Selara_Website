@@ -1,5 +1,5 @@
-import { createMetadata } from '@/lib/site-data';
-import { CTASection, FeatureCards, PageHero, ProductRunway, Section, StoryGrid } from '@/components/sections';
+import { createMetadata, deepPageMoments } from '@/lib/site-data';
+import { CTASection, DeepPageMoment, FeatureCards, PageHero, Section } from '@/components/sections';
 
 export const metadata = createMetadata(
   'Selara Features',
@@ -13,7 +13,7 @@ export default function FeaturesPage() {
       <PageHero
         eyebrow="Features"
         title="One system. Real breadth. Actual control."
-        intro="Selara handles calendar, voice, documents, automations, and memory in one calm surface — without turning your week into a game of whack-a-mole with another AI."
+        intro="Selara is the premium AI concierge for professionals who need calendar, voice, documents, and memory in one calm surface — with approval-first guardrails when the stakes are real."
       />
 
       <Section
@@ -25,19 +25,11 @@ export default function FeaturesPage() {
       </Section>
 
       <Section
-        eyebrow="How it actually works"
-        title="Say it. See the plan. Approve what matters. Get your time back."
-        intro="The flow is simple and repeatable. Intent becomes visible work. You stay in charge on the things that are worth caring about."
+        eyebrow="Control when it counts"
+        title="Approval-first across every surface."
+        intro="Breadth without chaos: Selara pauses on the moments that touch your calendar, inbox, or reputation — and shows you the plan first."
       >
-        <StoryGrid />
-      </Section>
-
-      <Section
-        eyebrow="What you actually live in"
-        title="Navigation, settings, subscription — built with the same taste as the rest of the product."
-        intro="A serious assistant deserves surfaces that don’t make you feel like you’re babysitting software."
-      >
-        <ProductRunway />
+        <DeepPageMoment moment={deepPageMoments.features} />
       </Section>
 
       <Section

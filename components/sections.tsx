@@ -1,22 +1,31 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
+import { SlotImage } from '@/components/slot-image';
+import type { ImageSlotKey } from '@/lib/site-data';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ReactNode, useId } from 'react';
 import {
+  approvalTrustCopy,
   betaUrl,
   comparisonRows,
   editorialStats,
   faqs,
   featureHighlights,
+  futureTeaser,
   heroSignals,
   integrationItems,
+  isExternalUrl,
+  pricingBetaNote,
+  pricingBetaUpgradeCopy,
   pricingPlans,
   productScenes,
   proofPoints,
+  audienceProfiles,
   storyMoments,
+  supportEmail,
   type FeatureItem,
+  type DeepPageMomentData,
 } from '@/lib/site-data';
 
 function makeFadeVariants(reduce: boolean | null) {
@@ -28,7 +37,7 @@ function makeFadeVariants(reduce: boolean | null) {
 }
 
 function HeroSignalLink({ label, href }: { label: string; href: string }) {
-  const external = /^https?:\/\//.test(href);
+  const external = isExternalUrl(href);
   const className = 'signalPill';
   if (external) {
     return (
@@ -45,17 +54,17 @@ function HeroSignalLink({ label, href }: { label: string; href: string }) {
 }
 
 const heroShowcase = {
+  // IMAGE SLOT: hero-main-chat.png — replace with real screenshot from /public/images/real-app/
   primary: {
-    src: '/images/selara-chat.png',
-    alt: 'Selara chat screen with the assistant greeting the user and a voice-first composer.',
-    label: 'Live conversation',
+    slot: 'heroMainChat' as const satisfies ImageSlotKey,
+    label: 'Voice + approvals',
     title: 'Delegation that stays human all the way through.',
     copy: 'Memory, voice, and follow-through stay in one calm thread—so the assistant feels like a partner, not another inbox.',
     stat: 'Voice, memory, and action',
   },
+  // IMAGE SLOT: calendar-intelligence.png — replace with real screenshot from /public/images/real-app/
   secondary: {
-    src: '/images/selara-schedule.png',
-    alt: 'Selara schedule screen showing agenda view with AI commentary for the day.',
+    slot: 'calendarIntelligence' as const satisfies ImageSlotKey,
     label: 'Calendar intelligence',
     title: 'A schedule that explains the day, not just lists it.',
     copy: 'Selara layers context, recommendations, and follow-up into the calendar view so your day feels interpreted instead of merely tracked.',
@@ -63,23 +72,13 @@ const heroShowcase = {
   },
 };
 
-const runwayScreens = [
-  {
-    src: '/images/selara-sidebar.png',
-    alt: 'Selara sidebar navigation showing chat, conversations, documents, schedule, settings, and recent activity.',
-    badge: 'Navigation',
-  },
-  {
-    src: '/images/selara-settings.svg',
-    alt: 'Illustrative settings screen with appearance and voice controls (sample layout, not a real account).',
-    badge: 'Preferences',
-  },
-  {
-    src: '/images/selara-subscription.svg',
-    alt: 'Illustrative subscription screen with placeholder billing details (sample layout, not a real account).',
-    badge: 'Billing',
-  },
-];
+const runwayScreenSlots = [
+  'sidebarNav',
+  'premiumSettings',
+  'subscriptionView',
+] as const satisfies readonly ImageSlotKey[];
+
+const runwayScreenBadges = ['Navigation', 'Preferences', 'Billing'] as const;
 
 export function Section({
   eyebrow,
@@ -87,6 +86,7 @@ export function Section({
   intro,
   children,
   id,
+  className,
 }: {
   eyebrow?: string;
   title: string;
@@ -94,11 +94,13 @@ export function Section({
   children: ReactNode;
   /** Optional anchor for in-page links (e.g. pricing#plans). */
   id?: string;
+  className?: string;
 }) {
   const autoTitleId = useId();
   const titleId = id ? `${id}-heading` : autoTitleId;
+  const sectionClass = className ? `section ${className}` : 'section';
   return (
-    <section className="section" id={id} aria-labelledby={titleId}>
+    <section className={sectionClass} id={id} aria-labelledby={titleId}>
       <div className="shell">
         {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
         <div className="sectionHeading">
@@ -111,10 +113,20 @@ export function Section({
   );
 }
 
-export function PageHero({ eyebrow, title, intro }: { eyebrow: string; title: string; intro: string }) {
+export function PageHero({
+  eyebrow,
+  title,
+  intro,
+  className,
+}: {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  className?: string;
+}) {
   const titleId = useId();
   return (
-    <section className="pageHero" aria-labelledby={titleId}>
+    <section className={className ? `pageHero ${className}` : 'pageHero'} aria-labelledby={titleId}>
       <div className="pageHeroAura pageHeroAuraLeft" />
       <div className="pageHeroAura pageHeroAuraRight" />
       <div className="shell pageHeroInner">
@@ -123,6 +135,20 @@ export function PageHero({ eyebrow, title, intro }: { eyebrow: string; title: st
         <p>{intro}</p>
       </div>
     </section>
+  );
+}
+
+// IMAGE SLOT: future-ecosystem.png — replace with real screenshot from /public/images/real-app/
+export function FutureVisualSlot() {
+  return (
+    <div className="futureVisualSlot">
+      <SlotImage
+        slotKey="futureEcosystem"
+        fill
+        sizes="(max-width: 760px) 100vw, 860px"
+        className="productScreenshot"
+      />
+    </div>
   );
 }
 
@@ -146,11 +172,10 @@ export function Hero() {
             <span>Your Personal Assistant</span>
           </h1>
           <p className="heroLead">
-            Your time, finally yours. Selara is the premium AI assistant built to reclaim hours, reduce drag,
-            and make powerful automation feel trustworthy.
+            The premium AI concierge for professionals. Voice, approvals, calendar intelligence, and memory — live now in open beta.
           </p>
           <div className="ctaRow">
-            <a className="primaryButton" href={betaUrl}>Download Beta</a>
+            <a className="primaryButton" href={betaUrl}>Open Beta</a>
             <Link className="secondaryButton" href="/pricing">See Pricing</Link>
           </div>
           <div className="proofRow">
@@ -176,20 +201,17 @@ export function Hero() {
             </div>
             <div className="heroWindowBody heroWindowBodyProduct">
               <div className="heroProductHeader">
-                <p className="windowLabel">{heroShowcase.primary.label}</p>
                 <h3 className="heroWindowTitle">{heroShowcase.primary.title}</h3>
                 <p className="heroWindowCopy">{heroShowcase.primary.copy}</p>
               </div>
               <div className="productScreenStage productScreenStageHero">
                 <div className="productScreenAura productScreenAuraBlue" aria-hidden />
                 <div className="productScreenAura productScreenAuraGold" aria-hidden />
-                <div className="productStagePill">{heroShowcase.primary.label}</div>
                 <div className="productScreenFrame productScreenFrameHero">
                   <div className="productScreenNotch" />
                   <div className="productScreenImageWrap">
-                    <Image
-                      src={heroShowcase.primary.src}
-                      alt={heroShowcase.primary.alt}
+                    <SlotImage
+                      slotKey={heroShowcase.primary.slot}
                       fill
                       priority
                       sizes="(max-width: 760px) 78vw, (max-width: 1180px) 56vw, 29vw"
@@ -205,7 +227,6 @@ export function Hero() {
             </div>
           </div>
           <div className="heroWindow heroWindowSecondary">
-            <p className="windowLabel">{heroShowcase.secondary.label}</p>
             <h3>{heroShowcase.secondary.title}</h3>
             <p>{heroShowcase.secondary.copy}</p>
             <div className="productScreenStage productScreenStageSecondary">
@@ -213,9 +234,8 @@ export function Hero() {
               <div className="productScreenFrame productScreenFrameSecondary">
                 <div className="productScreenNotch" />
                 <div className="productScreenImageWrap">
-                  <Image
-                    src={heroShowcase.secondary.src}
-                    alt={heroShowcase.secondary.alt}
+                  <SlotImage
+                    slotKey={heroShowcase.secondary.slot}
                     fill
                     sizes="(max-width: 760px) 70vw, (max-width: 1180px) 42vw, 18vw"
                     className="productScreenshot"
@@ -314,6 +334,7 @@ export function ApprovalShowcase() {
           Selara shows a clear plan before anything touches your calendar, inbox, or connected tools—so powerful help
           feels composed and intentional, not rushed or opaque.
         </p>
+        <p>{approvalTrustCopy}</p>
       </motion.div>
       <div className="approvalColumn">
         <div className="approvalSequenceCard">
@@ -333,8 +354,91 @@ export function ApprovalShowcase() {
         <div className="approvalGhostCard">
           <p className="windowLabel">Why it matters</p>
           <h3>Real luxury is power without the anxiety that usually comes with it.</h3>
+          {/* IMAGE SLOT: approval-flow.png — replace with real screenshot from /public/images/real-app/ */}
+          <div className="approvalImageSlot">
+            <SlotImage slotKey="approvalFlow" fill sizes="220px" className="productScreenshot" />
+          </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+/** Lighter approval-first moment for deep pages — narrative + one image slot. */
+export function DeepPageMoment({ moment }: { moment: DeepPageMomentData }) {
+  const reduce = useReducedMotion();
+  const fadeUp = makeFadeVariants(reduce);
+  // IMAGE SLOT — see moment.slotFilename in deepPageMoments; replace with real screenshot from /public/images/real-app/
+
+  return (
+    <div className="deepPageMoment">
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeUp}
+        transition={{ duration: reduce ? 0 : 0.55 }}
+        className="deepPageMomentCopy"
+      >
+        <p className="eyebrow">{moment.eyebrow}</p>
+        <h3>{moment.title}</h3>
+        <p>{moment.body}</p>
+      </motion.div>
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeUp}
+        transition={{ duration: reduce ? 0 : 0.55, delay: reduce ? 0 : 0.08 }}
+        className="deepPageMomentVisual"
+      >
+        {/* IMAGE SLOT — see deepPageMoments.slotFilename — replace with real screenshot from /public/images/real-app/ */}
+        <div className="deepPageImageSlot">
+          <SlotImage
+            slotKey={moment.slot}
+            fill
+            sizes="(max-width: 760px) 72vw, 320px"
+            className="productScreenshot"
+          />
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+export function FutureTeaser() {
+  return (
+    <div className="futureTeaser">
+      <p className="eyebrow">{futureTeaser.eyebrow}</p>
+      <h3 id="future-teaser-heading">{futureTeaser.title}</h3>
+      <p>{futureTeaser.body}</p>
+      <Link href={futureTeaser.href} className="secondaryButton">
+        {futureTeaser.linkLabel}
+      </Link>
+    </div>
+  );
+}
+
+/** Early home signal: who Selara is built for — editorial, not persona marketing. */
+export function WhoThisIsFor() {
+  const reduce = useReducedMotion();
+  const fadeUp = makeFadeVariants(reduce);
+  return (
+    <div className="audienceGrid">
+      {audienceProfiles.map((profile, index) => (
+        <motion.article
+          key={profile.title}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+          variants={fadeUp}
+          transition={{ duration: reduce ? 0 : 0.5, delay: reduce ? 0 : index * 0.06 }}
+          className="audienceCard"
+        >
+          <h3>{profile.title}</h3>
+          <p>{profile.body}</p>
+        </motion.article>
+      ))}
     </div>
   );
 }
@@ -378,7 +482,8 @@ export function ProductRunway() {
   return (
     <div className="runwayGrid">
       {productScenes.map((scene, index) => {
-        const screenshot = runwayScreens[index];
+        const slotKey = runwayScreenSlots[index];
+        const badge = runwayScreenBadges[index];
         const tilt = index === 1 ? 0 : index === 0 ? -3 : 3;
 
         return (
@@ -405,21 +510,15 @@ export function ProductRunway() {
             <p>{scene.copy}</p>
             <div className="runwayAssetStage">
               <div className="assetPlaceholderGlow" aria-hidden />
-              <div className="productStagePill runwayStagePill">{screenshot.badge}</div>
+              <div className="productStagePill runwayStagePill">{badge}</div>
               <div className="productScreenFrame productScreenFrameRunway">
                 <div className="productScreenNotch" />
                 <div className="productScreenImageWrap">
-                  <Image
-                    src={screenshot.src}
-                    alt={screenshot.alt}
+                  <SlotImage
+                    slotKey={slotKey}
                     fill
                     sizes="(max-width: 760px) 72vw, (max-width: 1180px) 40vw, 21vw"
-                    unoptimized={screenshot.src.endsWith('.svg')}
-                    className={
-                      screenshot.src.endsWith('.svg')
-                        ? 'productScreenshot productScreenshotSvg'
-                        : 'productScreenshot'
-                    }
+                    className="productScreenshot"
                   />
                 </div>
               </div>
@@ -434,46 +533,151 @@ export function ProductRunway() {
 
 export function ComparisonTable() {
   return (
-    <div
-      className="comparisonTable comparisonTableExpanded"
-      role="region"
-      aria-label="Comparison of Selara and OpenClaw"
-    >
-      <div className="comparisonHead comparisonRow">
-        <span>Category</span>
-        <span>Selara</span>
-        <span>OpenClaw</span>
-      </div>
-      {comparisonRows.map((row) => (
-        <div key={row.label} className="comparisonRow">
-          <span>{row.label}</span>
-          <span>{row.selara}</span>
-          <span>{row.claw}</span>
+    <div className="comparisonSectionFrame">
+      <div
+        className="comparisonTable comparisonTableExpanded comparisonTableEditorial"
+        role="region"
+        aria-label="Comparison of Selara and OpenClaw"
+      >
+        <div className="comparisonHead comparisonRow">
+          <span className="comparisonCategoryLabel">Category</span>
+          <span className="comparisonColSelara">Selara</span>
+          <span className="comparisonColOpenClaw">OpenClaw</span>
         </div>
-      ))}
+        {comparisonRows.map((row, index) => (
+          <div
+            key={row.label}
+            className={`comparisonRow${index % 2 === 1 ? ' comparisonRowZebra' : ''}`}
+          >
+            <span className="comparisonCategoryLabel">{row.label}</span>
+            <span className="comparisonColSelara" data-comparison-col="Selara">
+              {row.selara}
+            </span>
+            <span className="comparisonColOpenClaw" data-comparison-col="OpenClaw">
+              {row.claw}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** Calm vs chaotic contrast for /vs-openclaw — editorial two-panel moment. */
+export function OpenClawContrastVisual() {
+  const reduce = useReducedMotion();
+  const fadeUp = makeFadeVariants(reduce);
+  return (
+    <div className="openClawContrast">
+      <motion.article
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeUp}
+        transition={{ duration: reduce ? 0 : 0.55 }}
+        className="openClawContrastPanel openClawContrastPanel--chaotic contrastCard--chaotic"
+      >
+        <p className="eyebrow">Powerful agents</p>
+        <h3>Throughput without guardrails</h3>
+        <p>
+          Fast loops, opaque steps, and the mental tax of wondering what just changed in your inbox or calendar.
+        </p>
+        <ul className="contrastChaosList">
+          <li>Actions can run before you see the full plan</li>
+          <li>High-profile misfires are part of the category story</li>
+          <li>You clean up more than you delegate</li>
+        </ul>
+      </motion.article>
+      <motion.article
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeUp}
+        transition={{ duration: reduce ? 0 : 0.55, delay: reduce ? 0 : 0.08 }}
+        className="openClawContrastPanel openClawContrastPanel--calm contrastCard--calm"
+      >
+        <p className="eyebrow">Selara</p>
+        <h3>Calm power with visible intent</h3>
+        <p>
+          Every consequential step shows up as a readable plan — you approve, edit, or pause before it runs.
+        </p>
+        {/* IMAGE SLOT: approval-flow.png — replace with real screenshot from /public/images/real-app/ */}
+        <div className="pageImageSlot">
+          <SlotImage slotKey="approvalFlow" fill sizes="(max-width: 760px) 72vw, 280px" className="productScreenshot" />
+        </div>
+      </motion.article>
     </div>
   );
 }
 
 export function PricingGrid() {
   return (
-    <div className="pricingGrid pricingGridExpanded">
-      {pricingPlans.map((plan) => (
-        <article key={plan.name} className={`pricingCard pricingCardExpanded${plan.featured ? ' featured' : ''}`}>
-          <div className="pricingTopline">
-            <p className="eyebrow">{plan.name}</p>
-            {plan.featured ? <span className="planBadge">Most popular</span> : null}
-          </div>
-          <h3>{plan.monthlyPrice}<span>/mo</span></h3>
-          <p className="annualHeadline">{plan.yearlyPrice}/year</p>
-          <p className="annualNote">{plan.monthlyEquivalent}</p>
-          <p>{plan.description}</p>
-          <ul>
-            {plan.features.map((feature) => <li key={feature}>{feature}</li>)}
-          </ul>
-          <Link href={plan.href} className={plan.featured ? 'primaryButton' : 'secondaryButton'}>{plan.cta}</Link>
-        </article>
-      ))}
+    <div className="pricingSectionFrame">
+      <div className="pricingGrid pricingGridExpanded">
+        {pricingPlans.map((plan) => (
+          <article key={plan.name} className={`pricingCard pricingCardExpanded${plan.featured ? ' featured' : ''}`}>
+            <div className="pricingTopline">
+              <p className="eyebrow">{plan.name}</p>
+              {plan.featured ? <span className="planBadge">Recommended</span> : null}
+            </div>
+            <h3>
+              {plan.monthlyPrice}
+              <span>/mo</span>
+            </h3>
+            <p className="annualHeadline">{plan.yearlyPrice}/year</p>
+            {'annualSavings' in plan && plan.annualSavings ? (
+              <p className="annualSavings">{plan.annualSavings}</p>
+            ) : null}
+            <p className="annualNote">{plan.monthlyEquivalent}</p>
+            <p className="pricingBetaNote">{pricingBetaNote}</p>
+            <p>{plan.description}</p>
+            <ul>
+              {plan.features.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
+            </ul>
+            <Link href={plan.href} className={plan.featured ? 'primaryButton' : 'secondaryButton'}>
+              {plan.cta}
+            </Link>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function BetaUpgradeCallout() {
+  return <p className="betaUpgradeCallout">{pricingBetaUpgradeCopy}</p>;
+}
+
+export function PinnacleCallout() {
+  return (
+    <p className="pinnacleCallout">
+      Pinnacle is for teams and households who need unlimited capacity and shared context.{' '}
+      <a href={`mailto:${supportEmail}`}>Talk to us</a> for custom arrangements.
+    </p>
+  );
+}
+
+/** Single product preview for /download — lighter than the full ProductRunway. */
+export function DownloadPreview() {
+  return (
+    <div className="twoColumn">
+      <div className="contentCard">
+        <h3>Voice + approvals in one thread</h3>
+        <p>The live app turns spoken intent into reviewed plans — the same calm surface you see on the home page.</p>
+      </div>
+      <div className="contentCard">
+        {/* IMAGE SLOT: hero-main-chat.png — replace with real screenshot from /public/images/real-app/ */}
+        <div className="approvalImageSlot" style={{ maxWidth: '100%', marginInline: 'auto' }}>
+          <SlotImage
+            slotKey="heroMainChat"
+            fill
+            sizes="(max-width: 760px) 72vw, 280px"
+            className="productScreenshot"
+          />
+        </div>
+      </div>
     </div>
   );
 }
@@ -500,14 +704,14 @@ export function CTASection() {
       <div className="shell">
         <div className="ctaPanel ctaPanelExpanded">
           <p className="eyebrow">Open beta</p>
-          <h2 id={titleId}>Reclaim your time with an assistant you can trust with real work.</h2>
+          <h2 id={titleId}>The premium AI concierge for professionals is now in open beta.</h2>
           <p>
-            Join the open beta and see how approval-first automation, calendar intelligence, and voice-native control
-            come together in one calm assistant—built for people who cannot afford careless mistakes.
+            Voice that turns into reviewed plans. Calendar intelligence with taste. Approvals on anything that matters.
+            Built for lawyers, doctors, executives, and anyone whose time is too expensive for chaos.
           </p>
           <div className="ctaRow ctaRowCentered">
-            <a className="primaryButton" href={betaUrl}>Download Beta</a>
-            <Link className="secondaryButton" href="/download">See beta flow</Link>
+            <a className="primaryButton" href={betaUrl}>Open Beta</a>
+            <Link className="secondaryButton" href="/pricing">See plans</Link>
           </div>
         </div>
       </div>

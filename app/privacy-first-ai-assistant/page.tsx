@@ -1,5 +1,5 @@
-import { createMetadata, privacyPositioning } from '@/lib/site-data';
-import { CTASection, FeatureGrid, PageHero, Section } from '@/components/sections';
+import { createMetadata, deepPageMoments, privacyPositioning } from '@/lib/site-data';
+import { CTASection, DeepPageMoment, FeatureGrid, PageHero, Section } from '@/components/sections';
 
 export const metadata = createMetadata(
   'Privacy-First AI Assistant',
@@ -13,7 +13,7 @@ export default function PrivacyAssistantPage() {
       <PageHero
         eyebrow="Privacy-first"
         title="Power that doesn’t feel like giving up control."
-        intro="Selara is built for people whose reputation, relationships, and calendar are too expensive to hand to something that might surprise them."
+        intro="Selara is built for people whose reputation, relationships, and calendar are too expensive to hand to something that might surprise them — with visible approval on every consequential step."
       />
 
       <Section
@@ -25,20 +25,11 @@ export default function PrivacyAssistantPage() {
       </Section>
 
       <Section
-        eyebrow="The luxury of being in charge"
+        eyebrow="Approval-first here"
         title="Judgment calls stay yours. Everything else gets lighter."
-        intro="When the stakes are real — a message to a client, a reschedule that affects four people, anything that touches your reputation — you stay the decider. The rest just moves."
+        intro="Nothing consequential happens in the dark — you get a clear summary of intent before action."
       >
-        <div className="twoColumn">
-          <div className="contentCard">
-            <h3>Nothing consequential happens in the dark</h3>
-            <p>No black-box “I took care of it.” You get a clear summary of intent before anything lands in your calendar or inbox.</p>
-          </div>
-          <div className="contentCard">
-            <h3>The expensive part of your brain stays protected</h3>
-            <p>Relationship-sensitive messages, strategic decisions, anything with real stakes — those stay in your hands. Everything else gets handled.</p>
-          </div>
-        </div>
+        <DeepPageMoment moment={deepPageMoments.privacy} />
       </Section>
 
       <CTASection />

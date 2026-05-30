@@ -1,5 +1,5 @@
-import { calendarCapabilities, createMetadata } from '@/lib/site-data';
-import { CTASection, FeatureGrid, PageHero, Section } from '@/components/sections';
+import { calendarCapabilities, createMetadata, deepPageMoments } from '@/lib/site-data';
+import { CTASection, DeepPageMoment, FeatureGrid, PageHero, Section } from '@/components/sections';
 
 export const metadata = createMetadata(
   'AI Calendar Assistant',
@@ -13,7 +13,7 @@ export default function CalendarAssistantPage() {
       <PageHero
         eyebrow="Calendar assistant"
         title="Your calendar stops being a second job."
-        intro="Selara sees the real shape of your week — conflicts, energy, travel, priorities — and turns it into something you can actually steer instead of constantly firefight."
+        intro="Selara sees the real shape of your week — conflicts, energy, travel, priorities — and turns it into something you can steer instead of constantly firefight."
       />
 
       <Section
@@ -25,20 +25,11 @@ export default function CalendarAssistantPage() {
       </Section>
 
       <Section
-        eyebrow="The real product"
-        title="It doesn’t just move meetings. It protects your reputation and your energy."
-        intro="Every reschedule, every external note, every “can we shift this?” carries context about what actually matters to you. You see the plan before anything lands."
+        eyebrow="Approval-first here"
+        title="Every consequential calendar move stays visible before it lands."
+        intro="Reschedules, external notes, and trade-offs that affect your reputation — you see the plan first."
       >
-        <div className="twoColumn">
-          <div className="contentCard">
-            <h3>You decide the trade-offs</h3>
-            <p>When something wants your best hours, Selara shows you exactly what you’d be giving up — not just a new time slot.</p>
-          </div>
-          <div className="contentCard">
-            <h3>Nothing important gets lost</h3>
-            <p>Every “I’ll check my calendar and get back to you” becomes a tracked action with the right people and context attached. You stop being the bottleneck.</p>
-          </div>
-        </div>
+        <DeepPageMoment moment={deepPageMoments.calendar} />
       </Section>
 
       <CTASection />

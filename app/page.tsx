@@ -2,16 +2,14 @@ import Link from 'next/link';
 import {
   ApprovalShowcase,
   CTASection,
-  ComparisonTable,
   FaqList,
   FeatureCards,
+  FutureTeaser,
   Hero,
-  IntegrationTicker,
-  ProductRunway,
-  Section,
-  StatRow,
-  StoryGrid,
   PricingGrid,
+  Section,
+  StoryGrid,
+  WhoThisIsFor,
 } from '@/components/sections';
 
 export default function HomePage() {
@@ -19,11 +17,11 @@ export default function HomePage() {
     <>
       <Hero />
       <Section
-        eyebrow="Momentum"
-        title="A personal assistant for people whose time is too expensive to keep bleeding into admin."
-        intro="Selara is built as a luxury productivity system: calm motion, clear narrative, and an experience that feels as serious as the work you do."
+        eyebrow="Who it's for"
+        title="Built for people whose reputation is part of the job."
+        intro="Selara is the calm, approval-first concierge for high-stakes weeks — not another agent that moves fast and hopes you notice."
       >
-        <StatRow />
+        <WhoThisIsFor />
       </Section>
       <Section
         eyebrow="How it works"
@@ -33,25 +31,11 @@ export default function HomePage() {
         <StoryGrid />
       </Section>
       <Section
-        eyebrow="Proof of ecosystem"
-        title="Connected to the stack you already live in, with 800+ more waiting behind it."
-        intro="Your assistant should move through the tools you already trust—not bounce off them."
-      >
-        <IntegrationTicker />
-      </Section>
-      <Section
         eyebrow="Trust"
         title="Conversation and approvals, treated like they belong in a premium product."
         intro="When automation can change your calendar, messages, or workflows, the interface should feel steady—not noisy or evasive."
       >
         <ApprovalShowcase />
-      </Section>
-      <Section
-        eyebrow="Product"
-        title="A guided tour through the surfaces you will live in every day."
-        intro="Chat, navigation, settings, and subscription—shown the way a serious product should present itself: clear hierarchy, restrained chrome, room to breathe."
-      >
-        <ProductRunway />
       </Section>
       <Section
         eyebrow="Core capabilities"
@@ -60,21 +44,16 @@ export default function HomePage() {
       >
         <FeatureCards />
         <div className="chipGrid" style={{ justifyContent: 'center', marginTop: 16 }}>
-          <Link href="/features" className="secondaryButton">Explore the full capability map</Link>
+          <Link href="/features" className="secondaryButton">
+            Explore the full capability map
+          </Link>
         </div>
-      </Section>
-      <Section
-        eyebrow="Vs OpenClaw"
-        title="Sharp comparison, premium tone."
-        intro="Selara is for people who want power to feel calm and legible—not chaotic or black-box."
-      >
-        <ComparisonTable />
       </Section>
       <Section
         id="pricing"
         eyebrow="Pricing"
-        title="Select, Premium, and Pinnacle—straightforward plans."
-        intro="Monthly or yearly billing, clear feature tiers, and CTAs that take you where you need to go next."
+        title="Select, Premium, and Pinnacle — plans for serious weeks."
+        intro="Every tier includes the full concierge experience in the open beta today. Upgrade to paid whenever you are ready — no lock-in."
       >
         <PricingGrid />
       </Section>
@@ -86,6 +65,11 @@ export default function HomePage() {
       >
         <FaqList />
       </Section>
+      <section className="section sectionCompact" aria-labelledby="future-teaser-heading">
+        <div className="shell">
+          <FutureTeaser />
+        </div>
+      </section>
       <CTASection />
     </>
   );

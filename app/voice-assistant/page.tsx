@@ -1,5 +1,5 @@
-import { createMetadata, voiceCapabilities } from '@/lib/site-data';
-import { CTASection, FeatureGrid, PageHero, Section } from '@/components/sections';
+import { createMetadata, deepPageMoments, voiceCapabilities } from '@/lib/site-data';
+import { CTASection, DeepPageMoment, FeatureGrid, PageHero, Section } from '@/components/sections';
 
 export const metadata = createMetadata(
   'Voice AI Personal Assistant',
@@ -13,7 +13,7 @@ export default function VoiceAssistantPage() {
       <PageHero
         eyebrow="Voice assistant"
         title="Talk like a person. Get treated like one."
-        intro="Between meetings, in the car, on a walk — say what you need in plain English. Selara turns it into structured work you can actually review and hand off."
+        intro="Between meetings, in the car, on a walk — say what you need in plain English. Selara turns it into structured work you can review before anything runs."
       />
 
       <Section
@@ -25,20 +25,11 @@ export default function VoiceAssistantPage() {
       </Section>
 
       <Section
-        eyebrow="Why it feels different"
-        title="It remembers who you are and what “done well” means to you."
-        intro="The more you use voice, the less you repeat yourself. Preferences, recurring patterns, and how you like things handled travel with every request."
+        eyebrow="Approval-first here"
+        title="Voice requests become visible plans — not surprise actions."
+        intro="When speech would touch your calendar, inbox, or reputation, Selara pauses for your review."
       >
-        <div className="twoColumn">
-          <div className="contentCard">
-            <h3>From voice to calendar in seconds</h3>
-            <p>“Move the 2pm and tell the team I’ll be five late” becomes a real reschedule + message draft before you finish the thought.</p>
-          </div>
-          <div className="contentCard">
-            <h3>Still your voice on the other side</h3>
-            <p>When it speaks or writes for you, it sounds like you — not generic corporate AI. You edit the substance, not the tone.</p>
-          </div>
-        </div>
+        <DeepPageMoment moment={deepPageMoments.voice} />
       </Section>
 
       <CTASection />

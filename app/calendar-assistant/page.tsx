@@ -26,8 +26,8 @@ export default function CalendarAssistantPage() {
 
       <Section
         eyebrow="Approval-first here"
-        title="Every consequential calendar move stays visible before it lands."
-        intro="Reschedules, external notes, and trade-offs that affect your reputation — you see the plan first."
+        title="You see every important calendar change before it happens."
+        intro="It handles rescheduling and messages — and shows you the plan before anything goes out."
       >
         <DeepPageMoment moment={deepPageMoments.calendar} />
       </Section>

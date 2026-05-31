@@ -105,9 +105,99 @@
 - Tone: Professional premium AI concierge for lawyers, doctors, executives, and high-earning professionals. Calm, polished, restrained.
 - No "coming soon" language for the core beta experience.
 
+## 2.5 Anti-Slop Copy Rules (Mandatory – Read This First)
+
+The current site is full of SF-coded buzzword slop. Portland HR + Dwarkesh techno-larp. Normies (actual lawyers, doctors, executives in the real world) do not talk or think this way. They want their time back so they can live their lives.
+
+**Banned patterns:**
+- "Protect focus blocks", "leverage", "bottleneck", "admin residue", "approval layer", "visible sequence", "consequential", "surfaces trade-offs", "intent becomes a visible sequence"
+- Any sentence that sounds like it was written by an AI that read too many a16z decks.
+
+**Required voice:**
+- Plain, direct American English.
+- Short sentences.
+- Real benefits: "keeps your time free", "manages your schedule", "shows you the plan first", "only does it after you say yes".
+- Focus on getting time back for actual life (watching your Oura while hiking the Dish, not "optimizing workflows").
+
+**Core plain-English promise (use this energy everywhere):**
+Selara takes what you say, makes a plan, shows it to you, and only moves when you approve. It helps you keep your time free.
+
+Specific fixes to apply across the site:
+- "protect focus blocks" → "keep your time free"
+- "draft reschedules" → "manages your meetings" or "handles rescheduling"
+- "surfaces trade-offs before anything moves" → "shows you what will change before it does anything"
+- "leverage without the anxiety..." → Cut it. Replace with normal language about not having to clean up messes.
+- "The result is not just AI output..." → "You actually get your time back."
+- "Conversation and approvals, treated like they belong in a premium product" → Kill or replace with something human.
+- "intent becomes a visible sequence..." → "Selara takes your message, makes a plan, and only does things after you say yes."
+
+Rewrite everything in the spec and on the site in this voice. Normies need to give a shit. Abstract AI hype does not work on them.
+
 ---
 
-## 3. Global Aesthetic & Layout Principles (Apply Across All Pages)
+## 3. SEO & GEO Technical Requirements (Titles, Meta, Open Graph)
+
+**Goal:** Maximize organic visibility for the target phrases without paid spend.
+
+### Target Phrases (Primary)
+- ai assistant
+- personal assistant
+- ai concierge
+- selara
+- ai personal assistant
+
+### Title Tag Guidelines
+- Keep under 60 characters when possible.
+- Lead with the most important keyword naturally.
+- Make it feel premium and specific to professionals.
+
+**Recommended Titles for Launch:**
+
+| Page       | Recommended Title                                      | Notes |
+|------------|--------------------------------------------------------|-------|
+| Home       | Selara — Premium AI Concierge for Professionals       | Strong brand + primary positioning |
+| Pricing    | Selara Pricing — Select, Premium & Pinnacle Plans     | Clear commercial intent |
+| /future    | The Future of Selara — Your AI Assistant Everywhere   | Vision + target phrase |
+| /download  | Open Beta — Selara Premium AI Concierge               | Direct + benefit |
+| /features  | Selara Features — AI Assistant for Professionals      | Supportive |
+| /calendar  | AI Calendar Assistant — Selara                          | Long-tail opportunity |
+| /voice     | Voice AI Personal Assistant — Selara                    | Long-tail opportunity |
+
+### Meta Description Guidelines
+- 150–160 characters ideal.
+- Include primary + secondary keywords naturally.
+- Lead with the benefit for professionals.
+- End with a soft call-to-action or unique angle (approvals, calm, etc.).
+
+**Recommended Meta Descriptions (examples to adapt):**
+
+- **Home:**  
+  "Selara is the premium AI concierge built for professionals who want their time back without losing control. Voice, approvals, calendar intelligence, and memory — now in open beta."
+
+- **Pricing:**  
+  "Choose Selara Select, Premium, or Pinnacle. Clear plans for a premium AI personal assistant with approval-first automation, voice, and deep integrations. Start the open beta today."
+
+- **/future:**  
+  "Selara is building the AI assistant that travels with you — starting on iOS today, with Mac, browser, and Watch coming soon. One calm concierge across every device."
+
+- **/download:**  
+  "The open beta for Selara is live. Experience the premium AI concierge with voice, calendar intelligence, travel, documents, and approval-first control. Direct access for professionals."
+
+### Open Graph & Twitter Cards
+- Use `createMetadata` in `lib/site-data.ts` (already exists).
+- Primary OG image: High-quality hero-style image (should be updated when real screenshots are ready).
+- Recommended OG titles should match or closely follow the `<title>` tags.
+- Add specific OG descriptions per page where different from meta.
+
+### Implementation Notes for Agents
+- All metadata lives in `lib/site-data.ts` (`seoPages` array + `createMetadata` helper) and individual page `export const metadata = ...` blocks.
+- Update both the central `seoPages` list **and** the per-page metadata for the most important routes (Home, Pricing, /future, /download).
+- Ensure the primary keywords appear in the first 100 characters of the page body as well.
+- When real screenshots are added, update the OG images in the metadata (currently pointing at `/images/main.png` and logo).
+
+---
+
+## 4. Global Aesthetic & Layout Principles (Apply Across All Pages)
 
 These rules must be respected during the overhaul:
 

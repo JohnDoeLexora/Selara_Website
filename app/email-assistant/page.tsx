@@ -13,7 +13,7 @@ export default function EmailAssistantPage() {
       <PageHero
         eyebrow="Email assistant"
         title="The inbox stops living in your head."
-        intro="Selara surfaces what actually needs you, drafts what doesn’t, and turns vague promises into tracked work — with review on the threads that matter."
+        intro="It figures out what actually needs you, drafts the rest, and makes sure the important stuff doesn’t get lost."
       />
 
       <Section
@@ -26,8 +26,8 @@ export default function EmailAssistantPage() {
 
       <Section
         eyebrow="Approval-first here"
-        title="Consequential drafts pause for your judgment."
-        intro="Routine triage moves fast. Sensitive sends wait for your explicit approval."
+        title="The important ones wait for you."
+        intro="Normal stuff moves. Anything sensitive waits until you see it and say yes."
       >
         <DeepPageMoment moment={deepPageMoments.email} />
       </Section>

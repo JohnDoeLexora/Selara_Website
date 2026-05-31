@@ -11,15 +11,15 @@ export default function FeaturesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Features"
-        title="One system. Real breadth. Actual control."
-        intro="Selara is the premium AI concierge for professionals who need calendar, voice, documents, and memory in one calm surface — with approval-first guardrails when the stakes are real."
+        eyebrow="What it does"
+        title="One assistant that actually knows your life."
+        intro="Calendar, voice, documents, and the tools you use — all in one place. It shows you the plan before it does anything that matters."
       />
 
       <Section
-        eyebrow="The full surface"
-        title="Everything you need to run your life, in one place that doesn’t feel chaotic."
-        intro="This is the breadth that matters: not a pile of disconnected tricks, but one assistant that actually knows what’s going on across your tools."
+        eyebrow="The whole thing in one place"
+        title="Your calendar, your voice, your documents — without the usual mess."
+        intro="It works across the tools you already use and keeps everything in one calm spot."
       >
         <FeatureCards />
       </Section>

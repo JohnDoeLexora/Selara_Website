@@ -20,7 +20,7 @@ export default function FuturePage() {
       <Section
         eyebrow="The vision"
         title="Your concierge, wherever the work happens."
-        intro="Most assistants are trapped in one window. Selara is designed to move with you — without losing context or requiring you to babysit another inbox. Quiet when you need focus. Present when you need leverage. Always under your control."
+        intro="Most assistants are trapped in one app. Selara is designed to be there when you need it — on your phone, your computer, your watch — without creating more work for you to manage."
       >
         <div className="twoColumn">
           <div className="contentCard">

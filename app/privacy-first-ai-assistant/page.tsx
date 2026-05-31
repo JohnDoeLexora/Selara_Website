@@ -12,14 +12,14 @@ export default function PrivacyAssistantPage() {
     <>
       <PageHero
         eyebrow="Privacy-first"
-        title="Power that doesn’t feel like giving up control."
-        intro="Selara is built for people whose reputation, relationships, and calendar are too expensive to hand to something that might surprise them — with visible approval on every consequential step."
+        title="Real power without the usual disasters."
+        intro="Selara is built for people who can’t afford surprises. It shows you the plan before it touches anything important."
       />
 
       <Section
         eyebrow="What this actually means"
         title="You see the plan before anything touches your real life."
-        intro="This is the difference between an assistant that feels powerful and one that feels like a liability waiting to happen."
+        intro="The difference between an assistant you can actually trust with real work and one that might blow up on you."
       >
         <FeatureGrid items={privacyPositioning} />
       </Section>
@@ -27,7 +27,7 @@ export default function PrivacyAssistantPage() {
       <Section
         eyebrow="Approval-first here"
         title="Judgment calls stay yours. Everything else gets lighter."
-        intro="Nothing consequential happens in the dark — you get a clear summary of intent before action."
+        intro="Nothing important happens without you seeing it first."
       >
         <DeepPageMoment moment={deepPageMoments.privacy} />
       </Section>

@@ -28,7 +28,7 @@ export default function AboutPage() {
           </div>
           <div className="contentCard">
             <h3>What we’re building toward</h3>
-            <p>One calm assistant that knows your context, shows its work when it matters, and gives you real leverage without making you feel like you’re riding a very fast, slightly drunk robot.</p>
+            <p>One calm assistant that knows how you actually work, shows you the plan, and only does things after you approve.</p>
           </div>
         </div>
       </Section>

@@ -13,12 +13,12 @@ export default function VoiceAssistantPage() {
       <PageHero
         eyebrow="Voice assistant"
         title="Talk like a person. Get treated like one."
-        intro="Between meetings, in the car, on a walk — say what you need in plain English. Selara turns it into structured work you can review before anything runs."
+        intro="Say what you need while you’re walking or driving. It turns it into a real plan and waits for you to look at it first."
       />
 
       <Section
         eyebrow="Voice that works"
-        title="Natural speech becomes real progress, not another inbox of prompts."
+        title="Talk normally. Get actual work done."
         intro="This is what voice delegation feels like when the assistant actually knows your context and follows through."
       >
         <FeatureGrid items={voiceCapabilities} />

@@ -19,8 +19,8 @@ export default function IntegrationsPage() {
 
       <Section
         eyebrow="Breadth"
-        title="Connected enough for how professionals actually work."
-        intro="An assistant is only credible if it acts where your information already lives — not beside it."
+        title="It works where your real work already happens."
+        intro="It connects to the email, calendar, and tools you actually use — so it knows what’s going on."
       >
         <StatRow />
       </Section>
@@ -28,7 +28,7 @@ export default function IntegrationsPage() {
       <Section
         eyebrow="How it connects"
         title="Integrations that respect your judgment."
-        intro="Breadth without chaos: connected work stays contextual, and consequential steps stay visible before they run."
+        intro="It works across the tools you already use — and shows you the plan before anything important happens."
       >
         <div className="integrationsPrinciplesFrame">
           <div className="twoColumn">

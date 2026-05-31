@@ -103,58 +103,58 @@ export type DeepPageMomentData = {
 
 export const deepPageMoments = {
   calendar: {
-    eyebrow: 'Approval-first calendar',
-    title: 'See the reschedule plan before it lands on your calendar.',
-    body: 'When a move affects your focus blocks, travel, or external commitments, Selara shows the full sequence — who gets notified, what shifts, and what you give up — before anything changes.',
+    eyebrow: 'Calendar that doesn’t surprise you',
+    title: 'See the full plan before anything hits your calendar.',
+    body: 'When it wants to move something that affects travel or other people, you see exactly what changes before it does it.',
     slot: 'deepCalendar',
     slotFilename: 'calendar-intelligence.png',
   },
   voice: {
-    eyebrow: 'Approval-first voice',
-    title: 'Voice becomes a visible plan you approve before action.',
-    body: 'Say what you need in plain English. Selara turns it into structured steps — reschedule, draft, follow-up — and pauses on the moments that touch your reputation or calendar.',
+    eyebrow: 'Voice that actually does things',
+    title: 'Say it out loud. See the plan. Approve or change it.',
+    body: 'Talk normally. It turns it into real steps — reschedule, message, follow-up — and waits on anything that touches your reputation or schedule.',
     slot: 'deepVoice',
     slotFilename: 'voice-in-action.png',
   },
   email: {
-    eyebrow: 'Approval-first email',
-    title: 'Drafts and sends pause for review on consequential threads.',
-    body: 'Routine triage moves fast. When a message would affect a client, partner, or sensitive thread, you see the draft and intent first — then approve, edit, or hold.',
+    eyebrow: 'Email that doesn’t blow up on you',
+    title: 'Routine stuff moves fast. The important stuff waits for you.',
+    body: 'Normal messages get handled. When it would affect a client or something sensitive, you see the draft first and decide.',
     slot: 'deepEmail',
     slotFilename: 'documents-hub.png',
   },
   automations: {
-    eyebrow: 'Approval-first automation',
-    title: 'Automations surface the plan; you stay decider on what matters.',
-    body: 'Connected work runs in the background until it would touch your calendar, team, or reputation. Then Selara stops, shows the plan, and waits for your call.',
+    eyebrow: 'Automations you actually trust',
+    title: 'It does the boring work. You stay in charge of the real stuff.',
+    body: 'The repetitive things run in the background. The moment it would touch your calendar or your team, it stops and shows you the plan.',
     slot: 'deepAutomations',
     slotFilename: 'approval-flow.png',
   },
   privacy: {
-    eyebrow: 'Approval-first control',
-    title: 'Nothing touches your accounts without a clear summary first.',
-    body: 'No black-box “I took care of it.” Every consequential step comes with a readable summary of intent — so powerful help feels composed, not reckless.',
+    eyebrow: 'You stay in control',
+    title: 'Nothing important happens without you seeing it first.',
+    body: 'No mysterious “I handled it.” You get a clear summary before it touches anything that actually matters.',
     slot: 'deepPrivacy',
     slotFilename: 'approval-flow.png',
   },
   features: {
-    eyebrow: 'Approval-first by design',
-    title: 'One concierge surface — control when the stakes are real.',
-    body: 'Calendar, voice, documents, and memory live in one calm app. When something would touch your reputation or schedule, Selara shows the plan first — then waits for your call.',
+    eyebrow: 'One calm place',
+    title: 'Everything in one app. Real control when it matters.',
+    body: 'Calendar, voice, documents, memory — all in one place. When something would touch your reputation or schedule, it shows you the plan first.',
     slot: 'featuresHub',
     slotFilename: 'features-hub.png',
   },
   integrations: {
-    eyebrow: 'Connected concierge',
-    title: '800+ tools — one approval-first layer on top.',
-    body: 'Selara does not ask you to abandon Gmail, Outlook, or the calendar you already trust. It acts through them with context, pausing when a step would touch your reputation or schedule.',
+    eyebrow: 'Works with what you already use',
+    title: '800+ tools, one normal assistant on top.',
+    body: 'It works inside Gmail, Calendar, Slack and the rest — with real context, and it pauses before it does anything that affects your reputation or schedule.',
     slot: 'integrationsList',
     slotFilename: 'integrations-list.png',
   },
   pricing: {
-    eyebrow: 'The product',
-    title: 'Plans you can read at a glance — not another billing maze.',
-    body: 'Subscription status, renewal, and what you are paying for stay visible in the app. The same calm surface you use for calendar and voice — because billing should not feel like a different product.',
+    eyebrow: 'Billing that doesn’t feel like a separate job',
+    title: 'You can actually understand what you’re paying for.',
+    body: 'Your plan, renewal date, and what you get are all visible in the same calm app you use for everything else.',
     slot: 'pricingProduct',
     slotFilename: 'subscription-view.png',
   },
@@ -172,10 +172,10 @@ export const navigation = [
 ];
 
 export const proofPoints = [
-  'Built for lawyers, doctors, and executives',
-  'Protect your reputation with approval-first actions',
-  'Reclaim hours without losing control of your calendar',
-  '800+ integrations — one calm concierge',
+  'Built for lawyers, doctors, and people whose time actually matters',
+  'Shows you the plan before it does anything important',
+  'Gets real work done so you get your time back',
+  'Works with the tools you already use',
 ];
 
 export const audienceProfiles = [
@@ -185,41 +185,41 @@ export const audienceProfiles = [
   },
   {
     title: 'Medicine & clinical leadership',
-    body: 'Your schedule protects patients and teams. Selara defends focus blocks and surfaces trade-offs before anything moves.',
+    body: 'Your schedule protects patients and teams. Selara keeps your time free and shows you what changes before anything moves.',
   },
   {
     title: 'Executives & operators',
-    body: 'When your calendar is the company’s bottleneck, you need leverage without the anxiety that something just broke on your behalf.',
+    body: 'When your calendar runs everything, you need help that doesn’t create new problems behind your back.',
   },
 ];
 
 export const futureTeaser = {
   eyebrow: 'What’s next',
-  title: 'One assistant across every surface you work in.',
-  body: 'Selara starts on iOS today. Mac, browser, Watch, and deeper ecosystem presence are on the way — without changing what makes it calm.',
+  title: 'One assistant that works wherever you do.',
+  body: 'It starts on your iPhone. Mac, browser, and Watch versions are coming soon — so it can actually be there when you need it.',
   href: '/future',
-  linkLabel: 'See the vision',
+  linkLabel: 'See what’s coming',
 };
 
 export const approvalTrustCopy =
-  'When powerful agents act without visible guardrails, the cost is real — from widely reported incidents like Summer Yue’s deleted inbox and Claire Vo’s wiped calendar. Selara is built so consequential steps stay visible before they run.';
+  'When powerful agents act without showing their work, things go wrong — like the cases where inboxes and calendars got wrecked. Selara shows you the plan first.';
 
 export const openClawIntro =
   'OpenClaw showed what raw agent speed looks like without guardrails. Selara is built for people who cannot afford that kind of surprise — the kind widely reported when Summer Yue lost email and Claire Vo lost a calendar.';
 
-export const pricingBetaNote = 'Full concierge experience available in the open beta today.';
+export const pricingBetaNote = 'You get the full thing in the open beta right now.';
 
 export const pricingBetaUpgradeCopy =
-  'Open beta is free and includes the full concierge experience. When you are ready, choose Select, Premium, or Pinnacle — your memory, integrations, and preferences carry forward with no lock-in from trying the beta.';
+  'The open beta is free and gives you everything. When you want to keep going, pick a plan. Everything you’ve set up comes with you.';
 
 export const integrationPrinciples = [
   {
-    title: 'Context, not connectors',
-    body: 'Integrations exist so Selara understands your real week — not so you manage another dashboard of disconnected apps.',
+    title: 'It works with what you already use',
+    body: 'It connects to your email, calendar, and tools so it actually knows what’s going on in your week.',
   },
   {
-    title: 'Approval when it matters',
-    body: 'Connected work runs in the background until it would touch your calendar, inbox, or reputation. Then you see the plan first.',
+    title: 'You see it before it touches anything important',
+    body: 'The boring stuff can run. Anything that would mess with your calendar or your reputation waits until you approve it.',
   },
 ];
 
@@ -239,52 +239,52 @@ export const editorialStats = [
 
 export const storyMoments = [
   {
-    title: 'Say it naturally',
-    body: 'Talk like you already have a chief of staff. Selara understands requests in plain language instead of forcing command syntax.',
+    title: 'Tell it what you need',
+    body: 'Just say it in normal words. No special commands.',
   },
   {
-    title: 'See the plan',
-    body: 'The assistant turns intent into a visible sequence so nothing consequential hides behind an opaque step.',
+    title: 'See the plan first',
+    body: 'Selara turns it into clear steps and shows you exactly what it’s going to do.',
   },
   {
-    title: 'Approve what matters',
-    body: 'Selara stops at the moments with real stakes and gives you a clean, premium approval layer.',
+    title: 'Approve before it acts',
+    body: 'You look at the plan and say yes, make changes, or tell it to stop.',
   },
   {
     title: 'Get your time back',
-    body: 'The result is not just AI output. It is cleaner weeks, fewer dropped follow-ups, and less admin residue.',
+    body: 'The stuff that used to eat your day actually gets done — without you babysitting it.',
   },
 ];
 
 export const featureHighlights = [
   {
-    title: 'Calendar intelligence with taste',
-    body: 'Move meetings, protect focus blocks, draft reschedules, and help your week look intentional again.',
+    title: 'Your calendar stops running your life',
+    body: 'It moves meetings, handles the back and forth, and keeps your time free instead of just shuffling boxes around.',
     href: '/calendar-assistant',
   },
   {
-    title: 'Voice that feels like delegation',
-    body: 'Capture intent in motion and let Selara translate spoken requests into plans you can actually review.',
+    title: 'Talk to it like a normal person',
+    body: 'Say what you need out loud or in a message. It turns it into a plan you can actually review and approve.',
     href: '/voice-assistant',
   },
   {
-    title: 'Memory and document context',
-    body: 'Selara compounds over time, carrying preferences, files, conversations, and recurring patterns forward.',
+    title: 'It actually remembers how you work',
+    body: 'Over time it learns your preferences, your people, and how you like things done — so you stop repeating yourself.',
     href: '/features',
   },
   {
-    title: 'Connected automations, still supervised',
-    body: 'Plug into the stack you already use and automate the repetitive parts without losing oversight.',
+    title: 'It works across the tools you already use',
+    body: 'It handles repetitive stuff in Gmail, Calendar, Slack, and the rest — but only after you see the plan and say yes.',
     href: '/ai-automations',
   },
   {
-    title: 'Privacy as product behavior',
-    body: 'The trust model is visible in the experience: approvals, transparency, and boundaries you can actually feel.',
+    title: 'You stay in charge',
+    body: 'Anything that actually matters waits for your approval. No surprises that blow up your week.',
     href: '/privacy-first-ai-assistant',
   },
   {
-    title: 'Desirable, not just useful',
-    body: 'Selara is designed to feel luxurious, calm, and serious enough for people whose time is genuinely expensive.',
+    title: 'Built for people who have real work to do',
+    body: 'Calm, serious, and actually useful — not another toy that makes more work than it saves.',
     href: '/about',
   },
 ];
@@ -307,64 +307,64 @@ export const integrationItems = [
 export const productScenes = [
   {
     kicker: 'Navigation',
-    title: 'Every surface stays one gesture away',
-    copy: 'Chat, conversations, documents, schedule, and settings stay organized in the sidebar instead of buried under tabs.',
+    title: 'Everything is easy to find',
+    copy: 'Chat, your schedule, documents, and settings are all right there. No digging through menus.',
   },
   {
     kicker: 'Preferences',
-    title: 'Settings that read as a control room, not a form dump',
-    copy: 'Profile, appearance, subscription, and voice live in one calm view with clear hierarchy.',
+    title: 'Settings that make sense',
+    copy: 'Change how it looks, how it sounds, and your plan in one place that doesn’t feel like a spreadsheet.',
   },
   {
     kicker: 'Billing',
-    title: 'Subscription status you can actually read',
-    copy: 'Plan, renewal context, and next steps stay visible—without looking like a generic payment page bolted onto the app.',
+    title: 'You can actually understand your bill',
+    copy: 'Your plan, when it renews, and what you’re paying for are all clear. No surprise charges.',
   },
 ];
 
 export const comparisonRows = [
   {
-    label: 'Operating philosophy',
-    selara: 'Deliberate, approval-first, premium craft',
-    claw: 'Speed-first automation, minimal guardrails',
+    label: 'How it thinks',
+    selara: 'Shows you the plan and waits for your okay',
+    claw: 'Moves fast and hopes for the best',
   },
   {
-    label: 'Before external actions',
-    selara: 'Intent and steps shown for review',
-    claw: 'Often acts with less up-front visibility',
+    label: 'Before it does something big',
+    selara: 'You see exactly what will happen',
+    claw: 'Often just does it',
   },
   {
-    label: 'When stakes are real',
-    selara: 'You approve calendar, inbox, and workflow changes',
-    claw: 'High-profile misfires have erased emails and wiped calendars',
+    label: 'When it goes wrong',
+    selara: 'You catch it before it affects your calendar or your team',
+    claw: 'People have had inboxes and calendars wrecked',
   },
   {
-    label: 'Product experience',
-    selara: 'Editorial layout, calm motion, tight hierarchy',
-    claw: 'Utility-first layout and faster iteration',
+    label: 'How it feels to use',
+    selara: 'Calm and straightforward',
+    claw: 'Fast but chaotic',
   },
   {
-    label: 'What each optimizes for',
-    selara: 'Trust, legibility, and control under power',
-    claw: 'Throughput and capability surfaced quickly',
+    label: 'Who it’s built for',
+    selara: 'People who can’t afford surprises',
+    claw: 'People who want maximum speed no matter what',
   },
 ];
 
 export const pricingPlans = [
   {
     name: 'Select',
-    description: 'Protect your focus and reputation with a full concierge on one account — voice, memory, calendar intelligence, and 800+ integrations without the chaos.',
+    description: 'A solid assistant that handles voice, memory, your calendar, and the tools you use — without creating chaos.',
     monthlyPrice: '$25',
     yearlyPrice: '$250',
     monthlyEquivalent: '$20/mo effective when billed yearly',
     annualSavings: 'Save $50/year',
     cta: 'Choose Select',
     href: process.env.NEXT_PUBLIC_STRIPE_SELECT_URL || '/download',
-    features: ['Voice interaction', 'Persistent memory', 'Large usage limits', '800+ integrations', 'AI agents across contexts'],
+    features: ['Voice', 'Memory', 'Calendar help', '800+ tools'],
   },
   {
     name: 'Premium',
-    description: 'Shared context with a spouse or key team member, plus expanded memory and higher limits — for professionals who need leverage without losing oversight.',
+    description: 'More power and shared access (for a partner or key person) plus higher limits. Good when one person’s time isn’t enough.',
     monthlyPrice: '$45',
     yearlyPrice: '$450',
     monthlyEquivalent: '$37.50/mo effective when billed yearly',
@@ -372,41 +372,41 @@ export const pricingPlans = [
     cta: 'Choose Premium',
     href: process.env.NEXT_PUBLIC_STRIPE_PREMIUM_URL || '/download',
     featured: true,
-    features: ['All models', 'All integrations', 'Voice synthesis & transcription', 'Expanded memory', 'SpouseConnect'],
+    features: ['Everything in Select', 'More capacity', 'Voice that sounds natural', 'Shared access'],
   },
   {
     name: 'Pinnacle',
-    description: 'Force multiplier for teams and households — unlimited capacity, premium voice, and early access for people whose time is hardest to replace.',
+    description: 'For teams or households that need serious capacity. No limits, best models, early access to new stuff.',
     monthlyPrice: '$110',
     yearlyPrice: '$1,100',
     monthlyEquivalent: '$91.67/mo effective when billed yearly',
     annualSavings: 'Save $220/year',
     cta: 'Choose Pinnacle',
     href: process.env.NEXT_PUBLIC_STRIPE_PINNACLE_URL || '/download',
-    features: ['Premium voice', 'No rate limits', 'No memory limits', 'Most powerful models only', 'FamilyConnect'],
+    features: ['No limits', 'Best models', 'Premium voice', 'Team/household access'],
   },
 ];
 
 export const faqs = [
   {
-    q: 'What exactly makes Selara feel different?',
-    a: 'Selara is built around behavior, not buzzwords. It understands context, shows you the plan before it acts, and asks for approval when something actually matters—so automation feels trustworthy, not reckless.',
+    q: 'What makes Selara different?',
+    a: 'It shows you the plan before it does anything important. You approve, change it, or stop it. That’s the whole difference.',
   },
   {
-    q: 'Are the prices shown here accurate?',
-    a: 'Yes. Select, Premium, and Pinnacle match what we publish. When you choose a plan, checkout runs through our secure billing flow.',
+    q: 'Are the prices real?',
+    a: 'Yes. What you see is what you pay. You can start with the free open beta and upgrade later.',
   },
   {
-    q: 'How do subscriptions and billing work?',
-    a: 'You can subscribe monthly or yearly. Manage your plan, renewal, and payment method from your account. If you need help, reach out through the support email in the footer.',
+    q: 'How does billing work?',
+    a: 'Monthly or yearly. You can change or cancel anytime from your account.',
   },
   {
-    q: 'Can I change plans later?',
-    a: 'Yes. Upgrade or adjust your plan as your needs change—your assistant should grow with your workload, not lock you in.',
+    q: 'Can I upgrade or downgrade later?',
+    a: 'Yes. Your data and settings move with you.',
   },
   {
-    q: 'How does open beta relate to paid plans?',
-    a: 'During the open beta you get the full concierge experience at no charge. When you are ready, subscribe to Select, Premium, or Pinnacle — your memory, integrations, and preferences carry forward; there is no lock-in from trying the beta.',
+    q: 'What do I get in the open beta?',
+    a: 'The full experience for free right now. When you’re ready to pay, your stuff carries over.',
   },
 ];
 
@@ -414,76 +414,76 @@ export const faqs = [
 
 export const calendarCapabilities: FeatureItem[] = [
   {
-    title: 'Your calendar stops being a second job',
-    body: 'Selara sees conflicts, travel time, and energy levels — then proposes moves that actually protect your real priorities instead of just shifting boxes around.',
+    title: 'Your calendar stops eating your day',
+    body: 'It sees the real constraints — travel, energy, other people — and suggests moves that actually work instead of just moving boxes around.',
   },
   {
-    title: 'Focus blocks that survive contact with reality',
-    body: 'Deep work gets defended automatically. When something tries to eat your best hours, you see the trade-off and decide — not just react.',
+    title: 'Time you actually get to keep',
+    body: 'When something tries to steal your focus time, you see what it would cost and decide — instead of just reacting all day.',
   },
   {
-    title: 'Follow-ups that don’t fall through the cracks',
-    body: 'Every “let me check my calendar and get back to you” turns into a tracked action with context attached. You stop being the person who forgets.',
+    title: 'You stop being the one who forgets',
+    body: '“Let me check my calendar and get back to you” turns into something that actually happens, with the right context, without you chasing it.',
   },
 ];
 
 export const voiceCapabilities: FeatureItem[] = [
   {
-    title: 'Talk like a human, get work done like one',
-    body: 'Say what you need between meetings, in the car, or while walking. Selara turns natural speech into structured plans you can review — no command syntax required.',
+    title: 'Just say what you need',
+    body: 'Talk normally — in the car, between meetings, walking. It turns it into a plan you can look at and approve. No special commands.',
   },
   {
-    title: 'Voice that remembers who you are',
-    body: 'It knows your preferences, recurring meetings, and how you like things phrased. The more you use it, the less you have to explain.',
+    title: 'It knows how you actually work',
+    body: 'Over time it learns your preferences and your people, so you stop having to explain the same things over and over.',
   },
   {
-    title: 'From voice note to calendar in under a minute',
-    body: '“Move the 2pm and tell the team I’ll be five late” becomes a real reschedule + message draft before you’ve even finished your coffee.',
+    title: 'Say it once, it actually happens',
+    body: '“Move the 2pm and let the team know I’ll be late” turns into the real reschedule and the real message — before you finish your coffee.',
   },
 ];
 
 export const emailCapabilities: FeatureItem[] = [
   {
-    title: 'The inbox stops living in your head',
-    body: 'Selara surfaces what actually needs your attention and drafts the rest. You spend time deciding, not digging.',
+    title: 'Your inbox stops living in your head',
+    body: 'It figures out what actually needs you and drafts the rest. You decide instead of digging through noise.',
   },
   {
-    title: 'Follow-ups that happen without you chasing them',
-    body: '“I’ll send that next week” becomes a real tracked action with the right context attached. Nothing important disappears into the void.',
+    title: 'Things actually get followed up on',
+    body: '“I’ll send that next week” turns into something that really happens, with the right context, without you having to remember.',
   },
   {
-    title: 'Tone that still sounds like you',
-    body: 'Drafts come out in your voice — not generic corporate robot. You edit the substance, not the personality.',
+    title: 'It still sounds like you',
+    body: 'The drafts sound like something you would actually send. You tweak the important parts, not the whole thing.',
   },
 ];
 
 export const automationOutcomes: FeatureItem[] = [
   {
-    title: 'Repetitive work stops being your problem',
-    body: 'Routine updates, status reports, and cross-tool busywork get handled. You only touch the exceptions.',
+    title: 'The boring stuff stops being your problem',
+    body: 'Routine updates and cross-tool busywork just happen. You only deal with the things that actually need your judgment.',
   },
   {
-    title: 'Context travels with the work',
-    body: 'Selara knows why something matters, who’s waiting, and what “done well” looks like for you. Automations improve over time instead of staying brittle.',
+    title: 'It knows the context so you don’t have to repeat it',
+    body: 'It understands why things matter to you and who’s waiting. The more you use it, the less you have to explain.',
   },
   {
-    title: 'You stay in the loop on the things that matter',
-    body: 'When something would affect your calendar, team, or reputation, you see the plan first. Speed without surprise.',
+    title: 'Nothing important happens without you seeing it',
+    body: 'When it would touch your calendar, your team, or your reputation, you see the plan first. Speed without the usual disasters.',
   },
 ];
 
 export const privacyPositioning: FeatureItem[] = [
   {
-    title: 'Power that doesn’t feel like giving up control',
-    body: 'Selara is designed for people who need real leverage but can’t afford for something to go wrong without them noticing.',
+    title: 'Real power without the usual disasters',
+    body: 'It’s built for people who need serious help but can’t afford for something to blow up without them knowing.',
   },
   {
-    title: 'You see what it’s about to do — every time',
-    body: 'No black-box “I took care of it.” You get a clear summary of intent before anything touches your real accounts or calendar.',
+    title: 'You always see what it’s about to do',
+    body: 'No mysterious “I took care of it.” You get a clear summary before it touches anything important.',
   },
   {
-    title: 'The expensive part of your brain stays protected',
-    body: 'Judgment calls, relationship-sensitive messages, and anything with real stakes stay in your hands. Everything else gets lighter.',
+    title: 'The important stuff stays in your hands',
+    body: 'Anything that actually matters — the judgment calls, the sensitive messages — waits for you. The rest gets lighter.',
   },
 ];
 
@@ -513,11 +513,11 @@ export type FeatureItem = {
 };
 
 export const downloadBenefits = [
-  'Real calendar intelligence on day one — not just another chat interface bolted onto your schedule',
-  'Voice that actually turns into plans you can review and approve',
-  'Memory that compounds: the more you use it, the less you repeat yourself',
-  'Approval layer that protects your reputation and your relationships without slowing you down',
-  'Clean, calm product surface that doesn’t make you feel like you’re babysitting another AI toy',
+  'Real calendar help from day one — not another chat that just adds to your to-do list',
+  'Say what you need out loud and get back a plan you can actually approve or change',
+  'It remembers how you work so you stop explaining the same things over and over',
+  'Anything important waits for you to look at it first — no surprises that ruin your week',
+  'A calm app that doesn’t make you feel like you’re managing yet another piece of software',
 ];
 
 export const seoPages = [

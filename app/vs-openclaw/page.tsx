@@ -27,7 +27,7 @@ export default function VsOpenClawPage() {
       <Section
         eyebrow="What it actually feels like"
         title="Speed is easy. Calm power is rare."
-        intro="OpenClaw optimizes for throughput. Selara optimizes for people who want the leverage without the constant low-grade anxiety that something just did something stupid on their behalf."
+        intro="OpenClaw is built for raw speed. Selara is built so you don’t get surprised by something stupid happening on your behalf."
       >
         <OpenClawContrastVisual />
       </Section>

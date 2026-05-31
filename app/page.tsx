@@ -19,41 +19,41 @@ export default function HomePage() {
       <Section
         eyebrow="Who it's for"
         title="Built for people whose reputation is part of the job."
-        intro="Selara is the calm, approval-first concierge for high-stakes weeks — not another agent that moves fast and hopes you notice."
+        intro="An assistant for people whose time and reputation actually matter — not another agent that moves fast and hopes you catch the mistakes later."
       >
         <WhoThisIsFor />
       </Section>
       <Section
         eyebrow="How it works"
         title="Tell Selara what you need. Watch it turn into a plan. Approve what matters."
-        intro="The story is simple: intent becomes a visible sequence, and you stay in control when stakes are real."
+        intro="Selara takes your message, makes a plan, and only does things after you say yes."
       >
         <StoryGrid />
       </Section>
       <Section
         eyebrow="Trust"
-        title="Conversation and approvals, treated like they belong in a premium product."
-        intro="When automation can change your calendar, messages, or workflows, the interface should feel steady—not noisy or evasive."
+        title="It shows you the plan first."
+        intro="When it’s about to touch your calendar or messages, it shows you exactly what it’s going to do."
       >
         <ApprovalShowcase />
       </Section>
       <Section
-        eyebrow="Core capabilities"
-        title="Everything you need to reclaim your time without giving up control."
-        intro="Calendar intelligence, voice, memory, documents, and automations—one coherent assistant instead of a pile of disconnected tricks."
+        eyebrow="What it actually does"
+        title="The boring parts stop being your problem."
+        intro="It handles your calendar, messages, documents, and the repetitive stuff across your tools — but only after you see the plan and say yes."
       >
         <FeatureCards />
         <div className="chipGrid" style={{ justifyContent: 'center', marginTop: 16 }}>
           <Link href="/features" className="secondaryButton">
-            Explore the full capability map
+            See everything it can do
           </Link>
         </div>
       </Section>
       <Section
         id="pricing"
         eyebrow="Pricing"
-        title="Select, Premium, and Pinnacle — plans for serious weeks."
-        intro="Every tier includes the full concierge experience in the open beta today. Upgrade to paid whenever you are ready — no lock-in."
+        title="Simple plans. You can start for free."
+        intro="The open beta gives you the full thing right now. When you want to keep using it, pick a plan. No tricks."
       >
         <PricingGrid />
       </Section>

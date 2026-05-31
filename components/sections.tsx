@@ -172,7 +172,7 @@ export function Hero() {
             <span>Your Personal Assistant</span>
           </h1>
           <p className="heroLead">
-            The premium AI concierge for professionals. Voice, approvals, calendar intelligence, and memory — live now in open beta.
+            Say what you need. See the plan. It only moves when you say yes. Live in open beta now.
           </p>
           <div className="ctaRow">
             <a className="primaryButton" href={betaUrl}>Open Beta</a>
@@ -597,9 +597,9 @@ export function OpenClawContrastVisual() {
         className="openClawContrastPanel openClawContrastPanel--calm contrastCard--calm"
       >
         <p className="eyebrow">Selara</p>
-        <h3>Calm power with visible intent</h3>
+        <h3>It shows you the plan first</h3>
         <p>
-          Every consequential step shows up as a readable plan — you approve, edit, or pause before it runs.
+          You see exactly what it’s about to do. You approve, change it, or tell it to stop.
         </p>
         {/* IMAGE SLOT: approval-flow.png — replace with real screenshot from /public/images/real-app/ */}
         <div className="pageImageSlot">
@@ -704,10 +704,10 @@ export function CTASection() {
       <div className="shell">
         <div className="ctaPanel ctaPanelExpanded">
           <p className="eyebrow">Open beta</p>
-          <h2 id={titleId}>The premium AI concierge for professionals is now in open beta.</h2>
+          <h2 id={titleId}>The open beta is live.</h2>
           <p>
-            Voice that turns into reviewed plans. Calendar intelligence with taste. Approvals on anything that matters.
-            Built for lawyers, doctors, executives, and anyone whose time is too expensive for chaos.
+            Say what you need. See the plan. It only does things after you say yes. 
+            Built for people who are tired of their calendar and inbox running their life.
           </p>
           <div className="ctaRow ctaRowCentered">
             <a className="primaryButton" href={betaUrl}>Open Beta</a>

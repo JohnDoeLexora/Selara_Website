@@ -1,4 +1,4 @@
-import { createMetadata, deepPageMoments } from '@/lib/site-data';
+import { createMetadata, deepPageMoments, planIncludesLine } from '@/lib/site-data';
 import {
   BetaUpgradeCallout,
   CTASection,
@@ -38,7 +38,7 @@ export default function PricingPage() {
         id="plans"
         eyebrow="Plans"
         title="Select, Premium, and Pinnacle"
-        intro="Monthly or annual billing. Every plan includes voice, memory, deep integrations, and approval-first actions."
+        intro={`Monthly or annual billing. Every plan includes ${planIncludesLine}`}
       >
         <BetaUpgradeCallout />
         <PricingGrid />

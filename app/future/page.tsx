@@ -26,8 +26,8 @@ export default function FuturePage() {
           <div className="contentCard">
             <h3>Today</h3>
             <p>
-              Native iOS app with voice, approvals, calendar intelligence, travel, documents, memory, and Studio.
-              The foundation is live in the open beta.
+              Native iOS app with calendar intelligence, email, notes, voice access, approvals, follow-through, travel,
+              documents, and Studio. The foundation is live in the open beta.
             </p>
           </div>
           <div className="contentCard">

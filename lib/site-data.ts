@@ -140,7 +140,7 @@ export const deepPageMoments = {
   features: {
     eyebrow: 'One calm place',
     title: 'Everything in one app. Real control when it matters.',
-    body: 'Calendar, voice, documents, memory — all in one place. When something would touch your reputation or schedule, it shows you the plan first.',
+    body: 'Calendar, email, notes, and the tools you already use — in one calm place. When something would touch your reputation or schedule, it shows you the plan first.',
     slot: 'featuresHub',
     slotFilename: 'features-hub.png',
   },
@@ -168,14 +168,35 @@ export const navigation = [
   { href: '/features', label: 'Features' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/future', label: 'Future' },
-  { href: betaUrl, label: 'Open Beta' },
+  { href: betaUrl, label: 'Download Selara' },
 ];
 
-export const proofPoints = [
-  'Built for lawyers, doctors, and people whose time actually matters',
-  'Shows you the plan before it does anything important',
-  'Gets real work done so you get your time back',
-  'Works with the tools you already use',
+export const heroLead =
+  'The premium AI concierge for professionals. Calendar intelligence, approvals, and follow-through—and a bespoke assistant that tailors itself to your life. Available now in open beta.';
+
+/** Reused across page intros, metadata, and plan copy — keep in sync with heroLead themes. */
+export const productCapabilityLine =
+  'Calendar intelligence, approvals, follow-through, and a bespoke assistant that tailors itself to your life.';
+
+export const planIncludesLine =
+  'Calendar intelligence, approvals, follow-through, voice access, and 800+ integrations.';
+
+export const audienceSectionTitle = 'Built for professionals—and anyone who values time.';
+
+export const audienceSectionIntro =
+  'Whether your week runs on court dates, patient schedules, or back-to-back meetings, Selara shows you the plan before anything touches your reputation or calendar.';
+
+export const heroValuePoints: { label: string; href?: string }[] = [
+  {
+    label: 'Reclaim your time without losing control of your calendar',
+    href: '/calendar-assistant',
+  },
+  { label: 'Built for professionals, and anyone who values time' },
+  { label: '800+ integrations — one calm concierge', href: '/integrations' },
+  {
+    label: 'Protect your reputation with approval-first actions',
+    href: '/privacy-first-ai-assistant',
+  },
 ];
 
 export const audienceProfiles = [
@@ -225,16 +246,18 @@ export const integrationPrinciples = [
 
 /** Hero “pills”: each maps to a real route (or external beta URL) so they behave as links, not decorative spans. */
 export const heroSignals: { label: string; href: string }[] = [
-  { label: 'Open beta', href: betaUrl },
-  { label: 'Voice + approvals', href: '/features' },
-  { label: 'For professionals', href: '/pricing' },
-  { label: 'Calm by design', href: '/future' },
+  { label: 'Intelligence', href: '/features' },
+  { label: 'Calendar', href: '/calendar-assistant' },
+  { label: 'Emails', href: '/email-assistant' },
+  { label: 'Notes', href: '/features' },
+  { label: 'Voice accessible', href: '/voice-assistant' },
+  { label: 'Your approval, always', href: '/privacy-first-ai-assistant' },
 ];
 
 export const editorialStats = [
   { value: '800+', label: 'connected tools and services' },
   { value: '4', label: 'core trust layers before action' },
-  { value: '1', label: 'assistant across calendar, voice, docs, and memory' },
+  { value: '1', label: 'assistant across calendar, follow-through, and integrations' },
 ];
 
 export const storyMoments = [
@@ -268,8 +291,8 @@ export const featureHighlights = [
     href: '/voice-assistant',
   },
   {
-    title: 'It actually remembers how you work',
-    body: 'Over time it learns your preferences, your people, and how you like things done — so you stop repeating yourself.',
+    title: 'An assistant that fits your life',
+    body: 'Over time it learns how you work, your people, and what you prefer — a bespoke assistant that tailors itself to you.',
     href: '/features',
   },
   {
@@ -283,7 +306,7 @@ export const featureHighlights = [
     href: '/privacy-first-ai-assistant',
   },
   {
-    title: 'Built for people who have real work to do',
+    title: 'Built for professionals, and anyone who values time',
     body: 'Calm, serious, and actually useful — not another toy that makes more work than it saves.',
     href: '/about',
   },
@@ -353,14 +376,14 @@ export const comparisonRows = [
 export const pricingPlans = [
   {
     name: 'Select',
-    description: 'A solid assistant that handles voice, memory, your calendar, and the tools you use — without creating chaos.',
+    description: 'A solid assistant for calendar intelligence, approvals, follow-through, and the tools you use — without creating chaos.',
     monthlyPrice: '$25',
     yearlyPrice: '$250',
     monthlyEquivalent: '$20/mo effective when billed yearly',
     annualSavings: 'Save $50/year',
     cta: 'Choose Select',
     href: process.env.NEXT_PUBLIC_STRIPE_SELECT_URL || '/download',
-    features: ['Voice', 'Memory', 'Calendar help', '800+ tools'],
+    features: ['Calendar intelligence', 'Approvals & follow-through', 'Voice accessible', '800+ tools'],
   },
   {
     name: 'Premium',
@@ -515,7 +538,7 @@ export type FeatureItem = {
 export const downloadBenefits = [
   'Real calendar help from day one — not another chat that just adds to your to-do list',
   'Say what you need out loud and get back a plan you can actually approve or change',
-  'It remembers how you work so you stop explaining the same things over and over',
+  'A bespoke assistant that learns how you work — so you stop explaining the same things over and over',
   'Anything important waits for you to look at it first — no surprises that ruin your week',
   'A calm app that doesn’t make you feel like you’re managing yet another piece of software',
 ];
@@ -525,11 +548,20 @@ export const seoPages = [
     slug: '',
     title: 'Selara — Premium AI assistant app for iOS',
     description:
-      'Selara is the premium AI personal assistant app for iOS—built for professionals who want their time back. Approval-first, calendar-aware, voice-native, and designed to feel trustworthy.',
+      'Selara is the premium AI personal assistant app for iOS—built for professionals who want their time back. Calendar intelligence, approvals, follow-through, and a bespoke assistant available now in open beta.',
   },
-  { slug: '/features', title: 'Selara Features', description: 'Explore Selara features for calendar planning, voice, memory, documents, and connected automations.' },
+  {
+    slug: '/features',
+    title: 'Selara Features',
+    description:
+      'Explore Selara for calendar, email, notes, voice access, and connected automations—with approval-first control and follow-through.',
+  },
   { slug: '/pricing', title: 'Selara Pricing', description: 'Selara Select, Premium, and Pinnacle—simple plans for a premium AI personal assistant.' },
-  { slug: '/download', title: 'Open Beta — Selara', description: 'The Selara open beta is live. Voice, approvals, calendar intelligence, and memory — the full concierge experience available today.' },
+  {
+    slug: '/download',
+    title: 'Download Selara',
+    description: `Download Selara for iOS. The open beta is live with the full concierge experience—${productCapabilityLine}`,
+  },
   { slug: '/future', title: 'The Future of Selara', description: 'Selara is built to be your personal assistant everywhere — starting on iOS today, with Mac, browser, Watch, and deeper surfaces coming soon.' },
   { slug: '/calendar-assistant', title: 'AI Calendar Assistant', description: 'Selara is an AI calendar assistant for professionals who want to reclaim time and schedule with more intention.' },
   { slug: '/email-assistant', title: 'AI Email Assistant', description: 'Use Selara as an AI email assistant for follow-ups, triage, and drafted communication with control.' },

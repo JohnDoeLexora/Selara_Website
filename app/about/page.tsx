@@ -45,7 +45,10 @@ export default function AboutPage() {
           </div>
           <div className="contentCard">
             <h3>Real follow-through</h3>
-            <p>This isn’t a chat that forgets what you said five minutes ago. Memory compounds. Preferences travel. The assistant gets better the more you use it.</p>
+            <p>
+              This isn’t a chat that forgets what you said five minutes ago. Context compounds. Preferences travel. The
+              bespoke assistant gets better the more you use it.
+            </p>
           </div>
         </div>
       </Section>

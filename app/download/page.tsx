@@ -1,10 +1,11 @@
 import Link from 'next/link';
-import { betaUrl, createMetadata, downloadBenefits, isExternalUrl } from '@/lib/site-data';
+import { DownloadSelaraCta } from '@/components/download-cta';
+import { createMetadata, downloadBenefits, heroLead, productCapabilityLine } from '@/lib/site-data';
 import { CTASection, DownloadPreview, PageHero, Section } from '@/components/sections';
 
 export const metadata = createMetadata(
-  'Selara Open Beta',
-  'The Selara open beta is live — voice, approvals, calendar intelligence, and memory for professionals.',
+  'Download Selara',
+  `Download Selara for iOS. Available now in open beta — ${productCapabilityLine}`,
   '/download'
 );
 
@@ -14,7 +15,7 @@ export default function DownloadPage() {
       <PageHero
         eyebrow="Open beta"
         title="The open beta is live — here is what you get on day one."
-        intro="Not another chat toy. Selara is the calm, powerful system built for professionals — calendar intelligence, voice that works, memory that compounds, and approvals that protect you when it counts."
+        intro={heroLead}
       />
 
       <Section
@@ -34,29 +35,21 @@ export default function DownloadPage() {
       <Section
         eyebrow="A glimpse inside"
         title="This is what you will live in every day."
-        intro="One calm surface for voice, plans, and approvals — designed to feel finished from the first session."
+        intro="One calm surface for plans, follow-through, and approvals — designed to feel finished from the first session."
       >
         <DownloadPreview />
       </Section>
 
       <Section
         eyebrow="Ready?"
-        title="Start with the open beta."
-        intro="Direct access to the premium AI concierge built for professionals."
+        title="Download Selara"
+        intro="Direct access to the premium AI concierge built for professionals—and anyone who values time."
       >
         <div className="twoColumn">
           <div className="contentCard contentCardPremium contentCardPremiumStar">
-            <h3>Open the beta</h3>
-            <p>The link takes you straight into the live experience. Real capability on day one.</p>
-            {isExternalUrl(betaUrl) ? (
-              <a className="primaryButton" href={betaUrl} target="_blank" rel="noopener noreferrer">
-                Open Beta
-              </a>
-            ) : (
-              <Link className="primaryButton" href={betaUrl}>
-                Open Beta
-              </Link>
-            )}
+            <h3>Get the app</h3>
+            <p>The link takes you straight into the live open beta. Real capability on day one.</p>
+            <DownloadSelaraCta className="primaryButton" />
           </div>
           <div className="contentCard contentCardPremium">
             <h3>Explore further</h3>

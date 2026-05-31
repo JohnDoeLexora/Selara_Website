@@ -2,8 +2,7 @@
 
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import Link from 'next/link';
-import { betaUrl, isExternalUrl } from '@/lib/site-data';
+import { DOWNLOAD_SELARA_LABEL, DownloadSelaraCta } from './download-cta';
 import { MobileNavLinks } from './nav-links';
 
 export function MobileNav() {
@@ -50,23 +49,8 @@ export function MobileNav() {
             Close
           </button>
         </div>
-        {isExternalUrl(betaUrl) ? (
-          <a
-            ref={ctaRef}
-            className="primaryButton mobileNavCta"
-            href={betaUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={close}
-          >
-            Open Beta
-          </a>
-        ) : (
-          <Link ref={ctaRef} className="primaryButton mobileNavCta" href={betaUrl} onClick={close}>
-            Open Beta
-          </Link>
-        )}
-        <MobileNavLinks onNavigate={close} omitLabels={['Open Beta']} />
+        <DownloadSelaraCta ref={ctaRef} className="primaryButton mobileNavCta" onClick={close} />
+        <MobileNavLinks onNavigate={close} omitLabels={[DOWNLOAD_SELARA_LABEL]} />
       </nav>
     </>
   );

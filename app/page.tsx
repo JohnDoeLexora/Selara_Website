@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { audienceSectionIntro, audienceSectionTitle } from '@/lib/site-data';
 import {
   ApprovalShowcase,
   CTASection,
@@ -18,8 +19,8 @@ export default function HomePage() {
       <Hero />
       <Section
         eyebrow="Who it's for"
-        title="Built for people whose reputation is part of the job."
-        intro="An assistant for people whose time and reputation actually matter — not another agent that moves fast and hopes you catch the mistakes later."
+        title={audienceSectionTitle}
+        intro={audienceSectionIntro}
       >
         <WhoThisIsFor />
       </Section>

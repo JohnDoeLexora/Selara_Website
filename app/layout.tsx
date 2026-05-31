@@ -20,7 +20,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   ...createMetadata(
     'Selara — Premium AI assistant app for iOS',
-    'Selara is the premium AI personal assistant app for iOS—built for professionals who want their time back, with approval-first automation.',
+    'Selara is the premium AI personal assistant app for iOS—calendar intelligence, approvals, follow-through, and a bespoke assistant. Available now in open beta.',
     '/',
   ),
   keywords: [
@@ -74,7 +74,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         url: siteUrl,
         name: 'Selara',
         description:
-          'Selara is a premium AI personal assistant app for iOS—calendar-aware, voice-native, and approval-first.',
+          'Selara is a premium AI personal assistant app for iOS—calendar intelligence, approvals, follow-through, and approval-first control.',
         publisher: { '@id': orgId },
       },
       {

@@ -3,7 +3,7 @@ import { CTASection, DeepPageMoment, FeatureCards, PageHero, Section } from '@/c
 
 export const metadata = createMetadata(
   'Selara Features',
-  'One calm system for your calendar, voice, documents, automations, and memory — with real control when it matters.',
+  `One calm system for calendar, email, notes, voice access, and automations — with real control when it matters.`,
   '/features'
 );
 
@@ -13,12 +13,12 @@ export default function FeaturesPage() {
       <PageHero
         eyebrow="What it does"
         title="One assistant that actually knows your life."
-        intro="Calendar, voice, documents, and the tools you use — all in one place. It shows you the plan before it does anything that matters."
+        intro="Calendar, email, notes, and the tools you use — all in one place. It shows you the plan before it does anything that matters."
       />
 
       <Section
         eyebrow="The whole thing in one place"
-        title="Your calendar, your voice, your documents — without the usual mess."
+        title="Intelligence, calendar, email, and notes — without the usual mess."
         intro="It works across the tools you already use and keeps everything in one calm spot."
       >
         <FeatureCards />

@@ -5,6 +5,7 @@ import { SlotImage } from '@/components/slot-image';
 import type { ImageSlotKey } from '@/lib/site-data';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ReactNode, useId } from 'react';
+import { DownloadSelaraCta } from '@/components/download-cta';
 import {
   approvalTrustCopy,
   betaUrl,
@@ -13,14 +14,15 @@ import {
   faqs,
   featureHighlights,
   futureTeaser,
+  heroLead,
   heroSignals,
+  heroValuePoints,
   integrationItems,
   isExternalUrl,
   pricingBetaNote,
   pricingBetaUpgradeCopy,
   pricingPlans,
   productScenes,
-  proofPoints,
   audienceProfiles,
   storyMoments,
   supportEmail,
@@ -53,22 +55,37 @@ function HeroSignalLink({ label, href }: { label: string; href: string }) {
   );
 }
 
+function HeroValuePoint({ label, href }: { label: string; href?: string }) {
+  if (!href) {
+    return <span>{label}</span>;
+  }
+  const external = isExternalUrl(href);
+  if (external) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer">
+        {label}
+      </a>
+    );
+  }
+  return <Link href={href}>{label}</Link>;
+}
+
 const heroShowcase = {
-  // IMAGE SLOT: hero-main-chat.png — replace with real screenshot from /public/images/real-app/
+  // IMAGE SLOT: calendar-intelligence.png — primary (first on mobile)
   primary: {
-    slot: 'heroMainChat' as const satisfies ImageSlotKey,
-    label: 'Voice + approvals',
-    title: 'Delegation that stays human all the way through.',
-    copy: 'Memory, voice, and follow-through stay in one calm thread—so the assistant feels like a partner, not another inbox.',
-    stat: 'Voice, memory, and action',
-  },
-  // IMAGE SLOT: calendar-intelligence.png — replace with real screenshot from /public/images/real-app/
-  secondary: {
     slot: 'calendarIntelligence' as const satisfies ImageSlotKey,
     label: 'Calendar intelligence',
     title: 'A schedule that explains the day, not just lists it.',
     copy: 'Selara layers context, recommendations, and follow-up into the calendar view so your day feels interpreted instead of merely tracked.',
     chips: ['Agenda + day view', 'AI commentary', 'Ask about this day'],
+  },
+  // IMAGE SLOT: hero-main-chat.png — secondary
+  secondary: {
+    slot: 'heroMainChat' as const satisfies ImageSlotKey,
+    label: 'Delegation',
+    title: 'Delegation that stays human all the way through.',
+    copy: 'Approvals and follow-through stay in one calm thread—and a bespoke assistant that tailors itself to your life—so it feels like a partner, not another inbox.',
+    stat: 'Follow-through, context, and action',
   },
 };
 
@@ -171,17 +188,25 @@ export function Hero() {
             Selara
             <span>Your Personal Assistant</span>
           </h1>
-          <p className="heroLead">
-            Say what you need. See the plan. It only moves when you say yes. Live in open beta now.
-          </p>
-          <div className="ctaRow">
-            <a className="primaryButton" href={betaUrl}>Open Beta</a>
-            <Link className="secondaryButton" href="/pricing">See Pricing</Link>
-          </div>
+          <p className="heroLead">{heroLead}</p>
           <div className="proofRow">
-            {proofPoints.map((item) => (
-              <span key={item}>{item}</span>
+            {heroValuePoints.map((item) => (
+              <HeroValuePoint key={item.label} label={item.label} href={item.href} />
             ))}
+          </div>
+          <div className="heroActionRow">
+            {isExternalUrl(betaUrl) ? (
+              <a className="primaryButton" href={betaUrl} target="_blank" rel="noopener noreferrer">
+                Download now
+              </a>
+            ) : (
+              <Link className="primaryButton" href={betaUrl}>
+                Download now
+              </Link>
+            )}
+            <Link className="secondaryButton" href="/pricing">
+              See pricing
+            </Link>
           </div>
         </motion.div>
 
@@ -194,6 +219,32 @@ export function Hero() {
           <div className="heroHalo heroHaloBlue" aria-hidden />
           <div className="heroHalo heroHaloGold" aria-hidden />
           <div className="heroWindow heroWindowPrimary">
+            <h3>{heroShowcase.primary.title}</h3>
+            <p>{heroShowcase.primary.copy}</p>
+            <div className="productScreenStage productScreenStageHero">
+              <div className="productScreenAura productScreenAuraBlue" aria-hidden />
+              <div className="productScreenFrame productScreenFrameHero">
+                <div className="productScreenNotch" />
+                <div className="productScreenImageWrap">
+                  <SlotImage
+                    slotKey={heroShowcase.primary.slot}
+                    fill
+                    priority
+                    sizes="(max-width: 760px) 78vw, (max-width: 1180px) 56vw, 29vw"
+                    className="productScreenshot"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="chipGrid">
+              {heroShowcase.primary.chips.map((item) => (
+                <span key={item} className="chip">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="heroWindow heroWindowSecondary">
             <div className="heroWindowHeader" aria-hidden>
               <span />
               <span />
@@ -201,52 +252,28 @@ export function Hero() {
             </div>
             <div className="heroWindowBody heroWindowBodyProduct">
               <div className="heroProductHeader">
-                <h3 className="heroWindowTitle">{heroShowcase.primary.title}</h3>
-                <p className="heroWindowCopy">{heroShowcase.primary.copy}</p>
+                <h3 className="heroWindowTitle">{heroShowcase.secondary.title}</h3>
+                <p className="heroWindowCopy">{heroShowcase.secondary.copy}</p>
               </div>
-              <div className="productScreenStage productScreenStageHero">
+              <div className="productScreenStage productScreenStageSecondary">
                 <div className="productScreenAura productScreenAuraBlue" aria-hidden />
                 <div className="productScreenAura productScreenAuraGold" aria-hidden />
-                <div className="productScreenFrame productScreenFrameHero">
+                <div className="productScreenFrame productScreenFrameSecondary">
                   <div className="productScreenNotch" />
                   <div className="productScreenImageWrap">
                     <SlotImage
-                      slotKey={heroShowcase.primary.slot}
+                      slotKey={heroShowcase.secondary.slot}
                       fill
-                      priority
-                      sizes="(max-width: 760px) 78vw, (max-width: 1180px) 56vw, 29vw"
+                      sizes="(max-width: 760px) 70vw, (max-width: 1180px) 42vw, 18vw"
                       className="productScreenshot"
                     />
                   </div>
                 </div>
                 <div className="productStageCard">
                   <span>What is live here</span>
-                  <strong>{heroShowcase.primary.stat}</strong>
+                  <strong>{heroShowcase.secondary.stat}</strong>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="heroWindow heroWindowSecondary">
-            <h3>{heroShowcase.secondary.title}</h3>
-            <p>{heroShowcase.secondary.copy}</p>
-            <div className="productScreenStage productScreenStageSecondary">
-              <div className="productScreenAura productScreenAuraBlue" aria-hidden />
-              <div className="productScreenFrame productScreenFrameSecondary">
-                <div className="productScreenNotch" />
-                <div className="productScreenImageWrap">
-                  <SlotImage
-                    slotKey={heroShowcase.secondary.slot}
-                    fill
-                    sizes="(max-width: 760px) 70vw, (max-width: 1180px) 42vw, 18vw"
-                    className="productScreenshot"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="chipGrid">
-              {heroShowcase.secondary.chips.map((item) => (
-                <span key={item} className="chip">{item}</span>
-              ))}
             </div>
           </div>
         </motion.div>
@@ -664,8 +691,11 @@ export function DownloadPreview() {
   return (
     <div className="twoColumn">
       <div className="contentCard">
-        <h3>Voice + approvals in one thread</h3>
-        <p>The live app turns spoken intent into reviewed plans — the same calm surface you see on the home page.</p>
+        <h3>Delegation with follow-through</h3>
+        <p>
+          The live app turns intent into reviewed plans and real action — approvals and follow-through in one calm thread,
+          the same surface you see on the home page.
+        </p>
       </div>
       <div className="contentCard">
         {/* IMAGE SLOT: hero-main-chat.png — replace with real screenshot from /public/images/real-app/ */}
@@ -706,12 +736,15 @@ export function CTASection() {
           <p className="eyebrow">Open beta</p>
           <h2 id={titleId}>The open beta is live.</h2>
           <p>
-            Say what you need. See the plan. It only does things after you say yes. 
-            Built for people who are tired of their calendar and inbox running their life.
+            Calendar intelligence, approvals, and follow-through—and a bespoke assistant that tailors itself to your
+            life. Available now in open beta for professionals who are tired of their calendar and inbox running their
+            week.
           </p>
           <div className="ctaRow ctaRowCentered">
-            <a className="primaryButton" href={betaUrl}>Open Beta</a>
-            <Link className="secondaryButton" href="/pricing">See plans</Link>
+            <DownloadSelaraCta className="primaryButton" />
+            <Link className="secondaryButton" href="/pricing">
+              See plans
+            </Link>
           </div>
         </div>
       </div>

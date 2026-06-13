@@ -6,6 +6,8 @@ import { DOWNLOAD_SELARA_LABEL, DownloadSelaraCta } from './download-cta';
 import { DesktopNavLinks } from './nav-links';
 import { MobileNav } from './mobile-nav';
 import { ThemeToggle } from './theme-toggle';
+import { TrustSignalStrip } from './sections';
+import { FeedbackWidget } from './feedback-widget';
 
 export function SiteShell({ children }: { children: ReactNode }) {
   return (
@@ -31,6 +33,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
         {children}
       </main>
       <footer className="siteFooter">
+        <div className="shell footerTrustWrap">
+          <TrustSignalStrip />
+        </div>
         <div className="shell footerGrid">
           <div>
             <p className="footerEyebrow">Selara</p>
@@ -71,20 +76,15 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <a href={socialLinks.x} target="_blank" rel="noopener noreferrer" aria-label="Selara on X (opens in new tab)">
                 X
               </a>
-              <a
-                href={socialLinks.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Selara on Instagram (opens in new tab)"
-              >
-                Instagram
-              </a>
               <Link href="/about">About</Link>
+              <Link href="/philosophy">Philosophy</Link>
               <Link href="/integrations">Integrations</Link>
+              <Link href="/stories">Success stories</Link>
             </div>
           </div>
         </div>
       </footer>
+      <FeedbackWidget />
     </>
   );
 }

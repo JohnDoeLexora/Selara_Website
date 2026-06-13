@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { createMetadata, deepPageMoments, planIncludesLine } from '@/lib/site-data';
 import {
   BetaUpgradeCallout,
@@ -8,12 +9,13 @@ import {
   PinnacleCallout,
   PricingGrid,
   Section,
+  TrustSignalStrip,
 } from '@/components/sections';
 
 export const metadata = createMetadata(
   'Selara Pricing',
   'Pricing for Selara Select, Premium, and Pinnacle.',
-  '/pricing'
+  '/pricing',
 );
 
 export default function PricingPage() {
@@ -24,6 +26,10 @@ export default function PricingPage() {
         title="Plans that match how hard your time is to replace."
         intro="Choose the tier that fits your workload. The full concierge experience is available in the open beta today — upgrade to paid whenever you are ready, with no lock-in."
       />
+
+      <div className="shell pageTrustStripWrap">
+        <TrustSignalStrip compact />
+      </div>
 
       <Section
         eyebrow="In the app"
@@ -44,6 +50,7 @@ export default function PricingPage() {
         <PricingGrid />
         <PinnacleCallout />
       </Section>
+
       <Section eyebrow="Billing" title="Simple subscription mechanics">
         <div className="twoColumn">
           <div className="contentCard">
@@ -63,11 +70,13 @@ export default function PricingPage() {
       </Section>
 
       <Section
+        id="faq"
+        className="sectionAlt"
         eyebrow="FAQ"
         title="Answers before you need to ask"
         intro="Pricing, behavior, and billing — covered in plain language."
       >
-        <FaqList />
+        <FaqList labelledBy="faq-heading" />
       </Section>
 
       <CTASection />

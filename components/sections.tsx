@@ -1,101 +1,42 @@
-'use client';
-
 import Link from 'next/link';
 import { SlotImage } from '@/components/slot-image';
-import type { ImageSlotKey } from '@/lib/site-data';
-import { motion, useReducedMotion } from 'framer-motion';
 import { ReactNode, useId } from 'react';
+import type { LegalDocument } from '@/lib/legal';
 import { DownloadSelaraCta } from '@/components/download-cta';
+import { PricingGridWithToggle } from '@/components/pricing-grid';
 import {
-  approvalTrustCopy,
-  betaUrl,
   comparisonRows,
-  editorialStats,
   faqs,
-  featureHighlights,
   futureTeaser,
-  heroLead,
-  heroSignals,
-  heroValuePoints,
   integrationItems,
-  isExternalUrl,
-  pricingBetaNote,
   pricingBetaUpgradeCopy,
-  pricingPlans,
-  productScenes,
-  audienceProfiles,
-  storyMoments,
+  roadmapItems,
   supportEmail,
-  type FeatureItem,
-  type DeepPageMomentData,
+  glossaryTerms,
+  trustPillars,
+  trustSignals,
+  type ComparisonTableRow,
+  type FaqItem,
+  type GlossaryTerm,
+  type TrustPillar,
+  type TrustSignal,
+  type TrustSignalIcon,
+  type CapabilityUseCase,
 } from '@/lib/site-data';
 
-function makeFadeVariants(reduce: boolean | null) {
-  const off = reduce === true;
-  return {
-    hidden: { opacity: off ? 1 : 0, y: off ? 0 : 36 },
-    show: { opacity: 1, y: 0 },
-  };
-}
-
-function HeroSignalLink({ label, href }: { label: string; href: string }) {
-  const external = isExternalUrl(href);
-  const className = 'signalPill';
-  if (external) {
-    return (
-      <a href={href} className={className} target="_blank" rel="noopener noreferrer">
-        {label}
-      </a>
-    );
-  }
-  return (
-    <Link href={href} className={className}>
-      {label}
-    </Link>
-  );
-}
-
-function HeroValuePoint({ label, href }: { label: string; href?: string }) {
-  if (!href) {
-    return <span>{label}</span>;
-  }
-  const external = isExternalUrl(href);
-  if (external) {
-    return (
-      <a href={href} target="_blank" rel="noopener noreferrer">
-        {label}
-      </a>
-    );
-  }
-  return <Link href={href}>{label}</Link>;
-}
-
-const heroShowcase = {
-  // IMAGE SLOT: calendar-intelligence.png — primary (first on mobile)
-  primary: {
-    slot: 'calendarIntelligence' as const satisfies ImageSlotKey,
-    label: 'Calendar intelligence',
-    title: 'A schedule that explains the day, not just lists it.',
-    copy: 'Selara layers context, recommendations, and follow-up into the calendar view so your day feels interpreted instead of merely tracked.',
-    chips: ['Agenda + day view', 'AI commentary', 'Ask about this day'],
-  },
-  // IMAGE SLOT: hero-main-chat.png — secondary
-  secondary: {
-    slot: 'heroMainChat' as const satisfies ImageSlotKey,
-    label: 'Delegation',
-    title: 'Delegation that stays human all the way through.',
-    copy: 'Approvals and follow-through stay in one calm thread—and a bespoke assistant that tailors itself to your life—so it feels like a partner, not another inbox.',
-    stat: 'Follow-through, context, and action',
-  },
-};
-
-const runwayScreenSlots = [
-  'sidebarNav',
-  'premiumSettings',
-  'subscriptionView',
-] as const satisfies readonly ImageSlotKey[];
-
-const runwayScreenBadges = ['Navigation', 'Preferences', 'Billing'] as const;
+export {
+  ApprovalShowcase,
+  ComparisonContrastPanels,
+  DeepPageMoment,
+  FeatureCards,
+  FeatureGrid,
+  Hero,
+  OpenClawContrastVisual,
+  ProductRunway,
+  StatRow,
+  StoryGrid,
+  WhoThisIsFor,
+} from '@/components/sections-motion';
 
 export function Section({
   eyebrow,
@@ -155,7 +96,40 @@ export function PageHero({
   );
 }
 
-// IMAGE SLOT: future-ecosystem.png — replace with real screenshot from /public/images/real-app/
+export function RoadmapTimeline() {
+  const statusOrder: Array<'shipped' | 'in-progress' | 'planned'> = ['shipped', 'in-progress', 'planned'];
+  const statusLabels = {
+    shipped: 'Shipped',
+    'in-progress': 'In progress',
+    planned: 'Planned',
+  } as const;
+
+  return (
+    <div className="roadmapTimeline">
+      {statusOrder.map((status) => {
+        const group = roadmapItems.filter((item) => item.status === status);
+        if (group.length === 0) return null;
+        return (
+          <div key={status} className="roadmapStatusGroup">
+            <p className="roadmapStatusLabel">{statusLabels[status]}</p>
+            <div className="roadmapCards">
+              {group.map((item) => (
+                <article key={item.title} className="contentCard contentCardPremium roadmapCard">
+                  <div className="roadmapCardHead">
+                    <h3>{item.title}</h3>
+                    <span className={`roadmapPill roadmapPill${status.replace('-', '')}`}>{item.surface}</span>
+                  </div>
+                  <p>{item.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export function FutureVisualSlot() {
   return (
     <div className="futureVisualSlot">
@@ -165,142 +139,6 @@ export function FutureVisualSlot() {
         sizes="(max-width: 760px) 100vw, 860px"
         className="productScreenshot"
       />
-    </div>
-  );
-}
-
-export function Hero() {
-  const reduce = useReducedMotion();
-  const fadeUp = makeFadeVariants(reduce);
-  const heroTitleId = useId();
-  return (
-    <section className="hero heroExpanded" aria-labelledby={heroTitleId}>
-      <div className="heroBackdrop" aria-hidden />
-      <div className="heroGridLines" aria-hidden />
-      <div className="shell heroGrid heroGridExpanded">
-        <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: reduce ? 0 : 0.7 }} className="heroCopy">
-          <div className="signalRow">
-            {heroSignals.map((item) => (
-              <HeroSignalLink key={item.label} label={item.label} href={item.href} />
-            ))}
-          </div>
-          <h1 id={heroTitleId}>
-            Selara
-            <span>Your Personal Assistant</span>
-          </h1>
-          <p className="heroLead">{heroLead}</p>
-          <div className="proofRow">
-            {heroValuePoints.map((item) => (
-              <HeroValuePoint key={item.label} label={item.label} href={item.href} />
-            ))}
-          </div>
-          <div className="heroActionRow">
-            {isExternalUrl(betaUrl) ? (
-              <a className="primaryButton" href={betaUrl} target="_blank" rel="noopener noreferrer">
-                Download now
-              </a>
-            ) : (
-              <Link className="primaryButton" href={betaUrl}>
-                Download now
-              </Link>
-            )}
-            <Link className="secondaryButton" href="/pricing">
-              See pricing
-            </Link>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={reduce ? false : { opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: reduce ? 0 : 0.85, delay: reduce ? 0 : 0.1 }}
-          className="heroStage"
-        >
-          <div className="heroHalo heroHaloBlue" aria-hidden />
-          <div className="heroHalo heroHaloGold" aria-hidden />
-          <div className="heroWindow heroWindowPrimary">
-            <h3>{heroShowcase.primary.title}</h3>
-            <p>{heroShowcase.primary.copy}</p>
-            <div className="productScreenStage productScreenStageHero">
-              <div className="productScreenAura productScreenAuraBlue" aria-hidden />
-              <div className="productScreenFrame productScreenFrameHero">
-                <div className="productScreenNotch" />
-                <div className="productScreenImageWrap">
-                  <SlotImage
-                    slotKey={heroShowcase.primary.slot}
-                    fill
-                    priority
-                    sizes="(max-width: 760px) 78vw, (max-width: 1180px) 56vw, 29vw"
-                    className="productScreenshot"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="chipGrid">
-              {heroShowcase.primary.chips.map((item) => (
-                <span key={item} className="chip">
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="heroWindow heroWindowSecondary">
-            <div className="heroWindowHeader" aria-hidden>
-              <span />
-              <span />
-              <span />
-            </div>
-            <div className="heroWindowBody heroWindowBodyProduct">
-              <div className="heroProductHeader">
-                <h3 className="heroWindowTitle">{heroShowcase.secondary.title}</h3>
-                <p className="heroWindowCopy">{heroShowcase.secondary.copy}</p>
-              </div>
-              <div className="productScreenStage productScreenStageSecondary">
-                <div className="productScreenAura productScreenAuraBlue" aria-hidden />
-                <div className="productScreenAura productScreenAuraGold" aria-hidden />
-                <div className="productScreenFrame productScreenFrameSecondary">
-                  <div className="productScreenNotch" />
-                  <div className="productScreenImageWrap">
-                    <SlotImage
-                      slotKey={heroShowcase.secondary.slot}
-                      fill
-                      sizes="(max-width: 760px) 70vw, (max-width: 1180px) 42vw, 18vw"
-                      className="productScreenshot"
-                    />
-                  </div>
-                </div>
-                <div className="productStageCard">
-                  <span>What is live here</span>
-                  <strong>{heroShowcase.secondary.stat}</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-export function StatRow() {
-  const reduce = useReducedMotion();
-  const fadeUp = makeFadeVariants(reduce);
-  return (
-    <div className="statRow">
-      {editorialStats.map((item, index) => (
-        <motion.article
-          key={item.label}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={fadeUp}
-          transition={{ duration: reduce ? 0 : 0.5, delay: reduce ? 0 : index * 0.08 }}
-          className="statCard"
-        >
-          <strong>{item.value}</strong>
-          <span>{item.label}</span>
-        </motion.article>
-      ))}
     </div>
   );
 }
@@ -318,117 +156,300 @@ export function IntegrationTicker() {
   );
 }
 
-export function StoryGrid() {
-  const reduce = useReducedMotion();
-  const fadeUp = makeFadeVariants(reduce);
+function competitorColumnClass(label: string) {
+  const slug = label.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  return slug === 'openclaw' ? 'comparisonColOpenClaw' : 'comparisonColCompetitor';
+}
+
+export function GenericComparisonTable({
+  competitorLabel,
+  rows,
+  ariaLabel,
+}: {
+  competitorLabel: string;
+  rows: ComparisonTableRow[];
+  ariaLabel: string;
+}) {
+  const competitorClass = competitorColumnClass(competitorLabel);
+
   return (
-    <div className="storyGrid storyGridExpanded">
-      {storyMoments.map((item, index) => (
-        <motion.article
-          key={item.title}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={fadeUp}
-          transition={{ duration: reduce ? 0 : 0.55, delay: reduce ? 0 : index * 0.08 }}
-          className="storyCard storyCardExpanded"
-        >
-          <p className="storyIndex">0{index + 1}</p>
-          <h3>{item.title}</h3>
-          <p>{item.body}</p>
-        </motion.article>
-      ))}
+    <div className="comparisonSectionFrame">
+      <div
+        className="comparisonTable comparisonTableExpanded comparisonTableEditorial"
+        role="region"
+        aria-label={ariaLabel}
+      >
+        <div className="comparisonHead comparisonRow">
+          <span className="comparisonCategoryLabel">Category</span>
+          <span className="comparisonColSelara">Selara</span>
+          <span className={competitorClass}>{competitorLabel}</span>
+        </div>
+        {rows.map((row, index) => (
+          <div
+            key={row.label}
+            className={`comparisonRow comparisonRowInteractive${index % 2 === 1 ? ' comparisonRowZebra' : ''}`}
+          >
+            <span className="comparisonCategoryLabel">{row.label}</span>
+            <span className="comparisonColSelara" data-comparison-col="Selara">
+              {row.selara}
+            </span>
+            <span className={competitorClass} data-comparison-col={competitorLabel}>
+              {row.competitor}
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
-export function ApprovalShowcase() {
-  const reduce = useReducedMotion();
-  const fadeUp = makeFadeVariants(reduce);
+export function ComparisonTable() {
   return (
-    <div className="approvalShowcase">
-      <motion.div
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={fadeUp}
-        transition={{ duration: reduce ? 0 : 0.55 }}
-        className="showcaseNarrative"
-      >
-        <p className="eyebrow">Approval-first</p>
-        <h3>Approval-first automation, designed for high-stakes weeks.</h3>
+    <GenericComparisonTable
+      competitorLabel="OpenClaw"
+      rows={comparisonRows.map((row) => ({
+        label: row.label,
+        selara: row.selara,
+        competitor: row.claw,
+      }))}
+      ariaLabel="Comparison of Selara and OpenClaw"
+    />
+  );
+}
+
+export function PricingGrid() {
+  return <PricingGridWithToggle />;
+}
+
+export function BetaUpgradeCallout() {
+  return <p className="betaUpgradeCallout">{pricingBetaUpgradeCopy}</p>;
+}
+
+export function PinnacleCallout() {
+  return (
+    <p className="pinnacleCallout">
+      Pinnacle is for teams and households who need unlimited capacity and shared context.{' '}
+      <a href={`mailto:${supportEmail}`}>Talk to us</a> for custom arrangements.
+    </p>
+  );
+}
+
+export function DownloadPreview() {
+  return (
+    <div className="twoColumn">
+      <div className="contentCard">
+        <h3>Delegation with follow-through</h3>
         <p>
-          Selara shows a clear plan before anything touches your calendar, inbox, or connected tools—so powerful help
-          feels composed and intentional, not rushed or opaque.
+          The live app turns intent into reviewed plans and real action — approvals and follow-through in one calm thread,
+          the same surface you see on the home page.
         </p>
-        <p>{approvalTrustCopy}</p>
-      </motion.div>
-      <div className="approvalColumn">
-        <div className="approvalSequenceCard">
-          <div className="sequenceStep">
-            <p>Request</p>
-            <span>“Push the board prep to Monday and notify everyone.”</span>
-          </div>
-          <div className="sequenceStep emphasis">
-            <p>Plan</p>
-            <span>Selara proposes the reschedule, drafts the note, and shows each external step before anything is sent.</span>
-          </div>
-          <div className="sequenceStep">
-            <p>Control</p>
-            <span>You approve, edit, or reject with full visibility into what changes next.</span>
-          </div>
-        </div>
-        <div className="approvalGhostCard">
-          <p className="windowLabel">Why it matters</p>
-          <h3>Real luxury is power without the anxiety that usually comes with it.</h3>
-          {/* IMAGE SLOT: approval-flow.png — replace with real screenshot from /public/images/real-app/ */}
-          <div className="approvalImageSlot">
-            <SlotImage slotKey="approvalFlow" fill sizes="220px" className="productScreenshot" />
-          </div>
+      </div>
+      <div className="contentCard">
+        <div className="approvalImageSlot" style={{ maxWidth: '100%', marginInline: 'auto' }}>
+          <SlotImage
+            slotKey="heroMainChat"
+            fill
+            sizes="(max-width: 760px) 72vw, 280px"
+            className="productScreenshot"
+          />
         </div>
       </div>
     </div>
   );
 }
 
-/** Lighter approval-first moment for deep pages — narrative + one image slot. */
-export function DeepPageMoment({ moment }: { moment: DeepPageMomentData }) {
-  const reduce = useReducedMotion();
-  const fadeUp = makeFadeVariants(reduce);
-  // IMAGE SLOT — see moment.slotFilename in deepPageMoments; replace with real screenshot from /public/images/real-app/
+function TrustSignalIconSvg({ icon }: { icon: TrustSignalIcon }) {
+  const common = { width: 16, height: 16, viewBox: '0 0 16 16', fill: 'none', 'aria-hidden': true as const };
+  switch (icon) {
+    case 'shield':
+      return (
+        <svg {...common}>
+          <path
+            d="M8 1.5 3 3.5v4.5c0 3 2.2 5.8 5 6.5 2.8-.7 5-3.5 5-6.5V3.5L8 1.5Z"
+            stroke="currentColor"
+            strokeWidth="1.2"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    case 'check':
+      return (
+        <svg {...common}>
+          <path
+            d="M3 8.5 6.5 12 13 4"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    case 'lock':
+      return (
+        <svg {...common}>
+          <rect x="4" y="7" width="8" height="6.5" rx="1.2" stroke="currentColor" strokeWidth="1.2" />
+          <path
+            d="M5.5 7V5.5a2.5 2.5 0 0 1 5 0V7"
+            stroke="currentColor"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+          />
+        </svg>
+      );
+    case 'roadmap':
+      return (
+        <svg {...common}>
+          <circle cx="4" cy="8" r="1.5" fill="currentColor" />
+          <circle cx="8" cy="8" r="1.5" fill="currentColor" />
+          <circle cx="12" cy="8" r="1.5" stroke="currentColor" strokeWidth="1.2" />
+          <path d="M5.5 8h1.5M9.5 8h1.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+        </svg>
+      );
+  }
+}
+
+export function TrustSignalStrip({
+  items = trustSignals,
+  className,
+  compact,
+}: {
+  items?: TrustSignal[];
+  className?: string;
+  compact?: boolean;
+}) {
+  const stripClass = ['trustSignalStrip', compact ? 'trustSignalStripCompact' : null, className]
+    .filter(Boolean)
+    .join(' ');
 
   return (
-    <div className="deepPageMoment">
-      <motion.div
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={fadeUp}
-        transition={{ duration: reduce ? 0 : 0.55 }}
-        className="deepPageMomentCopy"
-      >
-        <p className="eyebrow">{moment.eyebrow}</p>
-        <h3>{moment.title}</h3>
-        <p>{moment.body}</p>
-      </motion.div>
-      <motion.div
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={fadeUp}
-        transition={{ duration: reduce ? 0 : 0.55, delay: reduce ? 0 : 0.08 }}
-        className="deepPageMomentVisual"
-      >
-        {/* IMAGE SLOT — see deepPageMoments.slotFilename — replace with real screenshot from /public/images/real-app/ */}
-        <div className="deepPageImageSlot">
-          <SlotImage
-            slotKey={moment.slot}
-            fill
-            sizes="(max-width: 760px) 72vw, 320px"
-            className="productScreenshot"
-          />
+    <div className={stripClass} role="list" aria-label="Trust and security highlights">
+      {items.map((signal) => {
+        const content = (
+          <>
+            <TrustSignalIconSvg icon={signal.icon} />
+            <span>{signal.label}</span>
+          </>
+        );
+        if (signal.href) {
+          return (
+            <Link key={signal.label} href={signal.href} className="trustSignalPill" role="listitem">
+              {content}
+            </Link>
+          );
+        }
+        return (
+          <span key={signal.label} className="trustSignalPill" role="listitem">
+            {content}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+export function TrustPillarGrid({ items = trustPillars }: { items?: TrustPillar[] }) {
+  return (
+    <div className="trustPillarGrid">
+      {items.map((pillar) => (
+        <article key={pillar.title} className="contentCard contentCardPremium trustPillarCard">
+          <h3>{pillar.title}</h3>
+          <p>{pillar.body}</p>
+          {pillar.href && pillar.linkLabel ? (
+            <Link href={pillar.href} className="textLink trustPillarLink">
+              {pillar.linkLabel}
+            </Link>
+          ) : null}
+        </article>
+      ))}
+    </div>
+  );
+}
+
+export function GlossaryList({ items = glossaryTerms }: { items?: GlossaryTerm[] }) {
+  return (
+    <dl className="glossaryList">
+      {items.map((entry) => (
+        <div key={entry.id} id={entry.id} className="glossaryItem">
+          <dt className="glossaryTerm">{entry.term}</dt>
+          <dd className="glossaryDefinition">
+            <p>{entry.definition}</p>
+            {entry.href && entry.linkLabel ? (
+              <Link href={entry.href} className="textLink">
+                {entry.linkLabel}
+              </Link>
+            ) : null}
+          </dd>
         </div>
-      </motion.div>
+      ))}
+    </dl>
+  );
+}
+
+export function UseCaseGrid({ items }: { items: CapabilityUseCase[] }) {
+  return (
+    <div className="useCaseGrid">
+      {items.map((item) => (
+        <article key={`${item.persona}-${item.scenario.slice(0, 32)}`} className="useCaseCard contentCard">
+          <p className="useCaseCardPersona">{item.persona}</p>
+          <h3>{item.scenario}</h3>
+          <p className="useCaseCardOutcome">{item.outcome}</p>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+export function BeforeAfterPanel({ before, after }: { before: string[]; after: string[] }) {
+  return (
+    <div className="beforeAfterPanel">
+      <div className="beforeAfterColumn beforeAfterColumnBefore">
+        <p className="beforeAfterLabel">Before Selara</p>
+        <ul className="beforeAfterList">
+          {before.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </div>
+      <div className="beforeAfterColumn beforeAfterColumnAfter">
+        <p className="beforeAfterLabel">After Selara</p>
+        <ul className="beforeAfterList">
+          {after.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+export function RelatedLinksRow({ links }: { links: { label: string; href: string }[] }) {
+  return (
+    <nav className="relatedLinksRow" aria-label="Related pages">
+      {links.map((link) => (
+        <Link key={link.href} href={link.href} className="secondaryButton">
+          {link.label}
+        </Link>
+      ))}
+    </nav>
+  );
+}
+
+export function FaqList({ items = faqs, labelledBy }: { items?: FaqItem[]; labelledBy?: string }) {
+  return (
+    <div
+      className="faqList faqListExpanded"
+      role="region"
+      aria-label={labelledBy ? undefined : 'Frequently asked questions'}
+      aria-labelledby={labelledBy}
+    >
+      {items.map((item) => (
+        <details key={item.q} className="faqItem faqItemExpanded">
+          <summary>
+            <span className="faqQuestion">{item.q}</span>
+          </summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
     </div>
   );
 }
@@ -446,288 +467,7 @@ export function FutureTeaser() {
   );
 }
 
-/** Early home signal: who Selara is built for — editorial, not persona marketing. */
-export function WhoThisIsFor() {
-  const reduce = useReducedMotion();
-  const fadeUp = makeFadeVariants(reduce);
-  return (
-    <div className="audienceGrid">
-      {audienceProfiles.map((profile, index) => (
-        <motion.article
-          key={profile.title}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={fadeUp}
-          transition={{ duration: reduce ? 0 : 0.5, delay: reduce ? 0 : index * 0.06 }}
-          className="audienceCard"
-        >
-          <h3>{profile.title}</h3>
-          <p>{profile.body}</p>
-        </motion.article>
-      ))}
-    </div>
-  );
-}
-
-export function FeatureCards() {
-  // Delegate to the reusable grid so we have one rendering implementation
-  return <FeatureGrid items={featureHighlights} />;
-}
-
-/** Reusable outcome-focused feature grid. Use this on dedicated pages instead of hand-writing repetitive 3-card blocks. */
-export function FeatureGrid({ items }: { items: FeatureItem[] }) {
-  const reduce = useReducedMotion();
-  const fadeUp = makeFadeVariants(reduce);
-  return (
-    <div className="featureGrid featureGridExpanded">
-      {items.map((item, index) => (
-        <motion.article
-          key={item.title}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={fadeUp}
-          transition={{ duration: reduce ? 0 : 0.55, delay: reduce ? 0 : index * 0.05 }}
-          className="featureCard featureCardExpanded"
-        >
-          <h3>{item.title}</h3>
-          <p>{item.body}</p>
-          {item.href ? (
-            <Link href={item.href} aria-label={`Learn more about ${item.title}`}>
-              Learn more
-            </Link>
-          ) : null}
-        </motion.article>
-      ))}
-    </div>
-  );
-}
-
-export function ProductRunway() {
-  const reduce = useReducedMotion();
-  return (
-    <div className="runwayGrid">
-      {productScenes.map((scene, index) => {
-        const slotKey = runwayScreenSlots[index];
-        const badge = runwayScreenBadges[index];
-        const tilt = index === 1 ? 0 : index === 0 ? -3 : 3;
-
-        return (
-        <motion.article
-          key={scene.title}
-          initial={
-            reduce
-              ? { opacity: 1, y: 0, rotate: tilt }
-              : { opacity: 0, y: 40, rotate: tilt }
-          }
-          whileInView={{ opacity: 1, y: 0, rotate: tilt }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: reduce ? 0 : 0.65, delay: reduce ? 0 : index * 0.08 }}
-          className="runwayCard"
-        >
-          <div className="runwayChrome" aria-hidden>
-            <span />
-            <span />
-            <span />
-          </div>
-          <div className="runwayBody">
-            <p className="windowLabel">{scene.kicker}</p>
-            <h3>{scene.title}</h3>
-            <p>{scene.copy}</p>
-            <div className="runwayAssetStage">
-              <div className="assetPlaceholderGlow" aria-hidden />
-              <div className="productStagePill runwayStagePill">{badge}</div>
-              <div className="productScreenFrame productScreenFrameRunway">
-                <div className="productScreenNotch" />
-                <div className="productScreenImageWrap">
-                  <SlotImage
-                    slotKey={slotKey}
-                    fill
-                    sizes="(max-width: 760px) 72vw, (max-width: 1180px) 40vw, 21vw"
-                    className="productScreenshot"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.article>
-        );
-      })}
-    </div>
-  );
-}
-
-export function ComparisonTable() {
-  return (
-    <div className="comparisonSectionFrame">
-      <div
-        className="comparisonTable comparisonTableExpanded comparisonTableEditorial"
-        role="region"
-        aria-label="Comparison of Selara and OpenClaw"
-      >
-        <div className="comparisonHead comparisonRow">
-          <span className="comparisonCategoryLabel">Category</span>
-          <span className="comparisonColSelara">Selara</span>
-          <span className="comparisonColOpenClaw">OpenClaw</span>
-        </div>
-        {comparisonRows.map((row, index) => (
-          <div
-            key={row.label}
-            className={`comparisonRow${index % 2 === 1 ? ' comparisonRowZebra' : ''}`}
-          >
-            <span className="comparisonCategoryLabel">{row.label}</span>
-            <span className="comparisonColSelara" data-comparison-col="Selara">
-              {row.selara}
-            </span>
-            <span className="comparisonColOpenClaw" data-comparison-col="OpenClaw">
-              {row.claw}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/** Calm vs chaotic contrast for /vs-openclaw — editorial two-panel moment. */
-export function OpenClawContrastVisual() {
-  const reduce = useReducedMotion();
-  const fadeUp = makeFadeVariants(reduce);
-  return (
-    <div className="openClawContrast">
-      <motion.article
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={fadeUp}
-        transition={{ duration: reduce ? 0 : 0.55 }}
-        className="openClawContrastPanel openClawContrastPanel--chaotic contrastCard--chaotic"
-      >
-        <p className="eyebrow">Powerful agents</p>
-        <h3>Throughput without guardrails</h3>
-        <p>
-          Fast loops, opaque steps, and the mental tax of wondering what just changed in your inbox or calendar.
-        </p>
-        <ul className="contrastChaosList">
-          <li>Actions can run before you see the full plan</li>
-          <li>High-profile misfires are part of the category story</li>
-          <li>You clean up more than you delegate</li>
-        </ul>
-      </motion.article>
-      <motion.article
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={fadeUp}
-        transition={{ duration: reduce ? 0 : 0.55, delay: reduce ? 0 : 0.08 }}
-        className="openClawContrastPanel openClawContrastPanel--calm contrastCard--calm"
-      >
-        <p className="eyebrow">Selara</p>
-        <h3>It shows you the plan first</h3>
-        <p>
-          You see exactly what it’s about to do. You approve, change it, or tell it to stop.
-        </p>
-        {/* IMAGE SLOT: approval-flow.png — replace with real screenshot from /public/images/real-app/ */}
-        <div className="pageImageSlot">
-          <SlotImage slotKey="approvalFlow" fill sizes="(max-width: 760px) 72vw, 280px" className="productScreenshot" />
-        </div>
-      </motion.article>
-    </div>
-  );
-}
-
-export function PricingGrid() {
-  return (
-    <div className="pricingSectionFrame">
-      <div className="pricingGrid pricingGridExpanded">
-        {pricingPlans.map((plan) => (
-          <article key={plan.name} className={`pricingCard pricingCardExpanded${plan.featured ? ' featured' : ''}`}>
-            <div className="pricingTopline">
-              <p className="eyebrow">{plan.name}</p>
-              {plan.featured ? <span className="planBadge">Recommended</span> : null}
-            </div>
-            <h3>
-              {plan.monthlyPrice}
-              <span>/mo</span>
-            </h3>
-            <p className="annualHeadline">{plan.yearlyPrice}/year</p>
-            {'annualSavings' in plan && plan.annualSavings ? (
-              <p className="annualSavings">{plan.annualSavings}</p>
-            ) : null}
-            <p className="annualNote">{plan.monthlyEquivalent}</p>
-            <p className="pricingBetaNote">{pricingBetaNote}</p>
-            <p>{plan.description}</p>
-            <ul>
-              {plan.features.map((feature) => (
-                <li key={feature}>{feature}</li>
-              ))}
-            </ul>
-            <Link href={plan.href} className={plan.featured ? 'primaryButton' : 'secondaryButton'}>
-              {plan.cta}
-            </Link>
-          </article>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-export function BetaUpgradeCallout() {
-  return <p className="betaUpgradeCallout">{pricingBetaUpgradeCopy}</p>;
-}
-
-export function PinnacleCallout() {
-  return (
-    <p className="pinnacleCallout">
-      Pinnacle is for teams and households who need unlimited capacity and shared context.{' '}
-      <a href={`mailto:${supportEmail}`}>Talk to us</a> for custom arrangements.
-    </p>
-  );
-}
-
-/** Single product preview for /download — lighter than the full ProductRunway. */
-export function DownloadPreview() {
-  return (
-    <div className="twoColumn">
-      <div className="contentCard">
-        <h3>Delegation with follow-through</h3>
-        <p>
-          The live app turns intent into reviewed plans and real action — approvals and follow-through in one calm thread,
-          the same surface you see on the home page.
-        </p>
-      </div>
-      <div className="contentCard">
-        {/* IMAGE SLOT: hero-main-chat.png — replace with real screenshot from /public/images/real-app/ */}
-        <div className="approvalImageSlot" style={{ maxWidth: '100%', marginInline: 'auto' }}>
-          <SlotImage
-            slotKey="heroMainChat"
-            fill
-            sizes="(max-width: 760px) 72vw, 280px"
-            className="productScreenshot"
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export function FaqList() {
-  return (
-    <div className="faqList faqListExpanded" role="region" aria-label="Frequently asked questions">
-      {faqs.map((item) => (
-        <details key={item.q} className="faqItem faqItemExpanded">
-          <summary>
-            <span className="faqQuestion">{item.q}</span>
-          </summary>
-          <p>{item.a}</p>
-        </details>
-      ))}
-    </div>
-  );
-}
-
-export function CTASection() {
+export function CTASection({ showTrustSignals = true }: { showTrustSignals?: boolean }) {
   const titleId = useId();
   return (
     <section className="section" id="cta" aria-labelledby={titleId}>
@@ -740,9 +480,10 @@ export function CTASection() {
             life. Available now in open beta for professionals who are tired of their calendar and inbox running their
             week.
           </p>
+          {showTrustSignals ? <TrustSignalStrip className="ctaTrustStrip" compact /> : null}
           <div className="ctaRow ctaRowCentered">
-            <DownloadSelaraCta className="primaryButton" />
-            <Link className="secondaryButton" href="/pricing">
+            <DownloadSelaraCta className="primaryButton" data-cta="cta-section-download" />
+            <Link className="secondaryButton" href="/pricing" data-cta="cta-section-pricing">
               See plans
             </Link>
           </div>
@@ -752,6 +493,76 @@ export function CTASection() {
   );
 }
 
-export function LegalBody({ text }: { text: string }) {
-  return <div className="legalCard legalBodyText">{text}</div>;
+export function LegalLinkRow({ current }: { current: 'privacy' | 'terms' }) {
+  const links = [
+    { href: '/privacy', label: 'Privacy Policy', key: 'privacy' as const },
+    { href: '/terms', label: 'Terms of Service', key: 'terms' as const },
+    { href: '/trust', label: 'Security & Trust', key: 'trust' as const },
+  ];
+
+  return (
+    <nav className="legalLinkRow" aria-label="Related legal pages">
+      {links.map(({ href, label, key }) =>
+        key === current ? (
+          <span key={href} className="legalLinkRowCurrent" aria-current="page">
+            {label}
+          </span>
+        ) : (
+          <Link key={href} href={href} className="textLink">
+            {label}
+          </Link>
+        ),
+      )}
+    </nav>
+  );
+}
+
+function formatLegalSectionTitle(title: string) {
+  return title
+    .toLowerCase()
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+export function LegalBody({ document }: { document: LegalDocument }) {
+  return (
+    <div className="legalCard">
+      <article className="legalArticle" aria-label="Legal document">
+        <aside className="legalToc" aria-label="On this page">
+          <p className="legalTocLabel">On this page</p>
+          <nav>
+            <ol className="legalTocList">
+              {document.sections.map((section) => (
+                <li key={section.id}>
+                  <a href={`#${section.id}`} className="legalTocLink">
+                    {formatLegalSectionTitle(section.title)}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        </aside>
+
+        <div className="legalContent legalBodyText">
+          <p className="legalLastModified">Last Modified: {document.lastModified}</p>
+
+          <div className="legalPreamble">
+            {document.preamble.map((paragraph, index) => (
+              <p key={`preamble-${index}`}>{paragraph}</p>
+            ))}
+          </div>
+
+          {document.sections.map((section) => (
+            <section key={section.id} id={section.id} className="legalSection" aria-labelledby={`${section.id}-heading`}>
+              <h2 id={`${section.id}-heading`} className="legalSectionTitle">
+                {section.title}
+              </h2>
+              {section.paragraphs.map((paragraph, index) => (
+                <p key={`${section.id}-${index}`}>{paragraph}</p>
+              ))}
+            </section>
+          ))}
+        </div>
+      </article>
+    </div>
+  );
 }

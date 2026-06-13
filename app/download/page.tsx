@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { DownloadSelaraCta } from '@/components/download-cta';
 import { createMetadata, downloadBenefits, heroLead, productCapabilityLine } from '@/lib/site-data';
-import { CTASection, DownloadPreview, PageHero, Section } from '@/components/sections';
+import { CTASection, DownloadPreview, PageHero, Section, TrustSignalStrip } from '@/components/sections';
 
 export const metadata = createMetadata(
   'Download Selara',
   `Download Selara for iOS. Available now in open beta — ${productCapabilityLine}`,
-  '/download'
+  '/download',
 );
 
 export default function DownloadPage() {
@@ -45,6 +45,7 @@ export default function DownloadPage() {
         title="Download Selara"
         intro="Direct access to the premium AI concierge built for professionals—and anyone who values time."
       >
+        <TrustSignalStrip className="pageTrustStrip" compact />
         <div className="twoColumn">
           <div className="contentCard contentCardPremium contentCardPremiumStar">
             <h3>Get the app</h3>
@@ -57,6 +58,9 @@ export default function DownloadPage() {
             <div className="chipGrid">
               <Link className="secondaryButton" href="/pricing">
                 View pricing
+              </Link>
+              <Link className="secondaryButton" href="/stories">
+                Success stories
               </Link>
               <Link className="secondaryButton" href="/future">
                 The future

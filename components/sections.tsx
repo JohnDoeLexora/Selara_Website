@@ -21,20 +21,20 @@ import {
   type TrustPillar,
   type TrustSignal,
   type TrustSignalIcon,
-  type CapabilityUseCase,
 } from '@/lib/site-data';
 
 export {
   ApprovalShowcase,
+  BeforeAfterPanel,
   ComparisonContrastPanels,
   DeepPageMoment,
   FeatureCards,
   FeatureGrid,
   Hero,
   OpenClawContrastVisual,
-  ProductRunway,
   StatRow,
   StoryGrid,
+  UseCaseGrid,
   WhoThisIsFor,
 } from '@/components/sections-motion';
 
@@ -382,43 +382,6 @@ export function GlossaryList({ items = glossaryTerms }: { items?: GlossaryTerm[]
         </div>
       ))}
     </dl>
-  );
-}
-
-export function UseCaseGrid({ items }: { items: CapabilityUseCase[] }) {
-  return (
-    <div className="useCaseGrid">
-      {items.map((item) => (
-        <article key={`${item.persona}-${item.scenario.slice(0, 32)}`} className="useCaseCard contentCard">
-          <p className="useCaseCardPersona">{item.persona}</p>
-          <h3>{item.scenario}</h3>
-          <p className="useCaseCardOutcome">{item.outcome}</p>
-        </article>
-      ))}
-    </div>
-  );
-}
-
-export function BeforeAfterPanel({ before, after }: { before: string[]; after: string[] }) {
-  return (
-    <div className="beforeAfterPanel">
-      <div className="beforeAfterColumn beforeAfterColumnBefore">
-        <p className="beforeAfterLabel">Before Selara</p>
-        <ul className="beforeAfterList">
-          {before.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      </div>
-      <div className="beforeAfterColumn beforeAfterColumnAfter">
-        <p className="beforeAfterLabel">After Selara</p>
-        <ul className="beforeAfterList">
-          {after.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
   );
 }
 

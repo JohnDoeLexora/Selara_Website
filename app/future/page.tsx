@@ -1,11 +1,7 @@
-import { createMetadata } from '@/lib/site-data';
-import { CTASection, FutureVisualSlot, PageHero, Section } from '@/components/sections';
+import { getPageMetadata, roadmapVoteMailto } from '@/lib/site-data';
+import { CTASection, FutureVisualSlot, PageHero, RoadmapTimeline, Section } from '@/components/sections';
 
-export const metadata = createMetadata(
-  'The Future of Selara',
-  'Selara is built to be your personal assistant everywhere — starting on iOS today, with Mac, browser, Watch, and deeper surfaces coming soon.',
-  '/future'
-);
+export const metadata = getPageMetadata('/future');
 
 export default function FuturePage() {
   return (
@@ -39,6 +35,30 @@ export default function FuturePage() {
           </div>
         </div>
         <FutureVisualSlot />
+      </Section>
+
+      <Section
+        eyebrow="Public roadmap"
+        title="What we are building — and what is already here."
+        intro="A simple view of shipped work, active development, and what is planned next. We would rather be transparent than overpromise."
+      >
+        <RoadmapTimeline />
+      </Section>
+
+      <Section
+        eyebrow="Your voice"
+        title="Vote on what matters to you."
+        intro="The roadmap reflects real professional workflows. Tell us what would make Selara indispensable in your week."
+      >
+        <div className="contentCard contentCardPremium roadmapVoteCard">
+          <p>
+            Feature requests help us prioritize Mac, Watch, browser, and integration depth — without losing the calm,
+            approval-first core.
+          </p>
+          <a className="primaryButton" href={roadmapVoteMailto}>
+            Vote on features
+          </a>
+        </div>
       </Section>
 
       <CTASection />

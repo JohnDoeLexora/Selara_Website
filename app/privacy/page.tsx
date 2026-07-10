@@ -1,8 +1,8 @@
-import { LegalBody, PageHero, Section } from '@/components/sections';
-import { privacyPolicyText } from '@/lib/legal';
-import { createMetadata } from '@/lib/site-data';
+import { LegalBody, LegalLinkRow, PageHero, Section } from '@/components/sections';
+import { privacyPolicy } from '@/lib/legal';
+import { getPageMetadata } from '@/lib/site-data';
 
-export const metadata = createMetadata('Privacy Policy | Selara', 'Read the SelarAI Privacy Policy.', '/privacy');
+export const metadata = getPageMetadata('/privacy');
 
 export default function PrivacyPage() {
   return (
@@ -10,10 +10,17 @@ export default function PrivacyPage() {
       <PageHero
         eyebrow="Privacy policy"
         title="SelarAI Privacy Policy"
-        intro="How SelarAI collects, uses, and protects information when you use Selara."
+        intro="This page explains, in plain language, how SelarAI collects and uses information when you use Selara — and links to our full attorney-drafted policy below."
       />
-      <Section eyebrow="Legal" title="Privacy Policy" intro="Full text follows.">
-        <LegalBody text={privacyPolicyText} />
+      <div className="shell legalPageNavWrap">
+        <LegalLinkRow current="privacy" />
+      </div>
+      <Section
+        eyebrow="Legal"
+        title="Full privacy policy"
+        intro="The complete policy follows. Section links help you jump to what you need."
+      >
+        <LegalBody document={privacyPolicy} />
       </Section>
     </>
   );

@@ -7,6 +7,7 @@ Cross-references:
 - [Image guidelines](./image-guidelines.md)
 - [A/B testing process](./ab-testing-process.md)
 - [Email sequence process](./email-sequence-process.md)
+- [Editorial calendar](./editorial-calendar.md)
 
 ---
 

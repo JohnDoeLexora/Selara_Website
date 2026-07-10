@@ -1,35 +1,82 @@
-import { createMetadata, deepPageMoments, privacyPositioning } from '@/lib/site-data';
-import { CTASection, DeepPageMoment, FeatureGrid, PageHero, Section } from '@/components/sections';
+import {
+  privacyPositioning,
+  getCapabilityPage,
+  getPageMetadata,
+  deepPageMoments,
+} from '@/lib/site-data';
+import { CapabilityFaqStructuredData } from '@/components/capability-structured-data';
+import {
+  BeforeAfterPanel,
+  CTASection,
+  DeepPageMoment,
+  FaqList,
+  FeatureGrid,
+  PageHero,
+  RelatedLinksRow,
+  Section,
+  UseCaseGrid,
+} from '@/components/sections';
 
-export const metadata = createMetadata(
-  'Privacy-First AI Assistant',
-  'Power that doesn’t feel like giving up control. Selara shows you what it’s about to do — every time — so you can use it on the work that actually matters.',
-  '/privacy-first-ai-assistant'
-);
+const page = getCapabilityPage('/privacy-first-ai-assistant');
 
-export default function PrivacyAssistantPage() {
+export const metadata = getPageMetadata('/privacy-first-ai-assistant');
+
+export default function PrivacyFirstAiAssistantPage() {
   return (
     <>
+      <CapabilityFaqStructuredData items={page.faqs} />
       <PageHero
-        eyebrow="Privacy-first"
+        className="pageHeroCapability"
+        eyebrow="Privacy-first AI assistant"
         title="Real power without the usual disasters."
-        intro="Selara is built for people who can’t afford surprises. It shows you the plan before it touches anything important."
+        intro="Selara is a privacy-first AI assistant for professionals who need serious help — approval controls, transparent memory, and nothing important running without your sign-off."
       />
 
       <Section
         eyebrow="What this actually means"
-        title="You see the plan before anything touches your real life."
-        intro="The difference between an assistant you can actually trust with real work and one that might blow up on you."
+        title="Control, visibility, and calm — not creepiness or autopilot."
+        intro="Product philosophy for people whose reputation depends on getting automation right."
       >
         <FeatureGrid items={privacyPositioning} />
       </Section>
 
       <Section
+        eyebrow="Professional use cases"
+        title="When privacy and control are non-negotiable."
+        intro="Client work, clinical leadership, compliance reviews — scenarios where approval-first design matters."
+        className="sectionAlt"
+      >
+        <UseCaseGrid items={page.useCases} />
+      </Section>
+
+      <Section
+        eyebrow="Before & after"
+        title="From fast agents to trusted assistance."
+        intro="What changes when AI respects professional stakes."
+      >
+        <BeforeAfterPanel before={page.beforeAfter.before} after={page.beforeAfter.after} />
+      </Section>
+
+      <Section
         eyebrow="Approval-first here"
-        title="Judgment calls stay yours. Everything else gets lighter."
-        intro="Nothing important happens without you seeing it first."
+        title="You see the plan before anything runs."
+        intro="Privacy-first is not less capability — it is capability with guardrails you can explain to counsel."
       >
         <DeepPageMoment moment={deepPageMoments.privacy} />
+      </Section>
+
+      <Section
+        id="faq"
+        className="sectionAlt"
+        eyebrow="FAQ"
+        title="Privacy-first AI questions"
+        intro="Training data, memory, deletion, and how this differs from our Trust page."
+      >
+        <FaqList items={page.faqs} labelledBy="faq-heading" />
+      </Section>
+
+      <Section eyebrow="Explore further" title="Trust, policy, and related pages">
+        <RelatedLinksRow links={page.relatedLinks} />
       </Section>
 
       <CTASection />

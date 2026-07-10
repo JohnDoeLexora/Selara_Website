@@ -29,19 +29,22 @@ function MoonIcon() {
   );
 }
 
-export function ThemeToggle() {
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    if (typeof document === 'undefined') {
-      return 'dark';
-    }
+function readTheme(): 'dark' | 'light' {
+  if (typeof document === 'undefined') return 'dark';
+  return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+}
 
-    return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
-  });
+export function ThemeToggle() {
+  const [theme, setTheme] = useState<'dark' | 'light'>(readTheme);
 
   function toggleTheme() {
     const next = theme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = next;
-    localStorage.setItem('selara-theme', next);
+    try {
+      localStorage.setItem('selara-theme', next);
+    } catch {
+      // Storage may be unavailable — theme still applies for this session.
+    }
     setTheme(next);
   }
 
@@ -52,8 +55,14 @@ export function ThemeToggle() {
       type="button"
       aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
       aria-pressed={theme === 'light'}
+      suppressHydrationWarning
     >
-      {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+      <span className="themeToggleIcon themeToggleIconSun" aria-hidden>
+        <SunIcon />
+      </span>
+      <span className="themeToggleIcon themeToggleIconMoon" aria-hidden>
+        <MoonIcon />
+      </span>
     </button>
   );
 }

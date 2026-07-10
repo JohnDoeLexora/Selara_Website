@@ -9,26 +9,32 @@ export const DOWNLOAD_SELARA_LABEL = 'Download Selara';
 type DownloadSelaraCtaProps = {
   className: string;
   onClick?: MouseEventHandler<HTMLAnchorElement>;
+  'data-cta'?: string;
 };
 
 export const DownloadSelaraCta = forwardRef<HTMLAnchorElement, DownloadSelaraCtaProps>(
-  function DownloadSelaraCta({ className, onClick }, ref) {
+  function DownloadSelaraCta({ className, onClick, 'data-cta': dataCta = 'download-selara' }, ref) {
+    const shared = {
+      className,
+      onClick,
+      'data-cta': dataCta,
+    } as const;
+
     if (isExternalUrl(betaUrl)) {
       return (
         <a
           ref={ref}
-          className={className}
+          {...shared}
           href={betaUrl}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={onClick}
         >
           {DOWNLOAD_SELARA_LABEL}
         </a>
       );
     }
     return (
-      <Link ref={ref} className={className} href={betaUrl} onClick={onClick}>
+      <Link ref={ref} {...shared} href={betaUrl}>
         {DOWNLOAD_SELARA_LABEL}
       </Link>
     );

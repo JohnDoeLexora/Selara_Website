@@ -45,20 +45,12 @@ export function DesktopNavLinks() {
   );
 }
 
-export function MobileNavLinks({
-  onNavigate,
-  omitLabels = [],
-}: {
-  onNavigate: () => void;
-  omitLabels?: string[];
-}) {
+export function MobileNavLinks({ onNavigate }: { onNavigate: () => void }) {
   const pathname = usePathname();
 
   return (
     <div className="mobileNavLinks">
-      {navigation
-        .filter((item) => !omitLabels.includes(item.label))
-        .map((item) => {
+      {navigation.map((item) => {
         const active = navIsActive(pathname, item.href);
         const className = active ? 'navLinkActive' : undefined;
         if (isExternalUrl(item.href)) {

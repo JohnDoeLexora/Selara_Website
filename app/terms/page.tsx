@@ -1,8 +1,8 @@
-import { LegalBody, PageHero, Section } from '@/components/sections';
-import { termsOfServiceText } from '@/lib/legal';
-import { createMetadata } from '@/lib/site-data';
+import { LegalBody, LegalLinkRow, PageHero, Section } from '@/components/sections';
+import { termsOfService } from '@/lib/legal';
+import { getPageMetadata } from '@/lib/site-data';
 
-export const metadata = createMetadata('Terms of Service | Selara', 'Read the SelarAI Terms of Service.', '/terms');
+export const metadata = getPageMetadata('/terms');
 
 export default function TermsPage() {
   return (
@@ -10,10 +10,17 @@ export default function TermsPage() {
       <PageHero
         eyebrow="Terms of service"
         title="SelarAI Terms of Service"
-        intro="The agreement that governs your use of Selara and related services."
+        intro="These terms govern your use of Selara. The summary here is for orientation — the binding agreement is the full text below."
       />
-      <Section eyebrow="Legal" title="Terms of Service" intro="Full text follows.">
-        <LegalBody text={termsOfServiceText} />
+      <div className="shell legalPageNavWrap">
+        <LegalLinkRow current="terms" />
+      </div>
+      <Section
+        eyebrow="Legal"
+        title="Full terms of service"
+        intro="The complete agreement follows. Use the section links to navigate."
+      >
+        <LegalBody document={termsOfService} />
       </Section>
     </>
   );

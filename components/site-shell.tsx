@@ -1,13 +1,20 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ReactNode } from 'react';
-import { betaUrl, isExternalUrl, socialLinks, supportEmail } from '@/lib/site-data';
+import {
+  betaUrl,
+  footerLinkGroups,
+  isExternalUrl,
+  socialLinks,
+  supportEmail,
+} from '@/lib/site-data';
 import { DOWNLOAD_SELARA_LABEL, DownloadSelaraCta } from './download-cta';
 import { DesktopNavLinks } from './nav-links';
 import { MobileNav } from './mobile-nav';
 import { ThemeToggle } from './theme-toggle';
 import { TrustSignalStrip } from './sections';
 import { FeedbackWidget } from './feedback-widget';
+import { SiteSearch } from './site-search';
 
 export function SiteShell({ children }: { children: ReactNode }) {
   return (
@@ -23,6 +30,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           </Link>
           <DesktopNavLinks />
           <div className="navActions">
+            <SiteSearch />
             <ThemeToggle />
             <DownloadSelaraCta className="navButton" />
             <MobileNav />
@@ -48,9 +56,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <div>
             <p className="footerEyebrow">Explore</p>
             <div className="footerLinks">
-              <Link href="/features">Features</Link>
-              <Link href="/pricing">Pricing</Link>
-              <Link href="/future">Future</Link>
+              {footerLinkGroups.explore.map((link) => (
+                <Link key={link.href} href={link.href}>
+                  {link.label}
+                </Link>
+              ))}
               {isExternalUrl(betaUrl) ? (
                 <a href={betaUrl} target="_blank" rel="noopener noreferrer">
                   {DOWNLOAD_SELARA_LABEL}
@@ -63,10 +73,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <div>
             <p className="footerEyebrow">Trust</p>
             <div className="footerLinks">
-              <Link href="/privacy">Privacy</Link>
-              <Link href="/terms">Terms</Link>
-              <Link href="/privacy-first-ai-assistant">Privacy-first AI</Link>
-              <Link href="/vs-openclaw">Vs OpenClaw</Link>
+              {footerLinkGroups.trust.map((link) => (
+                <Link key={link.href} href={link.href}>
+                  {link.label}
+                </Link>
+              ))}
               <a href={`mailto:${supportEmail}`}>{supportEmail}</a>
             </div>
           </div>
@@ -76,10 +87,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <a href={socialLinks.x} target="_blank" rel="noopener noreferrer" aria-label="Selara on X (opens in new tab)">
                 X
               </a>
-              <Link href="/about">About</Link>
-              <Link href="/philosophy">Philosophy</Link>
-              <Link href="/integrations">Integrations</Link>
-              <Link href="/stories">Success stories</Link>
+              {footerLinkGroups.company.map((link) => (
+                <Link key={link.href} href={link.href}>
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

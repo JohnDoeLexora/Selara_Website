@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { createMetadata, deepPageMoments, planIncludesLine } from '@/lib/site-data';
 import {
   BetaUpgradeCallout,
@@ -11,6 +10,7 @@ import {
   Section,
   TrustSignalStrip,
 } from '@/components/sections';
+import { TestimonialsSection } from '@/components/testimonials-section';
 
 export const metadata = createMetadata(
   'Selara Pricing',
@@ -77,6 +77,14 @@ export default function PricingPage() {
         intro="Pricing, behavior, and billing — covered in plain language."
       >
         <FaqList labelledBy="faq-heading" />
+      </Section>
+
+      <Section
+        eyebrow="What professionals say"
+        title="Calm delegation, when the stakes are real."
+        intro="Early beta voices from people whose weeks cannot absorb silent automation."
+      >
+        <TestimonialsSection />
       </Section>
 
       <CTASection />

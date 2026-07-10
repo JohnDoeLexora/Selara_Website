@@ -171,6 +171,34 @@ export const navigation = [
   { href: '/future', label: 'Future' },
 ];
 
+/** Footer link groups — keep in sync with sitemap destinations. */
+export const footerLinkGroups = {
+  explore: [
+    { href: '/features', label: 'Features' },
+    { href: '/pricing', label: 'Pricing' },
+    { href: '/future', label: 'Future' },
+    { href: '/help', label: 'Help' },
+    { href: '/insights', label: 'Insights' },
+    { href: '/guide', label: 'Guide' },
+  ],
+  trust: [
+    { href: '/privacy', label: 'Privacy' },
+    { href: '/terms', label: 'Terms' },
+    { href: '/trust', label: 'Security & Trust' },
+    { href: '/how-selara-thinks', label: 'How Selara thinks' },
+    { href: '/privacy-first-ai-assistant', label: 'Privacy-first AI' },
+    { href: '/vs-openclaw', label: 'Vs OpenClaw' },
+  ],
+  company: [
+    { href: '/about', label: 'About' },
+    { href: '/philosophy', label: 'Philosophy' },
+    { href: '/integrations', label: 'Integrations' },
+    { href: '/stories', label: 'Success stories' },
+    { href: '/press', label: 'Press' },
+    { href: '/invite', label: 'Invite a colleague' },
+  ],
+} as const;
+
 export const heroLead =
   'The premium AI concierge for professionals. Calendar intelligence, approvals, and follow-through—and a bespoke assistant that tailors itself to your life. Available now in open beta.';
 
@@ -455,24 +483,6 @@ export const integrationItems = [
   'Maps',
   'Contacts',
   '800+ more',
-];
-
-export const productScenes = [
-  {
-    kicker: 'Navigation',
-    title: 'Everything is easy to find',
-    copy: 'Chat, your schedule, documents, and settings are all right there. No digging through menus.',
-  },
-  {
-    kicker: 'Preferences',
-    title: 'Settings that make sense',
-    copy: 'Change how it looks, how it sounds, and your plan in one place that doesn’t feel like a spreadsheet.',
-  },
-  {
-    kicker: 'Billing',
-    title: 'You can actually understand your bill',
-    copy: 'Your plan, when it renews, and what you’re paying for are all clear. No surprise charges.',
-  },
 ];
 
 export const comparisonRows = [
@@ -1673,52 +1683,6 @@ export const philosophyContent = {
       'Definitions, trust details, and real anonymized stories — so you know what approval-first means before you trust Selara with your week.',
   },
 };
-
-/**
- * Demo video strategy: film 60-second clips for (1) voice → plan → approve,
- * (2) calendar intelligence tradeoffs, (3) memory-informed follow-through.
- * Set `videoUrl` on each entry when assets are ready; placeholders stay live until then.
- */
-export type DemoVideo = {
-  id: string;
-  title: string;
-  durationLabel: string;
-  description: string;
-  posterSlot: ImageSlotKey;
-  transcript: string;
-  videoUrl?: string;
-};
-
-export const demoVideos: DemoVideo[] = [
-  {
-    id: 'overview',
-    title: 'Voice, plan, approve — in sixty seconds',
-    durationLabel: '60 seconds',
-    description:
-      'Watch how Selara turns a spoken request into a visible plan you can approve, edit, or reject before anything runs.',
-    posterSlot: 'approvalFlow',
-    transcript:
-      'Narrator: You ask Selara to move your afternoon and draft a client update. Selara shows a plan: which meetings shift, who gets notified, and the draft message waiting for your review. You edit one line, approve, and only then does the calendar update. Nothing sends under your name until you say so. That is approval-first AI — speed with visibility, built for weeks where the details matter.',
-  },
-  {
-    id: 'calendar',
-    title: 'Calendar intelligence with tradeoffs',
-    durationLabel: '45 seconds',
-    description: 'See how Selara protects focus blocks and surfaces what moves when the week gets reactive.',
-    posterSlot: 'calendarIntelligence',
-    transcript:
-      'Narrator: A protected clinic block gets an emergency request. Selara does not silently double-book. It proposes a tradeoff: what moves, who is affected, and which follow-ups still need same-day attention. You approve the swap or reject and keep the block. Calendar intelligence means seeing the whole tradeoff — not discovering the conflict in the hallway.',
-  },
-  {
-    id: 'memory',
-    title: 'Memory that sharpens every plan',
-    durationLabel: '45 seconds',
-    description: 'Context accumulates so drafts and scheduling reflect how you actually work.',
-    posterSlot: 'deepVoice',
-    transcript:
-      'Narrator: Selara remembers which clients need formal tone, which blocks are non-negotiable, and how you prefer follow-ups queued. The next plan is sharper because the last ones taught it — and you can always review or delete what it remembers. Memory compounds accuracy; approval keeps you in control.',
-  },
-];
 
 export const pressFacts = [
   'Approval-first AI concierge for iOS — visible plans before consequential actions run.',

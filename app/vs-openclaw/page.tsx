@@ -1,11 +1,7 @@
-import { openClawIntro, createMetadata } from '@/lib/site-data';
+import { openClawIntro, getPageMetadata } from '@/lib/site-data';
 import { CTASection, ComparisonTable, OpenClawContrastVisual, PageHero, Section } from '@/components/sections';
 
-export const metadata = createMetadata(
-  'Selara vs OpenClaw',
-  'Two AI assistants. Very different philosophies. Only one is built for people whose time and reputation are genuinely expensive.',
-  '/vs-openclaw'
-);
+export const metadata = getPageMetadata('/vs-openclaw');
 
 export default function VsOpenClawPage() {
   return (

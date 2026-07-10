@@ -1,0 +1,23 @@
+SELARA — PRESS ONE-PAGER
+SelarAI LLC · selara.app
+
+WHAT IT IS
+Selara is an approval-first AI concierge for iOS. Calendar intelligence, voice access, email, documents, and 800+ integrations — with visible plans before anything consequential runs.
+
+FOUNDER
+Zachary Cohen, Founder — SelarAI LLC (St. Albans)
+
+KEY FACTS
+• Open beta live on iOS
+• Approval-first architecture — users review plans before important actions
+• 800+ integrations across calendar, mail, docs, and productivity
+• Built for professionals who cannot afford inbox or calendar surprises
+
+ROADMAP HIGHLIGHTS
+• Shipped: iOS open beta
+• In progress: Mac app, expanded integrations
+• Planned: Apple Watch, browser extension, deeper agentic workflows
+
+PRESS CONTACT
+press@selaraillc.com
+info@selaraillc.com

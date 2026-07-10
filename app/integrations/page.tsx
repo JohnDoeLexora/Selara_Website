@@ -1,11 +1,8 @@
-import { createMetadata, deepPageMoments, integrationCategories, integrationPrinciples } from '@/lib/site-data';
+import { getPageMetadata, deepPageMoments, integrationCategories, integrationPrinciples } from '@/lib/site-data';
+import { IntegrationsDirectory, IntegrationRequestSection } from '@/components/integrations-directory';
 import { CTASection, DeepPageMoment, PageHero, Section, StatRow } from '@/components/sections';
 
-export const metadata = createMetadata(
-  'Selara Integrations',
-  '800+ connected tools for professionals — calendar, mail, docs, and more — with approval-first control through one calm AI concierge.',
-  '/integrations'
-);
+export const metadata = getPageMetadata('/integrations');
 
 export default function IntegrationsPage() {
   return (
@@ -51,6 +48,14 @@ export default function IntegrationsPage() {
       </Section>
 
       <Section
+        eyebrow="Directory"
+        title="Search the integrations that matter to your stack."
+        intro="Filter by category or search by name. Approval-first guardrails apply across every connection."
+      >
+        <IntegrationsDirectory />
+      </Section>
+
+      <Section
         eyebrow="Categories"
         title="The surfaces that matter most."
         intro="These are the categories professionals live in every day. Selara treats them as one system — not a pile of one-off tricks."
@@ -69,6 +74,14 @@ export default function IntegrationsPage() {
             </article>
           ))}
         </div>
+      </Section>
+
+      <Section
+        eyebrow="Missing something?"
+        title="Request an integration."
+        intro="If your workflow depends on a tool we have not highlighted, tell us — especially how approvals should work across it."
+      >
+        <IntegrationRequestSection />
       </Section>
 
       <CTASection />

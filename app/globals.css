@@ -167,7 +167,6 @@ button { font: inherit; }
 .pricingCard h3,
 .siteFooter h3,
 .heroWindowSecondary h3,
-.runwayBody h3,
 .showcaseNarrative h3,
 .approvalGhostCard h3,
 .approvalSequenceCard h3,
@@ -195,7 +194,6 @@ button { font: inherit; }
 .comparisonRow span,
 .proofRow span,
 .heroWindowSecondary p,
-.runwayBody p,
 .showcaseNarrative p,
 .approvalGhostCard p,
 .approvalSequenceCard span,
@@ -611,6 +609,57 @@ button { font: inherit; }
 .pageHeroFuture .pageHeroAuraRight {
   opacity: 0.55;
 }
+.pageHeroPress .pageHeroAuraLeft {
+  background: rgba(208, 169, 93, 0.12);
+}
+.pageHeroPress .pageHeroAuraRight {
+  background: rgba(35, 123, 255, 0.1);
+}
+.pageHeroPress .pageHeroAuraLeft,
+.pageHeroPress .pageHeroAuraRight {
+  opacity: 0.5;
+}
+.pageHeroTrust .pageHeroAuraLeft {
+  background: rgba(35, 123, 255, 0.16);
+}
+.pageHeroTrust .pageHeroAuraRight {
+  background: rgba(120, 160, 200, 0.1);
+}
+.pageHeroTrust .pageHeroAuraLeft,
+.pageHeroTrust .pageHeroAuraRight {
+  opacity: 0.55;
+}
+.pageHeroGlossary .pageHeroAuraLeft {
+  background: rgba(208, 169, 93, 0.14);
+}
+.pageHeroGlossary .pageHeroAuraRight {
+  background: rgba(35, 123, 255, 0.08);
+}
+.pageHeroGlossary .pageHeroAuraLeft,
+.pageHeroGlossary .pageHeroAuraRight {
+  opacity: 0.5;
+}
+.pageHeroGuide .pageHeroAuraLeft,
+.pageHeroGuide .pageHeroAuraRight {
+  opacity: 0.5;
+}
+.pageHeroCapability .pageHeroAuraLeft {
+  background: rgba(35, 123, 255, 0.15);
+}
+.pageHeroCapability .pageHeroAuraRight {
+  background: rgba(208, 169, 93, 0.1);
+}
+.pageHeroCapability .pageHeroAuraLeft,
+.pageHeroCapability .pageHeroAuraRight {
+  opacity: 0.5;
+}
+.pageHeroIntro {
+  margin: 0 0 12px;
+  color: var(--muted-strong);
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  line-height: 1.65;
+  max-width: 42ch;
+}
 .pageHero {
   padding: 96px 0 24px;
 }
@@ -752,7 +801,6 @@ button { font: inherit; }
 .ctaPanel,
 .faqItem,
 .statCard,
-.runwayCard,
 .approvalSequenceCard,
 .approvalGhostCard {
   backdrop-filter: blur(24px);
@@ -1256,15 +1304,13 @@ button { font: inherit; }
   padding: 28px;
   transform: rotate(5deg);
 }
-.heroWindowHeader,
-.runwayChrome {
+.heroWindowHeader {
   display: flex;
   gap: 8px;
   padding: 16px 18px;
   border-bottom: 1px solid var(--border);
 }
-.heroWindowHeader span,
-.runwayChrome span {
+.heroWindowHeader span {
   width: 10px;
   height: 10px;
   border-radius: 999px;
@@ -1415,10 +1461,6 @@ button { font: inherit; }
   width: min(100%, 212px);
   transform: rotate(4deg) translateY(4px);
 }
-.productScreenFrameRunway {
-  width: min(100%, 234px);
-  transform: rotate(-2deg) translateY(12px);
-}
 .productScreenImageWrap {
   position: relative;
   width: 100%;
@@ -1502,7 +1544,6 @@ button { font: inherit; }
   font-weight: 800;
 }
 .heroWindowSecondary h3,
-.runwayBody h3,
 .heroWindowTitle,
 .approvalGhostCard h3,
 .showcaseNarrative h3 {
@@ -1515,14 +1556,12 @@ button { font: inherit; }
 .featureGrid,
 .pricingGrid,
 .twoColumn,
-.runwayGrid,
 .approvalShowcase,
 .statRow { display: grid; gap: 22px; }
 .storyGridExpanded { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .featureGridExpanded { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .pricingGridExpanded { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
 .twoColumn { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.runwayGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
 .approvalShowcase { grid-template-columns: 0.9fr 1.1fr; gap: 30px; align-items: start; }
 .statRow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .storyCard,
@@ -1565,44 +1604,6 @@ button { font: inherit; }
 .sequenceStep.emphasis {
   border-color: rgba(35, 123, 255, 0.28);
   background: color-mix(in srgb, var(--blue-soft) 48%, var(--surface-elevated));
-}
-.runwayCard {
-  overflow: hidden;
-  transform-origin: center bottom;
-}
-.runwayBody {
-  padding: 28px;
-  min-height: 340px;
-  position: relative;
-  overflow: hidden;
-  display: grid;
-  gap: 14px;
-}
-.runwayAssetStage {
-  position: relative;
-  min-height: 290px;
-  margin-top: auto;
-  padding: 38px 14px 14px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  isolation: isolate;
-}
-.assetPlaceholderGlow {
-  position: absolute;
-  inset: auto 18px 18px 18px;
-  height: 120px;
-  border-radius: 22px;
-  background:
-    linear-gradient(135deg, rgba(35, 123, 255, 0.2), rgba(208, 169, 93, 0.18)),
-    rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
-}
-.runwayStagePill {
-  left: 50%;
-  top: 8px;
-  transform: translateX(-50%);
 }
 .tickerWrap {
   overflow: hidden;
@@ -2175,15 +2176,10 @@ button { font: inherit; }
   .twoColumn,
   .deepPageMoment,
   .footerGrid { grid-template-columns: 1fr; }
-  .videoDemoPrimary,
-  .videoDemoGrid {
-    grid-template-columns: 1fr;
-  }
   .feedbackWidgetPanel {
     width: min(360px, calc(100vw - 24px));
   }
   .storyGridExpanded,
-  .runwayGrid,
   .featureGridExpanded,
   .audienceGrid,
   .pricingGridExpanded,
@@ -2236,7 +2232,6 @@ button { font: inherit; }
     padding: 10px 16px;
   }
   .storyGridExpanded,
-  .runwayGrid,
   .featureGridExpanded,
   .audienceGrid,
   .pricingGridExpanded,
@@ -2253,12 +2248,10 @@ button { font: inherit; }
     min-height: auto;
   }
   .productScreenStageHero,
-  .productScreenStageSecondary,
-  .runwayAssetStage {
+  .productScreenStageSecondary {
     min-height: 260px;
   }
-  .productStagePill,
-  .runwayStagePill {
+  .productStagePill {
     left: 50%;
     transform: translateX(-50%);
   }
@@ -2271,8 +2264,7 @@ button { font: inherit; }
     width: 100%;
   }
   .productScreenFrameHero,
-  .productScreenFrameSecondary,
-  .productScreenFrameRunway {
+  .productScreenFrameSecondary {
     transform: none;
   }
   .pageHero { padding-top: 64px; }
@@ -3197,120 +3189,6 @@ button { font: inherit; }
   line-height: 1.7;
 }
 
-.videoDemoPrimary {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-  gap: clamp(24px, 4vw, 40px);
-  align-items: center;
-}
-.videoDemoFrame {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: color-mix(in srgb, var(--surface) 90%, transparent);
-  aspect-ratio: 16 / 9;
-}
-.videoDemoPosterWrap {
-  position: absolute;
-  inset: 0;
-}
-.videoDemoPoster {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.videoDemoPlayButton {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border: none;
-  background: color-mix(in srgb, var(--bg) 42%, transparent);
-  color: var(--cream);
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.15s ease;
-}
-.videoDemoPlayButton:hover {
-  background: color-mix(in srgb, var(--bg) 58%, transparent);
-}
-.videoDemoPlayButton svg {
-  color: var(--gold);
-}
-.videoDemoPrimaryCopy h3 {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  margin: 0 0 10px;
-}
-.videoDemoPrimaryCopy p {
-  color: var(--muted-strong);
-  line-height: 1.75;
-  margin: 0;
-}
-.videoDemoGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-  margin-top: 28px;
-}
-.videoDemoCard h3 {
-  font-size: 1.05rem;
-  margin: 14px 0 8px;
-}
-.videoDemoCard p {
-  color: var(--muted-strong);
-  line-height: 1.65;
-  margin: 0;
-  font-size: 0.95rem;
-}
-.videoDemoDialog {
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 0;
-  max-width: min(640px, calc(100vw - 32px));
-  background: var(--bg-soft);
-  color: var(--text);
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.45);
-}
-.videoDemoDialog::backdrop {
-  background: rgba(0, 0, 0, 0.55);
-}
-.videoDemoDialogInner {
-  padding: 28px 24px 24px;
-  position: relative;
-}
-.videoDemoDialogClose {
-  position: absolute;
-  top: 12px;
-  right: 14px;
-  border: none;
-  background: transparent;
-  color: var(--muted);
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-  min-width: 44px;
-  min-height: 44px;
-}
-.videoDemoComingSoon {
-  margin-top: 16px;
-}
-.videoDemoTranscript {
-  margin-top: 18px;
-}
-.videoDemoTranscript summary {
-  cursor: pointer;
-  font-weight: 600;
-}
-.videoDemoTranscript p {
-  margin-top: 10px;
-  color: var(--muted-strong);
-  line-height: 1.75;
-}
 .visuallyHidden {
   position: absolute;
   width: 1px;
@@ -3513,6 +3391,12 @@ button { font: inherit; }
   margin: 12px 0;
   padding-left: 1.25rem;
 }
+.guideFormLayout {
+  max-width: 480px;
+}
+.guideArticleActions {
+  margin-bottom: 2rem;
+}
 .guideHeroLayout {
   display: grid;
   gap: 32px;
@@ -3546,6 +3430,27 @@ button { font: inherit; }
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 24px;
+}
+.chipButton {
+  appearance: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.chipButton:hover {
+  border-color: color-mix(in srgb, var(--gold) 28%, var(--border));
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+}
+.chipActive {
+  border-color: color-mix(in srgb, var(--gold) 45%, var(--border));
+  background: color-mix(in srgb, var(--gold-soft) 70%, transparent);
+  color: var(--cream);
+}
+.insightPostGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px;
 }
 .insightRssLink {
   margin-top: 32px;

@@ -1,19 +1,26 @@
-import { createMetadata } from '@/lib/site-data';
+import Link from 'next/link';
+import {
+  aboutMission,
+  aboutValues,
+  aboutWhyWeBuilt,
+  builtWithIntro,
+  builtWithItems,
+  founderBio,
+  getPageMetadata,
+  pressEmail,
+  supportEmail,
+} from '@/lib/site-data';
 import { CTASection, PageHero, Section } from '@/components/sections';
 
-export const metadata = createMetadata(
-  'About Selara',
-  'Why we’re building a premium personal assistant instead of another chatbot that makes your life noisier.',
-  '/about'
-);
+export const metadata = getPageMetadata('/about');
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="About Selara"
-        title="For people whose time is too expensive to waste on average software."
-        intro="Most AI assistants are built to impress in a demo. Selara is built for people who need it to actually run their weeks without creating new problems."
+        eyebrow={aboutMission.eyebrow}
+        title={aboutMission.title}
+        intro={aboutMission.intro}
       />
 
       <Section
@@ -34,6 +41,46 @@ export default function AboutPage() {
       </Section>
 
       <Section
+        className="sectionAlt"
+        eyebrow="Founder"
+        title={founderBio.name}
+        intro={`${founderBio.role} · ${founderBio.location}`}
+      >
+        <div className="contentCard contentCardPremium pressFounderCard">
+          <div className="pressFounderPhoto" aria-hidden>
+            <span className="pressFounderInitials">ZC</span>
+          </div>
+          <p>{founderBio.summary}</p>
+        </div>
+      </Section>
+
+      <Section
+        eyebrow={aboutWhyWeBuilt.eyebrow}
+        title={aboutWhyWeBuilt.title}
+        intro={aboutWhyWeBuilt.intro}
+      >
+        <div className="contentCard contentCardPremium">
+          <p>{aboutWhyWeBuilt.body}</p>
+        </div>
+      </Section>
+
+      <Section
+        className="sectionAlt"
+        eyebrow="Values"
+        title="What we optimize for."
+        intro="Four principles that show up in the product, the policies, and every decision about what Selara should and should not do."
+      >
+        <div className="storyGrid storyGridExpanded">
+          {aboutValues.map((value) => (
+            <article key={value.key} className="contentCard contentCardPremium">
+              <h3>{value.title}</h3>
+              <p>{value.body}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section
         eyebrow="The standard"
         title="Premium doesn’t mean expensive. It means it respects you."
         intro="The product should feel like it was made for someone whose attention is genuinely valuable. That shows up in the motion, the hierarchy, the restraint, and the places where we deliberately slow down so you can stay in control."
@@ -50,6 +97,53 @@ export default function AboutPage() {
               bespoke assistant gets better the more you use it.
             </p>
           </div>
+        </div>
+      </Section>
+
+      <Section
+        className="sectionAlt"
+        eyebrow="Built with"
+        title="Built with care, not hype."
+        intro={builtWithIntro}
+      >
+        <div className="builtWithGrid">
+          {builtWithItems.map((item) => (
+            <article key={item.label} className="builtWithCard">
+              <p className="builtWithLabel">{item.label}</p>
+              <p className="builtWithDetail">{item.detail}</p>
+            </article>
+          ))}
+        </div>
+        <p className="sectionInlineLink">
+          <Link href="/trust" className="textLink">
+            Security &amp; Trust
+          </Link>
+          <Link href="/how-selara-thinks" className="textLink">
+            How Selara thinks
+          </Link>
+        </p>
+      </Section>
+
+      <Section
+        eyebrow="Contact"
+        title="Get in touch."
+        intro="Press inquiries, partnerships, or questions about Selara."
+      >
+        <div className="contentCard contentCardPremium pressContactCard">
+          <p>
+            Email{' '}
+            <a href={`mailto:${pressEmail}`} className="pressContactLink">
+              {pressEmail}
+            </a>{' '}
+            for press and media, or{' '}
+            <a href={`mailto:${supportEmail}`} className="pressContactLink">
+              {supportEmail}
+            </a>{' '}
+            for product support.
+          </p>
+          <Link className="secondaryButton" href="/press">
+            Press kit
+          </Link>
         </div>
       </Section>
 

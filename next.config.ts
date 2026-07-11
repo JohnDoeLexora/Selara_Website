@@ -59,12 +59,8 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'www.selara.app' }],
-        destination: 'https://selara.app/:path*',
-        permanent: true,
-      },
+      // Do not redirect www↔apex here — Vercel domain settings already own that.
+      // A Next.js redirect in the opposite direction causes ERR_TOO_MANY_REDIRECTS.
       {
         source: '/glossary',
         destination: '/how-selara-thinks',
